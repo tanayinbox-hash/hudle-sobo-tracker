@@ -1,87 +1,172 @@
-// HUDLE SOUTH MUMBAI LIVE API SLOT TRACKER & UNIFIED CALENDAR MATRIX
+// HUDLE SOUTH MUMBAI LIVE API COURT-BY-COURT TRACKER & UNIFIED CALENDAR MATRIX
 
 // AUTHENTIC USER TOKEN (TANAY GANDHI)
 const DEFAULT_USER_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoiVjNWY3FEM1pOYkdweHhlU2VWRVl6MUZEQjlKcDBvazBKYUlsNWhCb2NZdm1FdVdBbXdVcGlJemwzSWJDIiwic3ViIjoyODAxMDgsImlzcyI6Imh0dHBzOi8vYXBpLmh1ZGxlLmluL2FwaS92MS9vdHAvdmVyaWZ5IiwiaWF0IjoxNzg2OTg1ODg1LCJleHAiOjE4MTgwODk4ODUsIm5iZiI6MTc4Njk4NTg4NSwianRpIjoiRENsbjE4Z1Y4a3hJNU9VOSJ9.iZ-Lmvj2NDv9MJTGqsU4PJk2v9-q7U8VQdpuZBQmx38";
 
-const SOBO_VENUES_DATA = [
+// GRANULAR INDIVIDUAL COURTS MAP
+const INDIVIDUAL_COURTS_DATA = [
+  // --- COURTSIDE WORLI ---
   {
-    id: "9672dd36-168a-40d8-85be-28d7bef3543b",
-    slug: "courtside_worli",
-    name: "Courtside Padel Social Club",
+    venueId: "9672dd36-168a-40d8-85be-28d7bef3543b",
+    facId: "c598e535-9980-47d0-a0eb-ebaf5603b367",
+    venueName: "Courtside Worli",
+    courtName: "Isprava Court",
     location: "Worli",
     type: "padel",
-    sportsText: "Padel (3 Courts)",
-    facilities: [
-      "c598e535-9980-47d0-a0eb-ebaf5603b367",
-      "d6121c94-0fc9-4368-a93d-edc26583c2cd",
-      "b866b70f-c2a9-4ea0-91bf-1a95f67c15c3"
-    ],
     matrix: {}
   },
   {
-    id: "b82d19f2-8690-4975-a5d1-5e9ab886e10d",
-    slug: "padel_360_worli",
-    name: "Padel 360",
+    venueId: "9672dd36-168a-40d8-85be-28d7bef3543b",
+    facId: "d6121c94-0fc9-4368-a93d-edc26583c2cd",
+    venueName: "Courtside Worli",
+    courtName: "Court 2",
     location: "Worli",
     type: "padel",
-    sportsText: "Padel & Pickleball (AC Indoor)",
-    facilities: [
-      "c93e354e-afd1-43a1-ac95-b0d9098946a6",
-      "dc6616fa-8d06-48e0-a48e-1cd2c8171e78"
-    ],
     matrix: {}
   },
   {
-    id: "7d204b7b-8574-4ac7-823a-2f9d77789dc0",
-    slug: "nsci_padel_worli",
-    name: "NSCI Padel Club",
+    venueId: "9672dd36-168a-40d8-85be-28d7bef3543b",
+    facId: "b866b70f-c2a9-4ea0-91bf-1a95f67c15c3",
+    venueName: "Courtside Worli",
+    courtName: "Court 3",
     location: "Worli",
     type: "padel",
-    sportsText: "Padel (Members Only)",
-    facilities: [
-      "24073885-5158-4da6-8deb-883e057fc18b",
-      "e7c1e55a-dd5d-44d1-89c7-06939454cc35"
-    ],
     matrix: {}
   },
   {
-    id: "f598bca7-4947-4bf6-bd2d-f741e3abea82",
-    slug: "7padel_malabar_hill",
-    name: "7Padel | PDP Malabar Hill",
+    venueId: "9672dd36-168a-40d8-85be-28d7bef3543b",
+    facId: "60d880c0-c7b8-45d2-a0e4-6c0ef836c317",
+    venueName: "Courtside Worli",
+    courtName: "Pickleball Court",
+    location: "Worli",
+    type: "pickleball",
+    matrix: {}
+  },
+
+  // --- PADEL 360 WORLI ---
+  {
+    venueId: "b82d19f2-8690-4975-a5d1-5e9ab886e10d",
+    facId: "c93e354e-afd1-43a1-ac95-b0d9098946a6",
+    venueName: "Padel 360",
+    courtName: "Court 1 Padel",
+    location: "Worli",
+    type: "padel",
+    matrix: {}
+  },
+  {
+    venueId: "b82d19f2-8690-4975-a5d1-5e9ab886e10d",
+    facId: "dc6616fa-8d06-48e0-a48e-1cd2c8171e78",
+    venueName: "Padel 360",
+    courtName: "Court 2 Padel",
+    location: "Worli",
+    type: "padel",
+    matrix: {}
+  },
+  {
+    venueId: "b82d19f2-8690-4975-a5d1-5e9ab886e10d",
+    facId: "0cab228a-130b-4c64-b5f0-7de6370dd138",
+    venueName: "Padel 360",
+    courtName: "Court 1 Pickleball",
+    location: "Worli",
+    type: "pickleball",
+    matrix: {}
+  },
+  {
+    venueId: "b82d19f2-8690-4975-a5d1-5e9ab886e10d",
+    facId: "04a757f0-d5a8-4fcc-800a-ea7230b720e8",
+    venueName: "Padel 360",
+    courtName: "Court 2 Pickleball",
+    location: "Worli",
+    type: "pickleball",
+    matrix: {}
+  },
+
+  // --- NSCI PADEL WORLI ---
+  {
+    venueId: "7d204b7b-8574-4ac7-823a-2f9d77789dc0",
+    facId: "24073885-5158-4da6-8deb-883e057fc18b",
+    venueName: "NSCI Padel Club",
+    courtName: "Court 1",
+    location: "Worli",
+    type: "padel",
+    matrix: {}
+  },
+  {
+    venueId: "7d204b7b-8574-4ac7-823a-2f9d77789dc0",
+    facId: "e7c1e55a-dd5d-44d1-89c7-06939454cc35",
+    venueName: "NSCI Padel Club",
+    courtName: "Court 2",
+    location: "Worli",
+    type: "padel",
+    matrix: {}
+  },
+
+  // --- 7PADEL MALABAR HILL ---
+  {
+    venueId: "f598bca7-4947-4bf6-bd2d-f741e3abea82",
+    facId: "e04e0284-8a02-44c3-ab7b-d7593125dd8c",
+    venueName: "7Padel | PDP",
+    courtName: "Court 1",
     location: "Malabar Hill",
     type: "padel",
-    sportsText: "Padel (Priyadarshini Park)",
-    facilities: [
-      "e04e0284-8a02-44c3-ab7b-d7593125dd8c",
-      "d0670d76-57d1-4fe0-8358-05d156f79969"
-    ],
     matrix: {}
   },
   {
-    id: "f8172f52-47fc-4e19-ba87-f9ae625eccb8",
-    slug: "smash_dock_colaba",
-    name: "Smash Dock",
+    venueId: "f598bca7-4947-4bf6-bd2d-f741e3abea82",
+    facId: "d0670d76-57d1-4fe0-8358-05d156f79969",
+    venueName: "7Padel | PDP",
+    courtName: "Court 2 (Sea Side)",
+    location: "Malabar Hill",
+    type: "padel",
+    matrix: {}
+  },
+
+  // --- SMASH DOCK COLABA ---
+  {
+    venueId: "f8172f52-47fc-4e19-ba87-f9ae625eccb8",
+    facId: "c46d28c1-d832-4554-ab09-13e3ba1cbf90",
+    venueName: "Smash Dock",
+    courtName: "Court 1",
     location: "Colaba",
     type: "pickleball",
-    sportsText: "Pickleball (9-Layer Acrylic)",
-    facilities: [
-      "c46d28c1-d832-4554-ab09-13e3ba1cbf90",
-      "a88745d4-e0c7-451b-995a-961ff86104c8"
-    ],
     matrix: {}
   },
   {
-    id: "3e7f36b1-775e-4178-bae8-c1dbcb697809",
-    slug: "global_sports_lower_parel",
-    name: "Global Sports Pickleball",
+    venueId: "f8172f52-47fc-4e19-ba87-f9ae625eccb8",
+    facId: "a88745d4-e0c7-451b-995a-961ff86104c8",
+    venueName: "Smash Dock",
+    courtName: "Court 2",
+    location: "Colaba",
+    type: "pickleball",
+    matrix: {}
+  },
+
+  // --- GLOBAL SPORTS LOWER PAREL ---
+  {
+    venueId: "3e7f36b1-775e-4178-bae8-c1dbcb697809",
+    facId: "277c8585-2218-41b1-ab02-875ad0abb0c5",
+    venueName: "Global Sports",
+    courtName: "Court 1",
     location: "Lower Parel",
     type: "pickleball",
-    sportsText: "Pickleball (Peninsula Corporate Park)",
-    facilities: [
-      "277c8585-2218-41b1-ab02-875ad0abb0c5",
-      "f6ed0b2b-da82-4830-92f3-163c7ffae033",
-      "5319184f-6229-4cb4-a05a-8f667ab1f8f9"
-    ],
+    matrix: {}
+  },
+  {
+    venueId: "3e7f36b1-775e-4178-bae8-c1dbcb697809",
+    facId: "f6ed0b2b-da82-4830-92f3-163c7ffae033",
+    venueName: "Global Sports",
+    courtName: "Court 2",
+    location: "Lower Parel",
+    type: "pickleball",
+    matrix: {}
+  },
+  {
+    venueId: "3e7f36b1-775e-4178-bae8-c1dbcb697809",
+    facId: "5319184f-6229-4cb4-a05a-8f667ab1f8f9",
+    venueName: "Global Sports",
+    courtName: "Court 3",
+    location: "Lower Parel",
+    type: "pickleball",
     matrix: {}
   }
 ];
@@ -133,7 +218,7 @@ function initBookingDate() {
 // RENDER ALL 18 TIMESLOT TABLE HEADERS
 function renderCalendarHeaders() {
   const headerRow = document.getElementById("calendar-header-row");
-  headerRow.innerHTML = `<th class="venue-col-header">South Mumbai Venue</th>`;
+  headerRow.innerHTML = `<th class="venue-col-header">South Mumbai Venue & Court</th>`;
   
   ALL_TIMESLOTS.forEach(timeStr => {
     const th = document.createElement("th");
@@ -187,32 +272,30 @@ async function syncAllVenuesLiveSlots() {
 
   const fetchPromises = [];
 
-  SOBO_VENUES_DATA.forEach(v => {
-    v.matrix = {};
-    v.facilities.forEach(facId => {
-      const apiUrl = `/hudle-api/venues/${v.id}/facilities/${facId}/slots?start_date=${selectedDate}&end_date=${selectedDate}`;
-      
-      const p = fetch(apiUrl, {
-        headers: {
-          "Accept": "application/json",
-          "Authorization": `Bearer ${token}`,
-          "api-secret": "hudle-api1798@prod",
-          "x-app-version": "1.0.1",
-          "x-app-source": "consumer"
-        }
-      })
-      .then(res => res.ok ? res.json() : null)
-      .then(jsonRes => {
-        if (jsonRes && jsonRes.data && Array.isArray(jsonRes.data)) {
-          parseHudleSlotResponse(v.matrix, jsonRes.data, selectedDate);
-        }
-      })
-      .catch(err => {
-        console.warn(`Parallel fetch warning for ${v.name}:`, err);
-      });
-
-      fetchPromises.push(p);
+  INDIVIDUAL_COURTS_DATA.forEach(courtObj => {
+    courtObj.matrix = {};
+    const apiUrl = `/hudle-api/venues/${courtObj.venueId}/facilities/${courtObj.facId}/slots?start_date=${selectedDate}&end_date=${selectedDate}`;
+    
+    const p = fetch(apiUrl, {
+      headers: {
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`,
+        "api-secret": "hudle-api1798@prod",
+        "x-app-version": "1.0.1",
+        "x-app-source": "consumer"
+      }
+    })
+    .then(res => res.ok ? res.json() : null)
+    .then(jsonRes => {
+      if (jsonRes && jsonRes.data && Array.isArray(jsonRes.data)) {
+        parseHudleSlotResponse(courtObj.matrix, jsonRes.data, selectedDate);
+      }
+    })
+    .catch(err => {
+      console.warn(`Parallel fetch warning for ${courtObj.courtName}:`, err);
     });
+
+    fetchPromises.push(p);
   });
 
   // Execute all requests concurrently in parallel!
@@ -222,28 +305,22 @@ async function syncAllVenuesLiveSlots() {
   renderCalendarMatrix();
 }
 
-// PARSE HUDLE REST API SLOT JSON RESPONSE INTO TIME MATRIX WITH EXACT DATE & AVAILABILITY MATCHING
+// PARSE HUDLE REST API SLOT JSON RESPONSE INTO COURT TIME MATRIX
 function parseHudleSlotResponse(matrixObj, slotsArray, targetDateStr) {
   slotsArray.forEach(slot => {
-    // 1. Must match targetDateStr
     if (!slot.start_time || !slot.start_time.startsWith(targetDateStr)) return;
 
-    // 2. Extract 24-hour time "06:00:00" -> "06:00 AM"
     const timeParts = slot.start_time.split(" ");
     const time24 = timeParts[1] || timeParts[0];
     const timeStr = formatTimeTo12Hr(time24);
 
-    // 3. Exact availability condition (must be available and NOT booked)
     const isAvail = slot.is_available === true && slot.is_booked === false;
     const priceVal = Math.round(parseFloat(slot.price || slot.discounted_price || 0));
 
-    // If slot is available on ANY court for this venue, mark OPEN
-    if (!matrixObj[timeStr] || isAvail) {
-      matrixObj[timeStr] = {
-        status: isAvail ? "open" : "booked",
-        price: priceVal > 0 ? priceVal : (matrixObj[timeStr]?.price || 1800)
-      };
-    }
+    matrixObj[timeStr] = {
+      status: isAvail ? "open" : "booked",
+      price: priceVal
+    };
   });
 }
 
@@ -255,37 +332,37 @@ function formatTimeTo12Hr(time24) {
   return `${String(h).padStart(2, '0')}:00 ${ampm}`;
 }
 
-// RENDER CALENDAR MATRIX WITH PADEL OR PICKLEBALL FILTERING & ALL 18 TIMESLOTS
+// RENDER CALENDAR MATRIX COURT BY COURT
 function renderCalendarMatrix() {
   const tbody = document.getElementById("calendar-matrix-body");
   tbody.innerHTML = "";
 
-  const filteredVenues = SOBO_VENUES_DATA.filter(v => {
-    if (currentSportFilter === "padel") return v.type === "padel";
-    if (currentSportFilter === "pickleball") return v.type === "pickleball";
+  const filteredCourts = INDIVIDUAL_COURTS_DATA.filter(c => {
+    if (currentSportFilter === "padel") return c.type === "padel";
+    if (currentSportFilter === "pickleball") return c.type === "pickleball";
     return true;
   });
 
-  filteredVenues.forEach(v => {
+  filteredCourts.forEach(c => {
     const tr = document.createElement("tr");
     
-    // Sticky pinned venue label cell
+    // Sticky pinned venue & court label cell
     const labelTd = document.createElement("td");
     labelTd.className = "venue-label-cell";
     labelTd.innerHTML = `
-      <div class="venue-title-text">${v.type === 'padel' ? '🎾' : '🏓'} ${v.name}</div>
-      <div class="venue-sub-text">📍 ${v.location} • ${v.sportsText}</div>
+      <div class="venue-title-text">${c.type === 'padel' ? '🎾' : '🏓'} ${c.venueName}</div>
+      <div class="venue-sub-text">📍 ${c.courtName} (${c.location})</div>
     `;
     tr.appendChild(labelTd);
 
     // Render cells for all 18 hourly timeslots
     ALL_TIMESLOTS.forEach(timeStr => {
-      const slotData = v.matrix[timeStr] || { status: "empty" };
+      const slotData = c.matrix[timeStr] || { status: "empty" };
       const td = document.createElement("td");
 
       if (slotData.status === "open") {
         td.innerHTML = `
-          <button class="matrix-slot-btn open" onclick="selectSlotForSniper('${v.id}', '${timeStr}')">
+          <button class="matrix-slot-btn open" onclick="selectSlotForSniper('${c.venueId}', '${timeStr}')">
             <span>⚡ ₹${slotData.price}</span>
             <span style="font-size: 8px; opacity: 0.8;">SNIPE</span>
           </button>
