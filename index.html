@@ -9,11 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* CRITICAL INLINE STYLES FOR GUARANTEED DARK MODE GLASSMORPHISM & CALENDAR SCHEDULE */
+    /* CRITICAL STYLES FOR GUARANTEED DARK MODE, SPORT FILTERS & STICKY FULL TIMESLOT CALENDAR */
     :root {
       --bg-primary: #0a0f1d;
       --bg-secondary: #111827;
-      --bg-card: rgba(17, 24, 39, 0.9);
+      --bg-card: rgba(17, 24, 39, 0.95);
       --border-color: rgba(255, 255, 255, 0.1);
       --border-highlight: rgba(0, 240, 255, 0.35);
       
@@ -46,11 +46,11 @@
         radial-gradient(circle at 15% 15%, rgba(204, 255, 0, 0.08) 0%, transparent 45%),
         radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.08) 0%, transparent 45%);
       background-attachment: fixed;
-      padding: 20px 16px 60px;
+      padding: 16px 14px 60px;
     }
 
     .app-container {
-      max-width: 1400px;
+      max-width: 1550px;
       margin: 0 auto;
     }
 
@@ -59,9 +59,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 18px;
+      padding-bottom: 16px;
       border-bottom: 1px solid var(--border-color);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .brand-wrapper {
@@ -71,19 +71,19 @@
     }
 
     .brand-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 14px;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
       background: linear-gradient(135deg, var(--accent-padel), var(--accent-pickle));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 26px;
-      box-shadow: 0 0 25px rgba(204, 255, 0, 0.4);
+      font-size: 24px;
+      box-shadow: 0 0 20px rgba(204, 255, 0, 0.4);
     }
 
     .brand-title h1 {
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
       letter-spacing: -0.5px;
       color: #ffffff;
@@ -142,33 +142,40 @@
       cursor: pointer;
     }
 
-    /* VIEW SWITCHER & DATE BAR */
+    /* TOOLBAR BAR: SPORT FILTER & DATE SELECTION */
     .toolbar-bar {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
-      background: rgba(17, 24, 39, 0.8);
+      gap: 14px;
+      background: rgba(17, 24, 39, 0.9);
       border: 1px solid var(--border-color);
       padding: 12px 18px;
       border-radius: 14px;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
-    .view-mode-toggle {
+    .sport-filter-group {
       display: flex;
-      background: rgba(0, 0, 0, 0.4);
-      padding: 4px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      align-items: center;
+      gap: 8px;
     }
 
-    .view-btn {
-      background: transparent;
-      border: none;
+    .filter-label {
+      font-size: 12px;
+      font-weight: 700;
       color: var(--text-secondary);
-      padding: 8px 18px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-right: 4px;
+    }
+
+    .sport-filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-secondary);
+      padding: 8px 16px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: 700;
@@ -179,17 +186,31 @@
       transition: all 0.2s ease;
     }
 
-    .view-btn.active {
-      background: var(--accent-pickle);
-      color: #0f172a;
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+    .sport-filter-btn.active-all {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: #ffffff;
+      color: #ffffff;
+    }
+
+    .sport-filter-btn.active-padel {
+      background: rgba(204, 255, 0, 0.2);
+      border-color: var(--accent-padel);
+      color: var(--accent-padel);
+      box-shadow: 0 0 15px rgba(204, 255, 0, 0.25);
+    }
+
+    .sport-filter-btn.active-pickle {
+      background: rgba(0, 240, 255, 0.2);
+      border-color: var(--accent-pickle);
+      color: var(--accent-pickle);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
     }
 
     .date-pills {
       display: flex;
       gap: 6px;
       overflow-x: auto;
-      padding-bottom: 4px;
+      padding-bottom: 2px;
     }
 
     .date-btn {
@@ -211,75 +232,111 @@
       color: var(--accent-padel);
     }
 
-    /* CALENDAR SCHEDULE TABLE MATRIX */
+    /* FULL TIMESLOT CALENDAR MATRIX CONTAINER WITH DUAL SCROLLING & PINNED FIRST COLUMN */
     .calendar-container {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 16px;
-      padding: 20px;
+      padding: 16px;
       overflow-x: auto;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      margin-bottom: 32px;
+      overflow-y: auto;
+      max-height: 580px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+      margin-bottom: 28px;
+      position: relative;
+    }
+
+    /* CUSTOM SCROLLBAR */
+    .calendar-container::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    .calendar-container::-webkit-scrollbar-track {
+      background: rgba(10, 15, 29, 0.6);
+      border-radius: 4px;
+    }
+
+    .calendar-container::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
     }
 
     .calendar-table {
-      width: 100%;
+      width: max-content;
       border-collapse: separate;
-      border-spacing: 6px;
-      min-width: 900px;
+      border-spacing: 5px;
     }
 
     .calendar-table th {
-      background: rgba(15, 23, 42, 0.9);
+      background: #0f172a;
       color: var(--text-secondary);
-      padding: 10px 14px;
+      padding: 10px 12px;
       border-radius: 8px;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-width: 82px;
+      position: sticky;
+      top: 0;
+      z-index: 5;
     }
 
+    /* STICKY FROZEN FIRST COLUMN FOR VENUE NAMES */
     .calendar-table th.venue-col-header {
+      position: sticky;
+      left: 0;
+      top: 0;
+      z-index: 20;
+      background: #111827;
       text-align: left;
-      min-width: 220px;
+      min-width: 230px;
       color: var(--text-primary);
+      box-shadow: 4px 0 10px rgba(0,0,0,0.5);
     }
 
     .calendar-table td {
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(15, 23, 42, 0.65);
       border-radius: 8px;
-      padding: 8px;
+      padding: 4px;
       text-align: center;
       vertical-align: middle;
       border: 1px solid rgba(255, 255, 255, 0.04);
-      transition: all 0.2s ease;
     }
 
+    /* STICKY VENUE NAME CELL */
     .calendar-table td.venue-label-cell {
+      position: sticky;
+      left: 0;
+      z-index: 10;
+      background: #111827;
       text-align: left;
-      background: rgba(17, 24, 39, 0.95);
-      padding: 12px 14px;
+      padding: 10px 12px;
       border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 4px 0 10px rgba(0,0,0,0.5);
+      min-width: 230px;
     }
 
     .venue-title-text {
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
       color: #ffffff;
+      white-space: nowrap;
     }
 
     .venue-sub-text {
       font-size: 11px;
       color: var(--text-muted);
-
+      white-space: nowrap;
     }
 
     .matrix-slot-btn {
       width: 100%;
-      padding: 8px 6px;
+      min-width: 76px;
+      padding: 8px 4px;
       border-radius: 6px;
       font-family: var(--font-mono);
       font-size: 11px;
@@ -295,7 +352,7 @@
     }
 
     .matrix-slot-btn.open {
-      background: rgba(16, 185, 129, 0.15);
+      background: rgba(16, 185, 129, 0.16);
       border: 1px solid rgba(16, 185, 129, 0.4);
       color: var(--accent-success);
     }
@@ -303,23 +360,24 @@
     .matrix-slot-btn.open:hover {
       background: var(--accent-padel);
       color: #0f172a;
-      transform: scale(1.05);
-      box-shadow: 0 0 12px rgba(204, 255, 0, 0.5);
+      transform: scale(1.06);
+      box-shadow: 0 0 12px rgba(204, 255, 0, 0.6);
     }
 
     .matrix-slot-btn.booked {
       background: rgba(239, 68, 68, 0.08);
       border: 1px solid rgba(239, 68, 68, 0.2);
       color: var(--accent-danger);
-      opacity: 0.6;
+      opacity: 0.55;
       cursor: not-allowed;
     }
 
     .matrix-slot-btn.empty {
       background: transparent;
-      border: 1px dashed rgba(255, 255, 255, 0.05);
+      border: 1px dashed rgba(255, 255, 255, 0.04);
       color: var(--text-muted);
       cursor: default;
+      opacity: 0.3;
     }
 
     /* SNIPER CONTROL PANEL */
@@ -392,50 +450,7 @@
       width: 100%;
     }
 
-    /* VENUE CARDS GRID (SECONDARY VIEW) */
-    .venues-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 20px;
-    }
-
-    .venue-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    }
-
-    .badge {
-      font-size: 11px;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 6px;
-      text-transform: uppercase;
-    }
-
-    .badge-padel {
-      background: rgba(204, 255, 0, 0.15);
-      color: var(--accent-padel);
-      border: 1px solid rgba(204, 255, 0, 0.35);
-    }
-
-    .badge-pickle {
-      background: rgba(0, 240, 255, 0.15);
-      color: var(--accent-pickle);
-      border: 1px solid rgba(0, 240, 255, 0.35);
-    }
-
-    .badge-location {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-secondary);
-    }
-
-    /* MODAL OVERLAY (HIDDEN BY DEFAULT) */
+    /* MODAL OVERLAY */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -473,8 +488,8 @@
       <div class="brand-wrapper">
         <div class="brand-icon">🎾</div>
         <div class="brand-title">
-          <h1>Hudle SoBo Slot Schedule Tracker</h1>
-          <p>South Mumbai Padel & Pickleball Court Engine</p>
+          <h1>Hudle SoBo Schedule Tracker</h1>
+          <p>South Mumbai Padel & Pickleball Multi-Venue Calendar</p>
         </div>
       </div>
       
@@ -490,46 +505,41 @@
       </div>
     </header>
 
-    <!-- TOOLBAR & VIEW TOGGLE -->
+    <!-- TOOLBAR BAR: SPORT FILTER & DATE SELECTION -->
     <div class="toolbar-bar">
-      <div class="view-mode-toggle">
-        <button class="view-btn active" id="btn-view-calendar" onclick="switchView('calendar')">
-          📅 Calendar Schedule (All Venues)
+      <!-- TOP SPORT FILTER -->
+      <div class="sport-filter-group">
+        <span class="filter-label">Sport:</span>
+        <button class="sport-filter-btn active-all" id="filter-btn-all" onclick="setSportFilter('all')">
+          ⚡ All (7)
         </button>
-        <button class="view-btn" id="btn-view-cards" onclick="switchView('cards')">
-          🎴 Venue Cards
+        <button class="sport-filter-btn" id="filter-btn-padel" onclick="setSportFilter('padel')">
+          🎾 Padel (4)
+        </button>
+        <button class="sport-filter-btn" id="filter-btn-pickle" onclick="setSportFilter('pickleball')">
+          🏓 Pickleball (4)
         </button>
       </div>
 
+      <!-- DATE SELECTION PILLS -->
       <div class="date-pills" id="date-pills-bar">
         <!-- Date pills rendered dynamically -->
       </div>
     </div>
 
-    <!-- MAIN VIEW 1: UNIFIED CALENDAR SCHEDULE MATRIX -->
-    <div class="calendar-container" id="calendar-view-section">
+    <!-- UNIFIED CALENDAR SCHEDULE MATRIX (FULL TIMESLOTS 6 AM - 11 PM WITH HORIZONTAL & VERTICAL SCROLL) -->
+    <div class="calendar-container">
       <table class="calendar-table">
         <thead>
           <tr id="calendar-header-row">
             <th class="venue-col-header">South Mumbai Venue</th>
-            <th>06:00 AM</th>
-            <th>07:00 AM</th>
-            <th>08:00 AM</th>
-            <th>06:00 PM</th>
-            <th>07:00 PM</th>
-            <th>08:00 PM</th>
-            <th>09:00 PM</th>
+            <!-- 18 Timeslots (6 AM to 11 PM) rendered dynamically via app.js -->
           </tr>
         </thead>
         <tbody id="calendar-matrix-body">
           <!-- Calendar matrix rows rendered dynamically -->
         </tbody>
       </table>
-    </div>
-
-    <!-- MAIN VIEW 2: VENUE CARDS GRID -->
-    <div class="venues-grid" id="cards-view-section" style="display: none;">
-      <!-- Venue cards rendered dynamically -->
     </div>
 
     <!-- SNIPER CONTROL PANEL -->

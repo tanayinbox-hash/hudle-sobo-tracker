@@ -1,4 +1,4 @@
-// HUDLE SOUTH MUMBAI TRACKER & UNIFIED CALENDAR SCHEDULE - VERCEL APP LOGIC
+// HUDLE SOUTH MUMBAI TRACKER & UNIFIED FULL-TIMESLOT CALENDAR MATRIX
 
 const SOBO_VENUES_DATA = [
   {
@@ -12,10 +12,14 @@ const SOBO_VENUES_DATA = [
       "06:00 AM": { status: "open", price: 2200 },
       "07:00 AM": { status: "booked", price: 2200 },
       "08:00 AM": { status: "booked", price: 2200 },
+      "09:00 AM": { status: "open", price: 2200 },
+      "10:00 AM": { status: "open", price: 2200 },
+      "05:00 PM": { status: "open", price: 2800 },
       "06:00 PM": { status: "open", price: 2800 },
       "07:00 PM": { status: "open", price: 2800 },
       "08:00 PM": { status: "booked", price: 2800 },
-      "09:00 PM": { status: "open", price: 2800 }
+      "09:00 PM": { status: "open", price: 2800 },
+      "10:00 PM": { status: "open", price: 2800 }
     }
   },
   {
@@ -29,10 +33,14 @@ const SOBO_VENUES_DATA = [
       "06:00 AM": { status: "open", price: 2400 },
       "07:00 AM": { status: "open", price: 2400 },
       "08:00 AM": { status: "booked", price: 2400 },
+      "09:00 AM": { status: "open", price: 2400 },
+      "04:00 PM": { status: "open", price: 3000 },
+      "05:00 PM": { status: "open", price: 3000 },
       "06:00 PM": { status: "open", price: 3000 },
       "07:00 PM": { status: "booked", price: 3000 },
       "08:00 PM": { status: "open", price: 3000 },
-      "09:00 PM": { status: "booked", price: 3000 }
+      "09:00 PM": { status: "booked", price: 3000 },
+      "10:00 PM": { status: "open", price: 3000 }
     }
   },
   {
@@ -43,13 +51,13 @@ const SOBO_VENUES_DATA = [
     sportsText: "Padel (Members Only)",
     priceOnwards: 1800,
     matrix: {
-      "06:00 AM": { status: "empty" },
       "07:00 AM": { status: "open", price: 1800 },
       "08:00 AM": { status: "open", price: 1800 },
+      "09:00 AM": { status: "booked", price: 1800 },
       "06:00 PM": { status: "open", price: 2200 },
       "07:00 PM": { status: "booked", price: 2200 },
       "08:00 PM": { status: "open", price: 2200 },
-      "09:00 PM": { status: "empty" }
+      "09:00 PM": { status: "open", price: 2200 }
     }
   },
   {
@@ -63,10 +71,12 @@ const SOBO_VENUES_DATA = [
       "06:00 AM": { status: "open", price: 2000 },
       "07:00 AM": { status: "booked", price: 2000 },
       "08:00 AM": { status: "open", price: 2000 },
+      "05:00 PM": { status: "open", price: 2500 },
       "06:00 PM": { status: "open", price: 2500 },
       "07:00 PM": { status: "open", price: 2500 },
       "08:00 PM": { status: "booked", price: 2500 },
-      "09:00 PM": { status: "booked", price: 2500 }
+      "09:00 PM": { status: "booked", price: 2500 },
+      "10:00 PM": { status: "open", price: 2500 }
     }
   },
   {
@@ -80,10 +90,14 @@ const SOBO_VENUES_DATA = [
       "06:00 AM": { status: "open", price: 1600 },
       "07:00 AM": { status: "open", price: 1600 },
       "08:00 AM": { status: "open", price: 1600 },
+      "09:00 AM": { status: "open", price: 1600 },
+      "10:00 AM": { status: "booked", price: 1600 },
+      "05:00 PM": { status: "open", price: 2000 },
       "06:00 PM": { status: "open", price: 2000 },
       "07:00 PM": { status: "open", price: 2000 },
       "08:00 PM": { status: "booked", price: 2000 },
-      "09:00 PM": { status: "open", price: 2000 }
+      "09:00 PM": { status: "open", price: 2000 },
+      "10:00 PM": { status: "open", price: 2000 }
     }
   },
   {
@@ -97,10 +111,12 @@ const SOBO_VENUES_DATA = [
       "06:00 AM": { status: "open", price: 1800 },
       "07:00 AM": { status: "open", price: 1800 },
       "08:00 AM": { status: "booked", price: 1800 },
+      "09:00 AM": { status: "open", price: 1800 },
       "06:00 PM": { status: "booked", price: 2200 },
       "07:00 PM": { status: "open", price: 2200 },
       "08:00 PM": { status: "open", price: 2200 },
-      "09:00 PM": { status: "booked", price: 2200 }
+      "09:00 PM": { status: "booked", price: 2200 },
+      "10:00 PM": { status: "open", price: 2200 }
     }
   },
   {
@@ -114,29 +130,39 @@ const SOBO_VENUES_DATA = [
       "06:00 AM": { status: "open", price: 1500 },
       "07:00 AM": { status: "open", price: 1500 },
       "08:00 AM": { status: "open", price: 1500 },
+      "09:00 AM": { status: "open", price: 1500 },
+      "10:00 AM": { status: "booked", price: 1500 },
+      "05:00 PM": { status: "open", price: 1900 },
       "06:00 PM": { status: "open", price: 1900 },
       "07:00 PM": { status: "booked", price: 1900 },
       "08:00 PM": { status: "open", price: 1900 },
-      "09:00 PM": { status: "open", price: 1900 }
+      "09:00 PM": { status: "open", price: 1900 },
+      "10:00 PM": { status: "open", price: 1900 }
     }
   }
 ];
 
-const TIME_SLOTS = ["06:00 AM", "07:00 AM", "08:00 AM", "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM"];
+// ALL 18 HOURLY TIMESLOTS FROM 6 AM TO 11 PM
+const ALL_TIMESLOTS = [
+  "06:00 AM", "07:00 AM", "08:00 AM", "09:00 AM", "10:00 AM", "11:00 AM",
+  "12:00 PM", "01:00 PM", "02:00 PM", "03:00 PM", "04:00 PM", "05:00 PM",
+  "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM"
+];
 
 let selectedDate = new Date().toISOString().split("T")[0];
+let currentSportFilter = "all";
 
 document.addEventListener("DOMContentLoaded", () => {
   initClock();
   initBookingDate();
   renderDatePills();
+  renderCalendarHeaders();
   renderCalendarMatrix();
-  renderCardsView();
   initModal();
   initSniperForm();
 });
 
-// REAL-TIME CLOCK
+// REAL-TIME CLOCK WITH MILLISECONDS
 function initClock() {
   const clockEl = document.getElementById("clock");
   function update() {
@@ -154,6 +180,18 @@ function initClock() {
 function initBookingDate() {
   const dateInput = document.getElementById("booking-date-input");
   dateInput.value = selectedDate;
+}
+
+// RENDER ALL 18 TIMESLOT TABLE HEADERS
+function renderCalendarHeaders() {
+  const headerRow = document.getElementById("calendar-header-row");
+  headerRow.innerHTML = `<th class="venue-col-header">South Mumbai Venue</th>`;
+  
+  ALL_TIMESLOTS.forEach(timeStr => {
+    const th = document.createElement("th");
+    th.textContent = timeStr;
+    headerRow.appendChild(th);
+  });
 }
 
 // RENDER INTERACTIVE DATE PILLS
@@ -182,15 +220,33 @@ function renderDatePills() {
   }
 }
 
-// RENDER UNIFIED CALENDAR SCHEDULE MATRIX
+// SPORT FILTER SWITCHER (TOP TOOLBAR)
+function setSportFilter(filterMode) {
+  currentSportFilter = filterMode;
+  
+  document.getElementById("filter-btn-all").className = `sport-filter-btn ${filterMode === 'all' ? 'active-all' : ''}`;
+  document.getElementById("filter-btn-padel").className = `sport-filter-btn ${filterMode === 'padel' ? 'active-padel' : ''}`;
+  document.getElementById("filter-btn-pickle").className = `sport-filter-btn ${filterMode === 'pickleball' ? 'active-pickle' : ''}`;
+  
+  renderCalendarMatrix();
+}
+
+// RENDER CALENDAR MATRIX WITH SPORT FILTERING & ALL 18 TIMESLOTS
 function renderCalendarMatrix() {
   const tbody = document.getElementById("calendar-matrix-body");
   tbody.innerHTML = "";
 
-  SOBO_VENUES_DATA.forEach(v => {
+  const filteredVenues = SOBO_VENUES_DATA.filter(v => {
+    if (currentSportFilter === "all") return true;
+    if (currentSportFilter === "padel") return v.type === "padel" || v.sportsText.includes("Padel");
+    if (currentSportFilter === "pickleball") return v.type === "pickleball" || v.sportsText.includes("Pickleball");
+    return true;
+  });
+
+  filteredVenues.forEach(v => {
     const tr = document.createElement("tr");
     
-    // Venue label cell
+    // Sticky pinned venue label cell
     const labelTd = document.createElement("td");
     labelTd.className = "venue-label-cell";
     labelTd.innerHTML = `
@@ -199,8 +255,8 @@ function renderCalendarMatrix() {
     `;
     tr.appendChild(labelTd);
 
-    // Render columns for each time slot
-    TIME_SLOTS.forEach(timeStr => {
+    // Render cells for all 18 hourly timeslots
+    ALL_TIMESLOTS.forEach(timeStr => {
       const slotData = v.matrix[timeStr] || { status: "empty" };
       const td = document.createElement("td");
 
@@ -208,7 +264,7 @@ function renderCalendarMatrix() {
         td.innerHTML = `
           <button class="matrix-slot-btn open" onclick="selectSlotForSniper('${v.id}', '${timeStr}')">
             <span>⚡ ₹${slotData.price}</span>
-            <span style="font-size: 9px; opacity: 0.8;">SNIPE</span>
+            <span style="font-size: 8px; opacity: 0.8;">SNIPE</span>
           </button>
         `;
       } else if (slotData.status === "booked") {
@@ -229,63 +285,6 @@ function renderCalendarMatrix() {
 
     tbody.appendChild(tr);
   });
-}
-
-// RENDER SECONDARY CARDS VIEW
-function renderCardsView() {
-  const grid = document.getElementById("cards-view-section");
-  grid.innerHTML = "";
-
-  SOBO_VENUES_DATA.forEach(v => {
-    const card = document.createElement("div");
-    card.className = "venue-card";
-    
-    const slotsHTML = Object.entries(v.matrix).map(([time, data]) => {
-      if (data.status === 'open') {
-        return `<span class="slot-pill">⚡ ${time} - ₹${data.price}</span>`;
-      } else if (data.status === 'booked') {
-        return `<span class="slot-pill booked">❌ ${time}</span>`;
-      }
-      return '';
-    }).join("");
-
-    card.innerHTML = `
-      <div>
-        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span class="badge ${v.type === 'padel' ? 'badge-padel' : 'badge-pickle'}">${v.type.toUpperCase()}</span>
-          <span class="badge badge-location">📍 ${v.location}</span>
-        </div>
-        <h3 style="font-size:18px; font-weight:800; margin-bottom:4px;">${v.name}</h3>
-        <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">${v.sportsText}</p>
-        <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;">${slotsHTML}</div>
-      </div>
-      <div style="display:flex; justify-content:space-between; align-items:center;">
-        <span style="font-size:13px; color:var(--text-secondary);">From <b>₹${v.priceOnwards}</b></span>
-        <button class="btn-card-action" onclick="selectSlotForSniper('${v.id}', '07:00 PM')">⚡ Snipe Slot</button>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-}
-
-// SWITCH VIEWS
-function switchView(mode) {
-  const calendarSec = document.getElementById("calendar-view-section");
-  const cardsSec = document.getElementById("cards-view-section");
-  const btnCal = document.getElementById("btn-view-calendar");
-  const btnCards = document.getElementById("btn-view-cards");
-
-  if (mode === 'calendar') {
-    calendarSec.style.display = "block";
-    cardsSec.style.display = "none";
-    btnCal.classList.add("active");
-    btnCards.classList.remove("active");
-  } else {
-    calendarSec.style.display = "none";
-    cardsSec.style.display = "grid";
-    btnCal.classList.remove("active");
-    btnCards.classList.add("active");
-  }
 }
 
 function selectSlotForSniper(venueId, timeStr) {
