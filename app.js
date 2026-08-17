@@ -39,8 +39,8 @@ const SOBO_VENUES_DATA = [
     type: "padel",
     sportsText: "Padel (Members Only)",
     facilities: [
-      "7d8585b8-7180-407b-b96f-088fe312980b",
-      "db84590b-7d36-4671-9ab4-42bcbb1919fa"
+      "24073885-5158-4da6-8deb-883e057fc18b",
+      "e7c1e55a-dd5d-44d1-89c7-06939454cc35"
     ],
     matrix: {}
   },
@@ -178,40 +178,45 @@ function setSportFilter(filterMode) {
   renderCalendarMatrix();
 }
 
-// FETCH LIVE REAL-TIME HUDLE SLOTS VIA NATIVE VERCEL EDGE REWRITE PROXY
+// FETCH LIVE HUDLE SLOTS IN PARALLEL FOR BLAZING FAST SUB-SECOND SPEED
 async function syncAllVenuesLiveSlots() {
   const token = localStorage.getItem("HUDLE_AUTH_TOKEN") || DEFAULT_USER_TOKEN;
   const syncStatusText = document.getElementById("sync-status-text");
 
   syncStatusText.textContent = "Syncing Hudle API...";
 
-  for (let v of SOBO_VENUES_DATA) {
-    v.matrix = {};
-    for (let facId of v.facilities) {
-      try {
-        const apiUrl = `/hudle-api/venues/${v.id}/facilities/${facId}/slots?start_date=${selectedDate}&end_date=${selectedDate}`;
-        
-        const response = await fetch(apiUrl, {
-          headers: {
-            "Accept": "application/json",
-            "Authorization": `Bearer ${token}`,
-            "api-secret": "hudle-api1798@prod",
-            "x-app-version": "1.0.1",
-            "x-app-source": "consumer"
-          }
-        });
+  const fetchPromises = [];
 
-        if (response.ok) {
-          const jsonRes = await response.json();
-          if (jsonRes.data && Array.isArray(jsonRes.data)) {
-            parseHudleSlotResponse(v.matrix, jsonRes.data, selectedDate);
-          }
+  SOBO_VENUES_DATA.forEach(v => {
+    v.matrix = {};
+    v.facilities.forEach(facId => {
+      const apiUrl = `/hudle-api/venues/${v.id}/facilities/${facId}/slots?start_date=${selectedDate}&end_date=${selectedDate}`;
+      
+      const p = fetch(apiUrl, {
+        headers: {
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`,
+          "api-secret": "hudle-api1798@prod",
+          "x-app-version": "1.0.1",
+          "x-app-source": "consumer"
         }
-      } catch (err) {
-        console.warn(`Live sync note for ${v.name}:`, err);
-      }
-    }
-  }
+      })
+      .then(res => res.ok ? res.json() : null)
+      .then(jsonRes => {
+        if (jsonRes && jsonRes.data && Array.isArray(jsonRes.data)) {
+          parseHudleSlotResponse(v.matrix, jsonRes.data, selectedDate);
+        }
+      })
+      .catch(err => {
+        console.warn(`Parallel fetch warning for ${v.name}:`, err);
+      });
+
+      fetchPromises.push(p);
+    });
+  });
+
+  // Execute all requests concurrently in parallel!
+  await Promise.all(fetchPromises);
 
   syncStatusText.textContent = "Live Synced ✅";
   renderCalendarMatrix();
@@ -236,7 +241,7 @@ function parseHudleSlotResponse(matrixObj, slotsArray, targetDateStr) {
     if (!matrixObj[timeStr] || isAvail) {
       matrixObj[timeStr] = {
         status: isAvail ? "open" : "booked",
-        price: priceVal > 0 ? priceVal : (matrixObj[timeStr]?.price || 2000)
+        price: priceVal > 0 ? priceVal : (matrixObj[timeStr]?.price || 1800)
       };
     }
   });
