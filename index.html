@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hudle SoBo Slot Tracker & Auto-Booker | South Mumbai</title>
+  <meta name="description" content="Automated slot tracking and millisecond slot sniper for Padel and Pickleball venues in South Mumbai on Hudle.in">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* CRITICAL INLINE STYLES FOR GUARANTEED PREMIUM DARK MODE RENDERING */
+    :root {
+      --bg-primary: #0a0f1d;
+      --bg-secondary: #111827;
+      --bg-card: rgba(17, 24, 39, 0.85);
+      --bg-card-hover: rgba(30, 41, 59, 0.95);
+      --border-color: rgba(255, 255, 255, 0.1);
+      --border-highlight: rgba(0, 240, 255, 0.35);
+      
+      --accent-padel: #ccff00;      /* Electric Neon Lime */
+      --accent-pickle: #00f0ff;     /* Cyan Neon */
+      --accent-success: #10b981;    /* Emerald Green */
+      --accent-warning: #f59e0b;    /* Amber */
+      --accent-danger: #ef4444;     /* Coral Red */
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-main);
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(204, 255, 0, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.08) 0%, transparent 45%);
+      background-attachment: fixed;
+      padding: 24px 20px 60px;
+    }
+
+    .app-container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* HEADER */
+    header.app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 28px;
+    }
+
+    .brand-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--accent-padel), var(--accent-pickle));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      box-shadow: 0 0 25px rgba(204, 255, 0, 0.4);
+    }
+
+    .brand-title h1 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+    }
+
+    .brand-title p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-success);
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-success);
+      box-shadow: 0 0 10px var(--accent-success);
+    }
+
+    .clock-display {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--accent-pickle);
+      background: rgba(0, 240, 255, 0.08);
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(0, 240, 255, 0.2);
+    }
+
+    .btn-settings {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-primary);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-settings:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    /* STATS OVERVIEW */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 18px 20px;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .stat-value {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .stat-sub {
+      font-size: 12px;
+      color: var(--accent-padel);
+    }
+
+    /* SNIPER CONTROL PANEL */
+    .sniper-panel {
+      background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.9));
+      border: 1px solid var(--border-highlight);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: 0 10px 30px rgba(0, 240, 255, 0.12);
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .panel-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent-pickle);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .control-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      align-items: end;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+    }
+
+    .form-control {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-pickle);
+    }
+
+    .btn-snipe {
+      background: linear-gradient(135deg, var(--accent-padel), #a3e635);
+      color: #0f172a;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 0 20px rgba(204, 255, 0, 0.3);
+      width: 100%;
+    }
+
+    .btn-snipe:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px rgba(204, 255, 0, 0.5);
+    }
+
+    /* VENUES SECTION */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 6px 16px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: rgba(255, 255, 255, 0.15);
+      color: var(--text-primary);
+    }
+
+    .venues-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* VENUE CARD */
+    .venue-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      transition: all 0.2s ease;
+    }
+
+    .venue-card:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-4px);
+    }
+
+    .venue-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .venue-badge-group {
+      display: flex;
+      gap: 6px;
+    }
+
+    .badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .badge-padel {
+      background: rgba(204, 255, 0, 0.15);
+      color: var(--accent-padel);
+      border: 1px solid rgba(204, 255, 0, 0.35);
+    }
+
+    .badge-pickle {
+      background: rgba(0, 240, 255, 0.15);
+      color: var(--accent-pickle);
+      border: 1px solid rgba(0, 240, 255, 0.35);
+    }
+
+    .badge-location {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-secondary);
+    }
+
+    .venue-name {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .venue-info {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .slot-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .slot-pill {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--accent-success);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .slot-pill.booked {
+      background: rgba(239, 68, 68, 0.1);
+      border-color: rgba(239, 68, 68, 0.25);
+      color: var(--accent-danger);
+      text-decoration: line-through;
+    }
+
+    .venue-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .price-tag {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .price-tag span {
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .btn-card-action {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-card-action:hover {
+      background: var(--accent-padel);
+      color: #0f172a;
+    }
+
+    /* MODAL OVERLAY (HIDDEN BY DEFAULT) */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 15, 29, 0.85);
+      backdrop-filter: blur(12px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+    }
+
+    .modal-content {
+      background: #111827;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      width: 90%;
+      max-width: 480px;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .btn-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 24px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header class="app-header">
+      <div class="brand-wrapper">
+        <div class="brand-icon">🎾</div>
+        <div class="brand-title">
+          <h1>Hudle SoBo Slot Tracker</h1>
+          <p>South Mumbai Padel & Pickleball Court Engine</p>
+        </div>
+      </div>
+      
+      <div class="header-actions">
+        <div class="live-badge">
+          <span class="pulse"></span>
+          Live API Sync
+        </div>
+        <div class="clock-display" id="clock">17:49:36.000 IST</div>
+        <button class="btn-settings" id="btn-open-settings">
+          ⚙️ Auth & Alerts
+        </button>
+      </div>
+    </header>
+
+    <!-- STATS OVERVIEW -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-label">Monitored SoBo Venues</span>
+        <span class="stat-value">7 Locations</span>
+        <span class="stat-sub">Worli, Malabar Hill, Lower Parel, Colaba</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Total Courts</span>
+        <span class="stat-value">18 Courts</span>
+        <span class="stat-sub">Padel & Pickleball</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Open Preferred Slots</span>
+        <span class="stat-value" id="stat-slots-count">14 Slots</span>
+        <span class="stat-sub">Morning (6-9 AM) & Evening (6-10 PM)</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Sniper Status</span>
+        <span class="stat-value" id="stat-sniper-status" style="color: var(--accent-padel);">ARMED</span>
+        <span class="stat-sub">Wallet 1-Click Auto-Checkout Active</span>
+      </div>
+    </div>
+
+    <!-- SNIPER CONTROL PANEL -->
+    <div class="sniper-panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          ⚡ Slot Sniper & Auto-Booker Control Panel
+        </div>
+        <span style="font-size: 13px; color: var(--text-secondary);">Target Release: 00:00:00.000 Midnight</span>
+      </div>
+      
+      <form class="control-form" id="sniper-form">
+        <div class="form-group">
+          <label>Target Venue</label>
+          <select class="form-control" id="target-venue-select">
+            <option value="courtside_worli">Courtside Padel Social Club (Worli)</option>
+            <option value="padel_360_worli">Padel 360 (Worli)</option>
+            <option value="nsci_padel_worli">NSCI Padel Club (Worli)</option>
+            <option value="7padel_malabar_hill">7Padel | PDP (Malabar Hill)</option>
+            <option value="nautipickle_ballard_pier">NautiPickle (Ballard Pier)</option>
+            <option value="smash_dock_colaba">Smash Dock (Colaba)</option>
+            <option value="global_sports_lower_parel">Global Sports (Lower Parel)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>Booking Date</label>
+          <input type="date" class="form-control" id="booking-date-input">
+        </div>
+        
+        <div class="form-group">
+          <label>Preferred Time</label>
+          <select class="form-control" id="preferred-time-select">
+            <option value="19:00,20:00">Evening Prime (7 PM - 9 PM)</option>
+            <option value="07:00,08:00">Morning Prime (7 AM - 9 AM)</option>
+            <option value="20:00,21:00">Late Evening (8 PM - 10 PM)</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <button type="submit" class="btn-snipe">
+            🚀 ARM & LAUNCH SNIPER
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- VENUES TRACKER GRID -->
+    <div class="section-header">
+      <h2 class="section-title">South Mumbai Venues</h2>
+      <div class="filter-tabs">
+        <button class="tab-btn active" data-filter="all">All (7)</button>
+        <button class="tab-btn" data-filter="padel">Padel (4)</button>
+        <button class="tab-btn" data-filter="pickleball">Pickleball (4)</button>
+      </div>
+    </div>
+
+    <div class="venues-grid" id="venues-grid">
+      <!-- Venue cards rendered dynamically via app.js -->
+    </div>
+
+  </div>
+
+  <!-- SETTINGS MODAL -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">⚙️ Hudle API & Alert Settings</h3>
+        <button class="btn-close" id="btn-close-settings">&times;</button>
+      </div>
+      
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div class="form-group">
+          <label>Hudle Bearer Token</label>
+          <input type="password" class="form-control" id="hudle-token-input" placeholder="Paste Authorization Bearer Token here">
+          <small style="color: var(--text-muted); font-size: 11px; margin-top: 4px;">Found in Chrome DevTools -> Network -> Request Headers -> Authorization</small>
+        </div>
+        
+        <div class="form-group">
+          <label>Telegram Bot Token (Optional)</label>
+          <input type="text" class="form-control" id="telegram-token-input" placeholder="123456789:ABCdef...">
+        </div>
+        
+        <div class="form-group">
+          <label>Telegram Chat ID (Optional)</label>
+          <input type="text" class="form-control" id="telegram-chat-input" placeholder="-100123456789">
+        </div>
+        
+        <button class="btn-snipe" id="btn-save-settings" style="width: 100%; margin-top: 10px;">
+          Save Configuration
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
