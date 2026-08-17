@@ -81,10 +81,11 @@ def run_zero_intervention_token_autobooker():
         # Step 1: Select Target Date
         print(f"👉 Selecting Target Date ({target_date_str})...")
         try:
-            date_pills = page.query_selector_all(".date-item, .date-pill, button[class*='date']")
+            date_pills = page.query_selector_all(".date-item, .date-pill, button")
             for pill in date_pills:
-                if target_date_str in (pill.get_attribute("data-date") or ""):
+                if target_date_str in (pill.get_attribute("data-date") or "") or target_date_str in (pill.inner_text() or ""):
                     pill.click()
+                    print(f"  └ Date pill clicked for {target_date_str}")
                     break
         except Exception as e:
             print("Date selection note:", e)
@@ -97,7 +98,7 @@ def run_zero_intervention_token_autobooker():
         
         selected_count = 0
         try:
-            buttons = page.query_selector_all("button, .slot-btn, .slot-card")
+            buttons = page.query_selector_all("button, .slot-btn, .slot-card, div[role='button']")
             for b in buttons:
                 txt = b.inner_text()
                 for st in slot_times:
@@ -115,9 +116,13 @@ def run_zero_intervention_token_autobooker():
         # Step 3: Click Proceed to Checkout
         print("👉 Clicking Proceed to Checkout...")
         try:
-            checkout_btn = page.query_selector("button:has-text('Book'), button:has-text('Proceed'), button:has-text('Checkout'), .checkout-btn")
-            if checkout_btn:
-                checkout_btn.click()
+            checkout_selectors = ["text='Book'", "text='Proceed'", "text='Checkout'", "button:has-text('Book')", "button:has-text('Proceed')"]
+            for sel in checkout_selectors:
+                el = page.query_selector(sel)
+                if el:
+                    el.click()
+                    print(f"  └ Clicked checkout button: {sel}")
+                    break
         except Exception as e:
             print("Checkout button note:", e)
 
@@ -126,10 +131,13 @@ def run_zero_intervention_token_autobooker():
         # Step 4: Auto-Select NSCI Tokens Payment Method
         print("🎟️ Auto-selecting NSCI Tokens Payment Option...")
         try:
-            token_option = page.query_selector("text=/NSCI Token/i, text=/Token/i, text=/Voucher/i, .token-payment-option")
-            if token_option:
-                token_option.click()
-                print("  └ Selected 'NSCI Tokens' payment method!")
+            token_selectors = ["text='NSCI Token'", "text='Token'", "text='Member Pass'", "text='Redeem Token'", "button:has-text('Token')"]
+            for t_sel in token_selectors:
+                t_el = page.query_selector(t_sel)
+                if t_el:
+                    t_el.click()
+                    print(f"  └ Selected 'NSCI Tokens' payment method ({t_sel})!")
+                    break
         except Exception as e:
             print("Token payment selection note:", e)
 
@@ -138,10 +146,13 @@ def run_zero_intervention_token_autobooker():
         # Step 5: Click Confirm / Pay with Tokens
         print("🚀 Executing Final Confirmation with NSCI Tokens...")
         try:
-            pay_btn = page.query_selector("button:has-text('Pay'), button:has-text('Confirm'), button:has-text('Apply Tokens'), .pay-btn")
-            if pay_btn:
-                pay_btn.click()
-                print("🎉 [PAYMENT COMPLETED!] Booking confirmed via NSCI Tokens!")
+            pay_selectors = ["text='Pay'", "text='Confirm'", "text='Apply Tokens'", "button:has-text('Pay')", "button:has-text('Confirm')"]
+            for p_sel in pay_selectors:
+                p_el = page.query_selector(p_sel)
+                if p_el:
+                    p_el.click()
+                    print(f"🎉 [PAYMENT COMPLETED!] Booking confirmed via NSCI Tokens ({p_sel})!")
+                    break
         except Exception as e:
             print("Pay button note:", e)
 
@@ -155,7 +166,7 @@ def run_zero_intervention_token_autobooker():
         print("🎉 ZERO-INTERVENTION NSCI TOKEN BOOKING COMPLETE!")
         print("=" * 65)
 
-        page.wait_for_timeout(4000)
+        page.wait_for_timeout(3000)
         browser.close()
 
 if __name__ == "__main__":
