@@ -270,7 +270,7 @@
       z-index: 40; /* HIGHEST Z-INDEX SO CORNER NEVER OVERLAPS */
       background: #111827;
       text-align: left;
-      min-width: 250px;
+      min-width: 260px;
       color: var(--text-primary);
       border-right: 2px solid rgba(255, 255, 255, 0.15);
       border-bottom: 2px solid rgba(255, 255, 255, 0.15);
@@ -296,22 +296,23 @@
       z-index: 20;
     }
 
-    /* VENUE SECTION DIVIDER ROW */
+    /* VENUE SECTION DIVIDER ROW (ALWAYS PINNED ON LEFT WHEN SCROLLING RIGHT) */
     .venue-divider-cell {
       background: #1e293b;
       border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
       border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
-      padding: 8px 16px !important;
+      padding: 10px 16px !important;
       text-align: left !important;
     }
 
     .divider-content {
       position: sticky;
-      left: 16px;
+      left: 16px; /* LOCKS VENUE TITLE 16px FROM THE LEFT WHEN SCROLLING RIGHT */
       display: flex;
       align-items: center;
       gap: 12px;
-      z-index: 15;
+      width: max-content;
+      z-index: 30;
     }
 
     .divider-badge {
@@ -358,7 +359,7 @@
       border-right: 2px solid rgba(255, 255, 255, 0.15);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 4px 0 10px rgba(0,0,0,0.5);
-      min-width: 250px;
+      min-width: 260px;
     }
 
     .court-row-label {
@@ -566,7 +567,7 @@
       </div>
     </div>
 
-    <!-- UNIFIED CALENDAR SCHEDULE MATRIX (ZERO-GLITCH STICKY SCROLLING) -->
+    <!-- UNIFIED CALENDAR SCHEDULE MATRIX (PINNED VENUE LOCATION HEADERS WHEN SCROLLING RIGHT) -->
     <div class="calendar-container">
       <table class="calendar-table">
         <thead>
