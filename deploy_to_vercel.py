@@ -2,20 +2,14 @@ import os
 import json
 import urllib.request
 import urllib.error
+import ssl
 
-# VERCEL REST API DEPLOYER (NO NODE/NPX REQUIRED)
 def deploy_to_vercel(token=None):
     if not token:
         token = os.getenv("VERCEL_TOKEN")
     
     if not token:
-        print("=" * 60)
-        print("VERCEL TOKEN REQUIRED FOR DIRECT API DEPLOYMENT")
-        print("=" * 60)
-        print("1. Get your free token at: https://vercel.com/account/tokens")
-        print("2. Run: export VERCEL_TOKEN=\"your_token_here\"")
-        print("3. Re-run: python3 deploy_to_vercel.py")
-        print("=" * 60)
+        print("VERCEL TOKEN REQUIRED")
         return False
 
     files_to_upload = ["index.html", "styles.css", "app.js", "vercel.json"]
@@ -36,23 +30,26 @@ def deploy_to_vercel(token=None):
         "Content-Type": "application/json"
     }
 
+    # TARGET PRODUCTION SO IT UPDATES YOUR MAIN VERCEL URL IMMEDIATELY
     payload = {
         "name": "hudle-sobo-tracker",
+        "target": "production",
         "files": files_payload,
         "projectSettings": {
             "framework": None
         }
     }
 
-    print(f"🚀 Deploying {len(files_payload)} files directly to Vercel API...")
+    print(f"🚀 Deploying to Vercel PRODUCTION ({len(files_payload)} files)...")
+    ctx = ssl._create_unverified_context()
     req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers=headers, method="POST")
 
     try:
-        with urllib.request.urlopen(req) as res:
+        with urllib.request.urlopen(req, context=ctx) as res:
             data = json.loads(res.read().decode("utf-8"))
             url = data.get("url")
             print("=" * 60)
-            print("🎉 DEPLOYMENT SUCCESSFUL!")
+            print("🎉 PRODUCTION DEPLOYMENT SUCCESSFUL!")
             print(f"🌐 Live URL: https://{url}")
             print("=" * 60)
             return f"https://{url}"

@@ -3,18 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hudle SoBo Slot Tracker & Auto-Booker | South Mumbai</title>
-  <meta name="description" content="Automated slot tracking and millisecond slot sniper for Padel and Pickleball venues in South Mumbai on Hudle.in">
+  <title>Hudle SoBo Slot Tracker & Calendar | South Mumbai</title>
+  <meta name="description" content="Automated multi-venue calendar schedule tracker and slot sniper for Padel and Pickleball venues in South Mumbai on Hudle.in">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* CRITICAL INLINE STYLES FOR GUARANTEED PREMIUM DARK MODE RENDERING */
+    /* CRITICAL INLINE STYLES FOR GUARANTEED DARK MODE GLASSMORPHISM & CALENDAR SCHEDULE */
     :root {
       --bg-primary: #0a0f1d;
       --bg-secondary: #111827;
-      --bg-card: rgba(17, 24, 39, 0.85);
-      --bg-card-hover: rgba(30, 41, 59, 0.95);
+      --bg-card: rgba(17, 24, 39, 0.9);
       --border-color: rgba(255, 255, 255, 0.1);
       --border-highlight: rgba(0, 240, 255, 0.35);
       
@@ -47,11 +46,11 @@
         radial-gradient(circle at 15% 15%, rgba(204, 255, 0, 0.08) 0%, transparent 45%),
         radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.08) 0%, transparent 45%);
       background-attachment: fixed;
-      padding: 24px 20px 60px;
+      padding: 20px 16px 60px;
     }
 
     .app-container {
-      max-width: 1280px;
+      max-width: 1400px;
       margin: 0 auto;
     }
 
@@ -60,9 +59,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 20px;
+      padding-bottom: 18px;
       border-bottom: 1px solid var(--border-color);
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .brand-wrapper {
@@ -98,7 +97,7 @@
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .live-badge {
@@ -141,49 +140,186 @@
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
+    }
+
+    /* VIEW SWITCHER & DATE BAR */
+    .toolbar-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      background: rgba(17, 24, 39, 0.8);
+      border: 1px solid var(--border-color);
+      padding: 12px 18px;
+      border-radius: 14px;
+      margin-bottom: 24px;
+    }
+
+    .view-mode-toggle {
+      display: flex;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 4px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .view-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       transition: all 0.2s ease;
     }
 
-    .btn-settings:hover {
-      background: rgba(255, 255, 255, 0.16);
+    .view-btn.active {
+      background: var(--accent-pickle);
+      color: #0f172a;
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
     }
 
-    /* STATS OVERVIEW */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin-bottom: 28px;
+    .date-pills {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
     }
 
-    .stat-card {
+    .date-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .date-btn.active {
+      background: rgba(204, 255, 0, 0.18);
+      border-color: var(--accent-padel);
+      color: var(--accent-padel);
+    }
+
+    /* CALENDAR SCHEDULE TABLE MATRIX */
+    .calendar-container {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
-      padding: 18px 20px;
-      border-radius: 14px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+      border-radius: 16px;
+      padding: 20px;
+      overflow-x: auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 32px;
     }
 
-    .stat-label {
-      font-size: 12px;
+    .calendar-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 6px;
+      min-width: 900px;
+    }
+
+    .calendar-table th {
+      background: rgba(15, 23, 42, 0.9);
       color: var(--text-secondary);
-      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .stat-value {
-      font-size: 26px;
-      font-weight: 800;
+    .calendar-table th.venue-col-header {
+      text-align: left;
+      min-width: 220px;
       color: var(--text-primary);
     }
 
-    .stat-sub {
-      font-size: 12px;
-      color: var(--accent-padel);
+    .calendar-table td {
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+      vertical-align: middle;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.2s ease;
+    }
+
+    .calendar-table td.venue-label-cell {
+      text-align: left;
+      background: rgba(17, 24, 39, 0.95);
+      padding: 12px 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .venue-title-text {
+      font-size: 14px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .venue-sub-text {
+      font-size: 11px;
+      color: var(--text-muted);
+
+    }
+
+    .matrix-slot-btn {
+      width: 100%;
+      padding: 8px 6px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      transition: all 0.2s ease;
+    }
+
+    .matrix-slot-btn.open {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: var(--accent-success);
+    }
+
+    .matrix-slot-btn.open:hover {
+      background: var(--accent-padel);
+      color: #0f172a;
+      transform: scale(1.05);
+      box-shadow: 0 0 12px rgba(204, 255, 0, 0.5);
+    }
+
+    .matrix-slot-btn.booked {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      color: var(--accent-danger);
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .matrix-slot-btn.empty {
+      background: transparent;
+      border: 1px dashed rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      cursor: default;
     }
 
     /* SNIPER CONTROL PANEL */
@@ -242,10 +378,6 @@
       outline: none;
     }
 
-    .form-control:focus {
-      border-color: var(--accent-pickle);
-    }
-
     .btn-snipe {
       background: linear-gradient(135deg, var(--accent-padel), #a3e635);
       color: #0f172a;
@@ -260,56 +392,13 @@
       width: 100%;
     }
 
-    .btn-snipe:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0 25px rgba(204, 255, 0, 0.5);
-    }
-
-    /* VENUES SECTION */
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-
-    .section-title {
-      font-size: 20px;
-      font-weight: 800;
-    }
-
-    .filter-tabs {
-      display: flex;
-      gap: 8px;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 4px;
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .tab-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-secondary);
-      padding: 6px 16px;
-      border-radius: 7px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .tab-btn.active {
-      background: rgba(255, 255, 255, 0.15);
-      color: var(--text-primary);
-    }
-
+    /* VENUE CARDS GRID (SECONDARY VIEW) */
     .venues-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 20px;
     }
 
-    /* VENUE CARD */
     .venue-card {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -319,24 +408,6 @@
       flex-direction: column;
       justify-content: space-between;
       box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      transition: all 0.2s ease;
-    }
-
-    .venue-card:hover {
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-4px);
-    }
-
-    .venue-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-
-    .venue-badge-group {
-      display: flex;
-      gap: 6px;
     }
 
     .badge {
@@ -362,79 +433,6 @@
     .badge-location {
       background: rgba(255, 255, 255, 0.08);
       color: var(--text-secondary);
-    }
-
-    .venue-name {
-      font-size: 18px;
-      font-weight: 800;
-      margin-bottom: 6px;
-      color: #ffffff;
-    }
-
-    .venue-info {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-bottom: 16px;
-    }
-
-    .slot-pills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    .slot-pill {
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      color: var(--accent-success);
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .slot-pill.booked {
-      background: rgba(239, 68, 68, 0.1);
-      border-color: rgba(239, 68, 68, 0.25);
-      color: var(--accent-danger);
-      text-decoration: line-through;
-    }
-
-    .venue-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .price-tag {
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-
-    .price-tag span {
-      font-size: 18px;
-      font-weight: 800;
-      color: #ffffff;
-    }
-
-    .btn-card-action {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-      padding: 8px 14px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .btn-card-action:hover {
-      background: var(--accent-padel);
-      color: #0f172a;
     }
 
     /* MODAL OVERLAY (HIDDEN BY DEFAULT) */
@@ -465,26 +463,6 @@
       padding: 24px;
       box-shadow: 0 20px 50px rgba(0,0,0,0.6);
     }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-
-    .modal-title {
-      font-size: 18px;
-      font-weight: 800;
-    }
-
-    .btn-close {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 24px;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
@@ -495,7 +473,7 @@
       <div class="brand-wrapper">
         <div class="brand-icon">🎾</div>
         <div class="brand-title">
-          <h1>Hudle SoBo Slot Tracker</h1>
+          <h1>Hudle SoBo Slot Schedule Tracker</h1>
           <p>South Mumbai Padel & Pickleball Court Engine</p>
         </div>
       </div>
@@ -503,44 +481,62 @@
       <div class="header-actions">
         <div class="live-badge">
           <span class="pulse"></span>
-          Live API Sync
+          Live Sync
         </div>
         <div class="clock-display" id="clock">17:49:36.000 IST</div>
         <button class="btn-settings" id="btn-open-settings">
-          ⚙️ Auth & Alerts
+          ⚙️ Settings
         </button>
       </div>
     </header>
 
-    <!-- STATS OVERVIEW -->
-    <div class="stats-grid">
-      <div class="stat-card">
-        <span class="stat-label">Monitored SoBo Venues</span>
-        <span class="stat-value">7 Locations</span>
-        <span class="stat-sub">Worli, Malabar Hill, Lower Parel, Colaba</span>
+    <!-- TOOLBAR & VIEW TOGGLE -->
+    <div class="toolbar-bar">
+      <div class="view-mode-toggle">
+        <button class="view-btn active" id="btn-view-calendar" onclick="switchView('calendar')">
+          📅 Calendar Schedule (All Venues)
+        </button>
+        <button class="view-btn" id="btn-view-cards" onclick="switchView('cards')">
+          🎴 Venue Cards
+        </button>
       </div>
-      <div class="stat-card">
-        <span class="stat-label">Total Courts</span>
-        <span class="stat-value">18 Courts</span>
-        <span class="stat-sub">Padel & Pickleball</span>
+
+      <div class="date-pills" id="date-pills-bar">
+        <!-- Date pills rendered dynamically -->
       </div>
-      <div class="stat-card">
-        <span class="stat-label">Open Preferred Slots</span>
-        <span class="stat-value" id="stat-slots-count">14 Slots</span>
-        <span class="stat-sub">Morning (6-9 AM) & Evening (6-10 PM)</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">Sniper Status</span>
-        <span class="stat-value" id="stat-sniper-status" style="color: var(--accent-padel);">ARMED</span>
-        <span class="stat-sub">Wallet 1-Click Auto-Checkout Active</span>
-      </div>
+    </div>
+
+    <!-- MAIN VIEW 1: UNIFIED CALENDAR SCHEDULE MATRIX -->
+    <div class="calendar-container" id="calendar-view-section">
+      <table class="calendar-table">
+        <thead>
+          <tr id="calendar-header-row">
+            <th class="venue-col-header">South Mumbai Venue</th>
+            <th>06:00 AM</th>
+            <th>07:00 AM</th>
+            <th>08:00 AM</th>
+            <th>06:00 PM</th>
+            <th>07:00 PM</th>
+            <th>08:00 PM</th>
+            <th>09:00 PM</th>
+          </tr>
+        </thead>
+        <tbody id="calendar-matrix-body">
+          <!-- Calendar matrix rows rendered dynamically -->
+        </tbody>
+      </table>
+    </div>
+
+    <!-- MAIN VIEW 2: VENUE CARDS GRID -->
+    <div class="venues-grid" id="cards-view-section" style="display: none;">
+      <!-- Venue cards rendered dynamically -->
     </div>
 
     <!-- SNIPER CONTROL PANEL -->
     <div class="sniper-panel">
       <div class="panel-header">
         <div class="panel-title">
-          ⚡ Slot Sniper & Auto-Booker Control Panel
+          ⚡ Millisecond Slot Sniper & Auto-Booker Control
         </div>
         <span style="font-size: 13px; color: var(--text-secondary);">Target Release: 00:00:00.000 Midnight</span>
       </div>
@@ -581,35 +577,20 @@
       </form>
     </div>
 
-    <!-- VENUES TRACKER GRID -->
-    <div class="section-header">
-      <h2 class="section-title">South Mumbai Venues</h2>
-      <div class="filter-tabs">
-        <button class="tab-btn active" data-filter="all">All (7)</button>
-        <button class="tab-btn" data-filter="padel">Padel (4)</button>
-        <button class="tab-btn" data-filter="pickleball">Pickleball (4)</button>
-      </div>
-    </div>
-
-    <div class="venues-grid" id="venues-grid">
-      <!-- Venue cards rendered dynamically via app.js -->
-    </div>
-
   </div>
 
   <!-- SETTINGS MODAL -->
   <div class="modal-overlay" id="settings-modal">
     <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title">⚙️ Hudle API & Alert Settings</h3>
-        <button class="btn-close" id="btn-close-settings">&times;</button>
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+        <h3 style="font-size: 18px; font-weight: 800;">⚙️ Hudle API & Alert Settings</h3>
+        <button id="btn-close-settings" style="background: transparent; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">&times;</button>
       </div>
       
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <div class="form-group">
           <label>Hudle Bearer Token</label>
           <input type="password" class="form-control" id="hudle-token-input" placeholder="Paste Authorization Bearer Token here">
-          <small style="color: var(--text-muted); font-size: 11px; margin-top: 4px;">Found in Chrome DevTools -> Network -> Request Headers -> Authorization</small>
         </div>
         
         <div class="form-group">
