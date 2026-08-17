@@ -9,12 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* CRITICAL STYLES FOR GUARANTEED DARK MODE, SPORT FILTERS & STICKY FULL TIMESLOT CALENDAR */
+    /* CRITICAL STYLES FOR GUARANTEED DARK MODE, SPORT FILTERS & PERFECT STICKY SCROLLING */
     :root {
       --bg-primary: #0a0f1d;
       --bg-secondary: #111827;
       --bg-card: rgba(17, 24, 39, 0.95);
-      --border-color: rgba(255, 255, 255, 0.1);
+      --border-color: rgba(255, 255, 255, 0.12);
       --border-highlight: rgba(0, 240, 255, 0.35);
       
       --accent-padel: #ccff00;      /* Electric Neon Lime */
@@ -228,10 +228,10 @@
 
     /* FULL TIMESLOT CALENDAR MATRIX CONTAINER WITH DUAL SCROLLING & PINNED FIRST COLUMN */
     .calendar-container {
-      background: var(--bg-card);
+      background: #0f172a;
       border: 1px solid var(--border-color);
       border-radius: 16px;
-      padding: 16px;
+      padding: 0;
       overflow-x: auto;
       overflow-y: auto;
       max-height: 600px;
@@ -248,67 +248,70 @@
 
     .calendar-container::-webkit-scrollbar-track {
       background: rgba(10, 15, 29, 0.6);
-      border-radius: 4px;
     }
 
     .calendar-container::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.25);
       border-radius: 4px;
     }
 
+    /* TABLE LAYOUT FIXES FOR ZERO-GLITCH SCROLLING */
     .calendar-table {
       width: max-content;
       border-collapse: separate;
-      border-spacing: 5px;
+      border-spacing: 0; /* ELIMINATE GAPS TO PREVENT BG SCROLL BLEED */
     }
 
+    /* CORNER PINNED HEADER CELL */
+    .calendar-table th.venue-col-header {
+      position: sticky;
+      left: 0;
+      top: 0;
+      z-index: 40; /* HIGHEST Z-INDEX SO CORNER NEVER OVERLAPS */
+      background: #111827;
+      text-align: left;
+      min-width: 250px;
+      color: var(--text-primary);
+      border-right: 2px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+      padding: 12px 16px;
+      box-shadow: 4px 0 10px rgba(0,0,0,0.5);
+    }
+
+    /* TIMESLOT HEADERS */
     .calendar-table th {
       background: #0f172a;
       color: var(--text-secondary);
-      padding: 10px 12px;
-      border-radius: 8px;
+      padding: 12px 14px;
       font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      min-width: 82px;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.15);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      min-width: 90px;
       position: sticky;
       top: 0;
-      z-index: 5;
-    }
-
-    /* STICKY FROZEN FIRST COLUMN FOR VENUE & COURT NAMES */
-    .calendar-table th.venue-col-header {
-      position: sticky;
-      left: 0;
-      top: 0;
-      z-index: 25;
-      background: #111827;
-      text-align: left;
-      min-width: 250px;
-      color: var(--text-primary);
-      box-shadow: 4px 0 10px rgba(0,0,0,0.5);
+      z-index: 20;
     }
 
     /* VENUE SECTION DIVIDER ROW */
     .venue-divider-cell {
-      position: sticky;
-      left: 0;
-      z-index: 15;
-      background: linear-gradient(90deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
-      border: 1px solid rgba(255, 255, 255, 0.12) !important;
-      border-radius: 8px;
-      padding: 8px 14px !important;
+      background: #1e293b;
+      border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+      padding: 8px 16px !important;
       text-align: left !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
     }
 
     .divider-content {
+      position: sticky;
+      left: 16px;
       display: flex;
       align-items: center;
       gap: 12px;
+      z-index: 15;
     }
 
     .divider-badge {
@@ -336,28 +339,30 @@
 
     /* INDIVIDUAL COURT ROWS */
     .calendar-table td {
-      background: rgba(15, 23, 42, 0.65);
-      border-radius: 8px;
-      padding: 4px;
+      background: #0f172a;
+      padding: 6px;
       text-align: center;
       vertical-align: middle;
-      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
+    /* STICKY COURT NAME CELL (SOLID BG, ZERO TRANSPARENCY, NO BLEED) */
     .calendar-table td.venue-label-cell {
       position: sticky;
       left: 0;
       z-index: 10;
-      background: #111827;
+      background: #111827; /* SOLID OPAQUE DARK BACKGROUND */
       text-align: left;
-      padding: 10px 14px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 16px;
+      border-right: 2px solid rgba(255, 255, 255, 0.15);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 4px 0 10px rgba(0,0,0,0.5);
       min-width: 250px;
     }
 
     .court-row-label {
-      padding-left: 20px !important;
+      padding-left: 24px !important;
     }
 
     .court-title-text {
@@ -372,7 +377,7 @@
 
     .matrix-slot-btn {
       width: 100%;
-      min-width: 76px;
+      min-width: 82px;
       padding: 8px 4px;
       border-radius: 6px;
       font-family: var(--font-mono);
@@ -561,7 +566,7 @@
       </div>
     </div>
 
-    <!-- UNIFIED CALENDAR SCHEDULE MATRIX (WITH VENUE DIVIDERS & PAST-TIME FILTERING FOR TODAY) -->
+    <!-- UNIFIED CALENDAR SCHEDULE MATRIX (ZERO-GLITCH STICKY SCROLLING) -->
     <div class="calendar-container">
       <table class="calendar-table">
         <thead>
