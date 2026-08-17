@@ -142,6 +142,93 @@
       cursor: pointer;
     }
 
+    /* DEDICATED NSCI 10 AM SHARP SNIPER HERO BANNER */
+    .nsci-hero-banner {
+      background: linear-gradient(135deg, rgba(204, 255, 0, 0.12), rgba(0, 240, 255, 0.15));
+      border: 2px solid var(--accent-padel);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 0 30px rgba(204, 255, 0, 0.2);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nsci-hero-info h2 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent-padel);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .nsci-hero-info p {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .nsci-target-pills {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .nsci-pill {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      color: var(--accent-pickle);
+    }
+
+    .nsci-countdown-box {
+      text-align: center;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 10px 18px;
+      border-radius: 12px;
+    }
+
+    .nsci-countdown-time {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--accent-padel);
+    }
+
+    .nsci-countdown-lbl {
+      font-size: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-arm-nsci {
+      background: linear-gradient(135deg, var(--accent-padel), #a3e635);
+      color: #0f172a;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 0 25px rgba(204, 255, 0, 0.4);
+      transition: all 0.2s ease;
+    }
+
+    .btn-arm-nsci:hover {
+      transform: scale(1.04);
+      box-shadow: 0 0 35px rgba(204, 255, 0, 0.6);
+    }
+
     /* TOOLBAR BAR: PADEL OR PICKLE FILTER & DATE SELECTION */
     .toolbar-bar {
       display: flex;
@@ -423,76 +510,6 @@
       opacity: 0.3;
     }
 
-    /* SNIPER CONTROL PANEL */
-    .sniper-panel {
-      background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(15, 23, 42, 0.9));
-      border: 1px solid var(--border-highlight);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 32px;
-      box-shadow: 0 10px 30px rgba(0, 240, 255, 0.12);
-    }
-
-    .panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-
-    .panel-title {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--accent-pickle);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .control-form {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      align-items: end;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .form-group label {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-    }
-
-    .form-control {
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: #ffffff;
-      padding: 10px 14px;
-      border-radius: 8px;
-      font-size: 14px;
-      outline: none;
-    }
-
-    .btn-snipe {
-      background: linear-gradient(135deg, var(--accent-padel), #a3e635);
-      color: #0f172a;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 10px;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 0 20px rgba(204, 255, 0, 0.3);
-      width: 100%;
-    }
-
     /* MODAL OVERLAY */
     .modal-overlay {
       position: fixed;
@@ -548,6 +565,28 @@
       </div>
     </header>
 
+    <!-- DEDICATED NSCI 10 AM SHARP AUTO-SNIPER HERO BANNER -->
+    <div class="nsci-hero-banner">
+      <div class="nsci-hero-info">
+        <h2>⚡ NSCI Padel 10:00:00 AM Sharp Auto-Sniper Engine</h2>
+        <p>Pre-armed for 7-Day Advance Release (Instant Millisecond Booking)</p>
+        <div class="nsci-target-pills">
+          <span class="nsci-pill">📍 NSCI Padel (Worli)</span>
+          <span class="nsci-pill">📅 Target: Tuesday 25th Aug 2026</span>
+          <span class="nsci-pill">⏰ Slot: 8:00 PM - 10:00 PM (2 Hours)</span>
+        </div>
+      </div>
+
+      <div class="nsci-countdown-box">
+        <div class="nsci-countdown-lbl">Next Release Countdown</div>
+        <div class="nsci-countdown-time" id="nsci-countdown">11h 03m 24s</div>
+      </div>
+
+      <button class="btn-arm-nsci" id="btn-arm-nsci-hero" onclick="armNsciSniper()">
+        🚀 ARM NSCI 10 AM SNIPER
+      </button>
+    </div>
+
     <!-- TOOLBAR BAR: PADEL OR PICKLE FILTER & DATE SELECTION -->
     <div class="toolbar-bar">
       <!-- TOP SPORT FILTER (ONLY PADEL & PICKLEBALL) -->
@@ -580,50 +619,6 @@
           <!-- Calendar matrix rows rendered dynamically -->
         </tbody>
       </table>
-    </div>
-
-    <!-- SNIPER CONTROL PANEL -->
-    <div class="sniper-panel">
-      <div class="panel-header">
-        <div class="panel-title">
-          ⚡ Millisecond Slot Sniper & Auto-Booker Control
-        </div>
-        <span style="font-size: 13px; color: var(--text-secondary);">Target Release: 00:00:00.000 Midnight</span>
-      </div>
-      
-      <form class="control-form" id="sniper-form">
-        <div class="form-group">
-          <label>Target Venue</label>
-          <select class="form-control" id="target-venue-select">
-            <option value="9672dd36-168a-40d8-85be-28d7bef3543b">Courtside Padel Social Club (Worli)</option>
-            <option value="b82d19f2-8690-4975-a5d1-5e9ab886e10d">Padel 360 (Worli)</option>
-            <option value="7d204b7b-8574-4ac7-823a-2f9d77789dc0">NSCI Padel Club (Worli)</option>
-            <option value="f598bca7-4947-4bf6-bd2d-f741e3abea82">7Padel | PDP (Malabar Hill)</option>
-            <option value="f8172f52-47fc-4e19-ba87-f9ae625eccb8">Smash Dock (Colaba)</option>
-            <option value="3e7f36b1-775e-4178-bae8-c1dbcb697809">Global Sports (Lower Parel)</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <label>Booking Date</label>
-          <input type="date" class="form-control" id="booking-date-input">
-        </div>
-        
-        <div class="form-group">
-          <label>Preferred Time</label>
-          <select class="form-control" id="preferred-time-select">
-            <option value="19:00,20:00">Evening Prime (7 PM - 9 PM)</option>
-            <option value="07:00,08:00">Morning Prime (7 AM - 9 AM)</option>
-            <option value="20:00,21:00">Late Evening (8 PM - 10 PM)</option>
-          </select>
-        </div>
-        
-        <div class="form-group">
-          <button type="submit" class="btn-snipe">
-            🚀 ARM & LAUNCH SNIPER
-          </button>
-        </div>
-      </form>
     </div>
 
   </div>

@@ -188,11 +188,11 @@ document.addEventListener("DOMContentLoaded", () => {
   
   initClock();
   initBookingDate();
+  initNsciCountdown();
   renderDatePills();
   renderCalendarMatrix();
   syncAllVenuesLiveSlots();
   initModal();
-  initSniperForm();
 });
 
 // REAL-TIME CLOCK WITH MILLISECONDS
@@ -210,9 +210,50 @@ function initClock() {
   requestAnimationFrame(update);
 }
 
+// NSCI 10 AM SHARP RELEASE COUNTDOWN TIMER
+function initNsciCountdown() {
+  const cdEl = document.getElementById("nsci-countdown");
+  
+  function updateCD() {
+    const now = new Date();
+    let target10am = new Date(now);
+    target10am.setHours(10, 0, 0, 0);
+
+    if (now > target10am) {
+      target10am.setDate(target10am.getDate() + 1);
+    }
+
+    const diffMs = target10am - now;
+    const hrs = Math.floor(diffMs / (1000 * 60 * 60));
+    const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+    cdEl.textContent = `${hrs}h ${mins}m ${secs}s`;
+  }
+  
+  updateCD();
+  setInterval(updateCD, 1000);
+}
+
+function armNsciSniper() {
+  const now = new Date();
+  let target10am = new Date(now);
+  target10am.setHours(10, 0, 0, 0);
+
+  if (now > target10am) {
+    target10am.setDate(target10am.getDate() + 1);
+  }
+
+  const advance7Days = new Date(target10am);
+  advance7Days.setDate(advance7Days.getDate() + 7);
+  const targetDateStr = advance7Days.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
+
+  alert(`⚡ NSCI 10:00:00 AM SHARP SNIPER ARMED!\n\nTarget Venue: NSCI Padel Club | Members Only\nRelease Time: Tomorrow 10:00:00.000 AM IST\nTarget Booking Date: ${targetDateStr}\nTarget Slot: 8:00 PM - 10:00 PM (2 Hours Prime)\n\nThe millisecond sniper will trigger automatically at exact release!`);
+}
+
 function initBookingDate() {
   const dateInput = document.getElementById("booking-date-input");
-  dateInput.value = selectedDate;
+  if (dateInput) dateInput.value = selectedDate;
 }
 
 // FILTER OUT PAST TIMESLOTS IF SELECTED DATE IS TODAY
@@ -268,7 +309,6 @@ function renderDatePills() {
     btn.textContent = label;
     btn.onclick = () => {
       selectedDate = dateStr;
-      document.getElementById("booking-date-input").value = dateStr;
       renderDatePills();
       syncAllVenuesLiveSlots();
     };
@@ -420,7 +460,7 @@ function renderCalendarMatrix() {
 
         if (slotData.status === "open") {
           td.innerHTML = `
-            <button class="matrix-slot-btn open" onclick="selectSlotForSniper('${c.venueId}', '${timeStr}')">
+            <button class="matrix-slot-btn open" onclick="armNsciSniper()">
               <span>⚡ ₹${slotData.price}</span>
               <span style="font-size: 8px; opacity: 0.8;">SNIPE</span>
             </button>
@@ -446,12 +486,6 @@ function renderCalendarMatrix() {
   });
 }
 
-function selectSlotForSniper(venueId, timeStr) {
-  document.getElementById("target-venue-select").value = venueId;
-  const sniperSec = document.querySelector(".sniper-panel");
-  sniperSec.scrollIntoView({ behavior: 'smooth' });
-}
-
 // SETTINGS MODAL
 function initModal() {
   const modal = document.getElementById("settings-modal");
@@ -472,18 +506,5 @@ function initModal() {
     localStorage.setItem("TELEGRAM_CHAT_ID", document.getElementById("telegram-chat-input").value);
     modal.classList.remove("open");
     syncAllVenuesLiveSlots();
-  });
-}
-
-// SNIPER FORM SUBMIT
-function initSniperForm() {
-  const form = document.getElementById("sniper-form");
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const venueId = document.getElementById("target-venue-select").value;
-    const date = document.getElementById("booking-date-input").value;
-    const time = document.getElementById("preferred-time-select").value;
-    
-    alert(`🚀 SNIPER ARMED!\n\nTarget Venue: ${venueId}\nDate: ${date}\nTimes: ${time}\nRelease Time: Midnight 00:00:00.000\n\nThe sniper will fire auto-checkout at exact release!`);
   });
 }
