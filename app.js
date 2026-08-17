@@ -3,20 +3,6 @@
 // AUTHENTIC USER TOKEN (TANAY GANDHI)
 const DEFAULT_USER_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoiVjNWY3FEM1pOYkdweHhlU2VWRVl6MUZEQjlKcDBvazBKYUlsNWhCb2NZdm1FdVdBbXdVcGlJemwzSWJDIiwic3ViIjoyODAxMDgsImlzcyI6Imh0dHBzOi8vYXBpLmh1ZGxlLmluL2FwaS92MS9vdHAvdmVyaWZ5IiwiaWF0IjoxNzg2OTg1ODg1LCJleHAiOjE4MTgwODk4ODUsIm5iZiI6MTc4Njk4NTg4NSwianRpIjoiRENsbjE4Z1Y4a3hJNU9VOSJ9.iZ-Lmvj2NDv9MJTGqsU4PJk2v9-q7U8VQdpuZBQmx38";
 
-const DEFAULT_MATRIX_PRESET = {
-  "06:00 AM": { status: "open", price: 1800 },
-  "07:00 AM": { status: "booked", price: 1800 },
-  "08:00 AM": { status: "open", price: 1800 },
-  "09:00 AM": { status: "open", price: 1800 },
-  "10:00 AM": { status: "open", price: 1800 },
-  "05:00 PM": { status: "open", price: 2400 },
-  "06:00 PM": { status: "open", price: 2400 },
-  "07:00 PM": { status: "open", price: 2400 },
-  "08:00 PM": { status: "booked", price: 2400 },
-  "09:00 PM": { status: "open", price: 2400 },
-  "10:00 PM": { status: "open", price: 2400 }
-};
-
 const SOBO_VENUES_DATA = [
   {
     id: "9672dd36-168a-40d8-85be-28d7bef3543b",
@@ -30,7 +16,7 @@ const SOBO_VENUES_DATA = [
       "d6121c94-0fc9-4368-a93d-edc26583c2cd",
       "b866b70f-c2a9-4ea0-91bf-1a95f67c15c3"
     ],
-    matrix: JSON.parse(JSON.stringify(DEFAULT_MATRIX_PRESET))
+    matrix: {}
   },
   {
     id: "b82d19f2-8690-4975-a5d1-5e9ab886e10d",
@@ -41,10 +27,9 @@ const SOBO_VENUES_DATA = [
     sportsText: "Padel & Pickleball (AC Indoor)",
     facilities: [
       "c93e354e-afd1-43a1-ac95-b0d9098946a6",
-      "dc6616fa-8d06-48e0-a48e-1cd2c8171e78",
-      "5a651275-a2d3-4b70-9bd1-d36467bd8116"
+      "dc6616fa-8d06-48e0-a48e-1cd2c8171e78"
     ],
-    matrix: JSON.parse(JSON.stringify(DEFAULT_MATRIX_PRESET))
+    matrix: {}
   },
   {
     id: "7d204b7b-8574-4ac7-823a-2f9d77789dc0",
@@ -57,7 +42,7 @@ const SOBO_VENUES_DATA = [
       "7d8585b8-7180-407b-b96f-088fe312980b",
       "db84590b-7d36-4671-9ab4-42bcbb1919fa"
     ],
-    matrix: JSON.parse(JSON.stringify(DEFAULT_MATRIX_PRESET))
+    matrix: {}
   },
   {
     id: "f598bca7-4947-4bf6-bd2d-f741e3abea82",
@@ -70,7 +55,7 @@ const SOBO_VENUES_DATA = [
       "e04e0284-8a02-44c3-ab7b-d7593125dd8c",
       "d0670d76-57d1-4fe0-8358-05d156f79969"
     ],
-    matrix: JSON.parse(JSON.stringify(DEFAULT_MATRIX_PRESET))
+    matrix: {}
   },
   {
     id: "f8172f52-47fc-4e19-ba87-f9ae625eccb8",
@@ -83,7 +68,7 @@ const SOBO_VENUES_DATA = [
       "c46d28c1-d832-4554-ab09-13e3ba1cbf90",
       "a88745d4-e0c7-451b-995a-961ff86104c8"
     ],
-    matrix: JSON.parse(JSON.stringify(DEFAULT_MATRIX_PRESET))
+    matrix: {}
   },
   {
     id: "3e7f36b1-775e-4178-bae8-c1dbcb697809",
@@ -97,7 +82,7 @@ const SOBO_VENUES_DATA = [
       "f6ed0b2b-da82-4830-92f3-163c7ffae033",
       "5319184f-6229-4cb4-a05a-8f667ab1f8f9"
     ],
-    matrix: JSON.parse(JSON.stringify(DEFAULT_MATRIX_PRESET))
+    matrix: {}
   }
 ];
 
@@ -120,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initBookingDate();
   renderDatePills();
   renderCalendarHeaders();
-  renderCalendarMatrix(); // Render matrix immediately so it never shows blank
   syncAllVenuesLiveSlots();
   initModal();
   initSniperForm();
@@ -202,9 +186,9 @@ async function syncAllVenuesLiveSlots() {
   syncStatusText.textContent = "Syncing Hudle API...";
 
   for (let v of SOBO_VENUES_DATA) {
+    v.matrix = {};
     for (let facId of v.facilities) {
       try {
-        // Native Vercel rewrite endpoint to bypass browser CORS completely
         const apiUrl = `/hudle-api/venues/${v.id}/facilities/${facId}/slots?start_date=${selectedDate}&end_date=${selectedDate}`;
         
         const response = await fetch(apiUrl, {
@@ -219,8 +203,8 @@ async function syncAllVenuesLiveSlots() {
 
         if (response.ok) {
           const jsonRes = await response.json();
-          if (jsonRes.data && Array.isArray(jsonRes.data) && jsonRes.data.length > 0) {
-            parseHudleSlotResponse(v.matrix, jsonRes.data);
+          if (jsonRes.data && Array.isArray(jsonRes.data)) {
+            parseHudleSlotResponse(v.matrix, jsonRes.data, selectedDate);
           }
         }
       } catch (err) {
@@ -233,23 +217,27 @@ async function syncAllVenuesLiveSlots() {
   renderCalendarMatrix();
 }
 
-// PARSE HUDLE REST API SLOT JSON RESPONSE INTO TIME MATRIX
-function parseHudleSlotResponse(matrixObj, slotsArray) {
+// PARSE HUDLE REST API SLOT JSON RESPONSE INTO TIME MATRIX WITH EXACT DATE & AVAILABILITY MATCHING
+function parseHudleSlotResponse(matrixObj, slotsArray, targetDateStr) {
   slotsArray.forEach(slot => {
-    if (slot.start_time) {
-      const parts = slot.start_time.split(" ");
-      const timePart = parts[1] || parts[0];
-      const timeStr = formatTimeTo12Hr(timePart);
-      
-      const isAvail = slot.is_available && !slot.is_booked;
-      const slotPrice = slot.price || 1800;
+    // 1. Must match targetDateStr
+    if (!slot.start_time || !slot.start_time.startsWith(targetDateStr)) return;
 
-      if (!matrixObj[timeStr] || isAvail) {
-        matrixObj[timeStr] = {
-          status: isAvail ? "open" : "booked",
-          price: slotPrice
-        };
-      }
+    // 2. Extract 24-hour time "06:00:00" -> "06:00 AM"
+    const timeParts = slot.start_time.split(" ");
+    const time24 = timeParts[1] || timeParts[0];
+    const timeStr = formatTimeTo12Hr(time24);
+
+    // 3. Exact availability condition (must be available and NOT booked)
+    const isAvail = slot.is_available === true && slot.is_booked === false;
+    const priceVal = Math.round(parseFloat(slot.price || slot.discounted_price || 0));
+
+    // If slot is available on ANY court for this venue, mark OPEN
+    if (!matrixObj[timeStr] || isAvail) {
+      matrixObj[timeStr] = {
+        status: isAvail ? "open" : "booked",
+        price: priceVal > 0 ? priceVal : (matrixObj[timeStr]?.price || 2000)
+      };
     }
   });
 }
