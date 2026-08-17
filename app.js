@@ -9,7 +9,7 @@ const INDIVIDUAL_COURTS_DATA = [
   {
     venueId: "9672dd36-168a-40d8-85be-28d7bef3543b",
     facId: "c598e535-9980-47d0-a0eb-ebaf5603b367",
-    venueName: "Courtside Worli",
+    venueName: "Courtside Padel Social Club",
     courtName: "Isprava Court",
     location: "Worli",
     type: "padel",
@@ -18,7 +18,7 @@ const INDIVIDUAL_COURTS_DATA = [
   {
     venueId: "9672dd36-168a-40d8-85be-28d7bef3543b",
     facId: "d6121c94-0fc9-4368-a93d-edc26583c2cd",
-    venueName: "Courtside Worli",
+    venueName: "Courtside Padel Social Club",
     courtName: "Court 2",
     location: "Worli",
     type: "padel",
@@ -27,7 +27,7 @@ const INDIVIDUAL_COURTS_DATA = [
   {
     venueId: "9672dd36-168a-40d8-85be-28d7bef3543b",
     facId: "b866b70f-c2a9-4ea0-91bf-1a95f67c15c3",
-    venueName: "Courtside Worli",
+    venueName: "Courtside Padel Social Club",
     courtName: "Court 3",
     location: "Worli",
     type: "padel",
@@ -36,7 +36,7 @@ const INDIVIDUAL_COURTS_DATA = [
   {
     venueId: "9672dd36-168a-40d8-85be-28d7bef3543b",
     facId: "60d880c0-c7b8-45d2-a0e4-6c0ef836c317",
-    venueName: "Courtside Worli",
+    venueName: "Courtside Padel Social Club",
     courtName: "Pickleball Court",
     location: "Worli",
     type: "pickleball",
@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initClock();
   initBookingDate();
   renderDatePills();
-  renderCalendarHeaders();
+  renderCalendarMatrix();
   syncAllVenuesLiveSlots();
   initModal();
   initSniperForm();
@@ -215,12 +215,35 @@ function initBookingDate() {
   dateInput.value = selectedDate;
 }
 
-// RENDER ALL 18 TIMESLOT TABLE HEADERS
-function renderCalendarHeaders() {
+// FILTER OUT PAST TIMESLOTS IF SELECTED DATE IS TODAY
+function getVisibleTimeslots(dateStr) {
+  const todayStr = new Date().toISOString().split("T")[0];
+  if (dateStr !== todayStr) {
+    return ALL_TIMESLOTS;
+  }
+  
+  const currentHour = new Date().getHours();
+  
+  const filtered = ALL_TIMESLOTS.filter(timeStr => {
+    const [hStr, period] = timeStr.split(" ");
+    let h = parseInt(hStr.split(":")[0], 10);
+    if (period === "PM" && h !== 12) h += 12;
+    if (period === "AM" && h === 12) h = 0;
+    
+    // Include slots for current and future hours today
+    return h >= currentHour;
+  });
+
+  // Fallback to evening slots if current hour is past operating hours tonight
+  return filtered.length > 0 ? filtered : ALL_TIMESLOTS.slice(-4);
+}
+
+// RENDER TIMESLOT TABLE HEADERS BASED ON VISIBLE SLOTS
+function renderCalendarHeaders(visibleSlots) {
   const headerRow = document.getElementById("calendar-header-row");
   headerRow.innerHTML = `<th class="venue-col-header">South Mumbai Venue & Court</th>`;
   
-  ALL_TIMESLOTS.forEach(timeStr => {
+  visibleSlots.forEach(timeStr => {
     const th = document.createElement("th");
     th.textContent = timeStr;
     headerRow.appendChild(th);
@@ -332,58 +355,94 @@ function formatTimeTo12Hr(time24) {
   return `${String(h).padStart(2, '0')}:00 ${ampm}`;
 }
 
-// RENDER CALENDAR MATRIX COURT BY COURT
+// RENDER CALENDAR MATRIX GROUPED BY VENUE LOCATION WITH DIVIDERS & PAST-TIME FILTERING FOR TODAY
 function renderCalendarMatrix() {
   const tbody = document.getElementById("calendar-matrix-body");
   tbody.innerHTML = "";
 
+  const visibleSlots = getVisibleTimeslots(selectedDate);
+  renderCalendarHeaders(visibleSlots);
+
+  // Filter courts by sport (padel / pickleball)
   const filteredCourts = INDIVIDUAL_COURTS_DATA.filter(c => {
     if (currentSportFilter === "padel") return c.type === "padel";
     if (currentSportFilter === "pickleball") return c.type === "pickleball";
     return true;
   });
 
+  // Group courts by venueName
+  const groupedVenues = {};
   filteredCourts.forEach(c => {
-    const tr = document.createElement("tr");
+    if (!groupedVenues[c.venueName]) {
+      groupedVenues[c.venueName] = {
+        name: c.venueName,
+        location: c.location,
+        type: c.type,
+        courts: []
+      };
+    }
+    groupedVenues[c.venueName].courts.push(c);
+  });
+
+  // Render grouped venue headers and court rows
+  Object.values(groupedVenues).forEach(group => {
+    // 1. Venue Section Header Divider Row
+    const dividerTr = document.createElement("tr");
+    dividerTr.className = "venue-divider-row";
     
-    // Sticky pinned venue & court label cell
-    const labelTd = document.createElement("td");
-    labelTd.className = "venue-label-cell";
-    labelTd.innerHTML = `
-      <div class="venue-title-text">${c.type === 'padel' ? '🎾' : '🏓'} ${c.venueName}</div>
-      <div class="venue-sub-text">📍 ${c.courtName} (${c.location})</div>
+    const dividerTd = document.createElement("td");
+    dividerTd.className = "venue-divider-cell";
+    dividerTd.colSpan = visibleSlots.length + 1;
+    dividerTd.innerHTML = `
+      <div class="divider-content">
+        <span class="divider-badge">${group.type === 'padel' ? '🎾 PADEL' : '🏓 PICKLEBALL'}</span>
+        <span class="divider-title">${group.name}</span>
+        <span class="divider-location">📍 ${group.location}</span>
+      </div>
     `;
-    tr.appendChild(labelTd);
+    dividerTr.appendChild(dividerTd);
+    tbody.appendChild(dividerTr);
 
-    // Render cells for all 18 hourly timeslots
-    ALL_TIMESLOTS.forEach(timeStr => {
-      const slotData = c.matrix[timeStr] || { status: "empty" };
-      const td = document.createElement("td");
+    // 2. Individual Court Rows
+    group.courts.forEach(c => {
+      const tr = document.createElement("tr");
+      
+      const labelTd = document.createElement("td");
+      labelTd.className = "venue-label-cell court-row-label";
+      labelTd.innerHTML = `
+        <div class="court-title-text">↳ ${c.courtName}</div>
+      `;
+      tr.appendChild(labelTd);
 
-      if (slotData.status === "open") {
-        td.innerHTML = `
-          <button class="matrix-slot-btn open" onclick="selectSlotForSniper('${c.venueId}', '${timeStr}')">
-            <span>⚡ ₹${slotData.price}</span>
-            <span style="font-size: 8px; opacity: 0.8;">SNIPE</span>
-          </button>
-        `;
-      } else if (slotData.status === "booked") {
-        td.innerHTML = `
-          <button class="matrix-slot-btn booked" disabled>
-            <span>❌ Sold</span>
-          </button>
-        `;
-      } else {
-        td.innerHTML = `
-          <button class="matrix-slot-btn empty" disabled>
-            <span>-</span>
-          </button>
-        `;
-      }
-      tr.appendChild(td);
+      visibleSlots.forEach(timeStr => {
+        const slotData = c.matrix[timeStr] || { status: "empty" };
+        const td = document.createElement("td");
+
+        if (slotData.status === "open") {
+          td.innerHTML = `
+            <button class="matrix-slot-btn open" onclick="selectSlotForSniper('${c.venueId}', '${timeStr}')">
+              <span>⚡ ₹${slotData.price}</span>
+              <span style="font-size: 8px; opacity: 0.8;">SNIPE</span>
+            </button>
+          `;
+        } else if (slotData.status === "booked") {
+          td.innerHTML = `
+            <button class="matrix-slot-btn booked" disabled>
+              <span>❌ Sold</span>
+            </button>
+          `;
+        } else {
+          td.innerHTML = `
+            <button class="matrix-slot-btn empty" disabled>
+              <span>-</span>
+            </button>
+          `;
+        }
+        tr.appendChild(td);
+      });
+
+      tbody.appendChild(tr);
     });
-
-    tbody.appendChild(tr);
   });
 }
 
