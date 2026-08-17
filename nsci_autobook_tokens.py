@@ -78,14 +78,25 @@ def run_zero_intervention_token_autobooker():
         page.goto(NSCI_VENUE_URL, wait_until="domcontentloaded", timeout=15000)
         page.wait_for_timeout(2000)
 
+        # Step 0: Open Slot Picker if needed
+        try:
+            book_a_slot_btn = page.query_selector("text='BOOK A SLOT', text='Slots'")
+            if book_a_slot_btn:
+                book_a_slot_btn.click()
+                print("  └ Clicked 'BOOK A SLOT' tab!")
+                page.wait_for_timeout(1500)
+        except Exception as e:
+            print("Book a slot tab note:", e)
+
         # Step 1: Select Target Date
         print(f"👉 Selecting Target Date ({target_date_str})...")
         try:
-            date_pills = page.query_selector_all(".date-item, .date-pill, button")
-            for pill in date_pills:
-                if target_date_str in (pill.get_attribute("data-date") or "") or target_date_str in (pill.inner_text() or ""):
-                    pill.click()
-                    print(f"  └ Date pill clicked for {target_date_str}")
+            all_els = page.query_selector_all("button, div, span")
+            for el in all_els:
+                txt = el.inner_text().strip()
+                if target_date_str in txt or "25 Aug" in txt or "Tue, 25" in txt:
+                    el.click()
+                    print(f"  └ Clicked date element: {txt[:30]}")
                     break
         except Exception as e:
             print("Date selection note:", e)
@@ -94,16 +105,16 @@ def run_zero_intervention_token_autobooker():
 
         # Step 2: Select 8:00 PM - 10:00 PM slots
         print("👉 Selecting 8:00 PM - 10:00 PM Slots...")
-        slot_times = ["08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", "20:00", "20:30", "21:00", "21:30"]
+        slot_targets = ["08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", "20:00", "20:30", "21:00", "21:30"]
         
         selected_count = 0
         try:
-            buttons = page.query_selector_all("button, .slot-btn, .slot-card, div[role='button']")
-            for b in buttons:
-                txt = b.inner_text()
-                for st in slot_times:
-                    if st in txt and "booked" not in txt.lower():
-                        b.click()
+            elements = page.query_selector_all("button, div, span, p")
+            for el in elements:
+                txt = el.inner_text().strip()
+                for st in slot_targets:
+                    if st in txt and ("₹" in txt or "400" in txt or "PM" in txt) and "booked" not in txt.lower():
+                        el.click()
                         selected_count += 1
                         print(f"  └ Selected slot block: {st}")
                         page.wait_for_timeout(200)
@@ -116,7 +127,7 @@ def run_zero_intervention_token_autobooker():
         # Step 3: Click Proceed to Checkout
         print("👉 Clicking Proceed to Checkout...")
         try:
-            checkout_selectors = ["text='Book'", "text='Proceed'", "text='Checkout'", "button:has-text('Book')", "button:has-text('Proceed')"]
+            checkout_selectors = ["text='BOOK'", "text='Book'", "text='Proceed'", "text='Checkout'", "button:has-text('BOOK')"]
             for sel in checkout_selectors:
                 el = page.query_selector(sel)
                 if el:
