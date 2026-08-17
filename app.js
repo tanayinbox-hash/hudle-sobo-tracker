@@ -1,5 +1,8 @@
 // HUDLE SOUTH MUMBAI LIVE API SLOT TRACKER & UNIFIED CALENDAR MATRIX
 
+// AUTHENTIC USER TOKEN (TANAY GANDHI)
+const DEFAULT_USER_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoiVjNWY3FEM1pOYkdweHhlU2VWRVl6MUZEQjlKcDBvazBKYUlsNWhCb2NZdm1FdVdBbXdVcGlJemwzSWJDIiwic3ViIjoyODAxMDgsImlzcyI6Imh0dHBzOi8vYXBpLmh1ZGxlLmluL2FwaS92MS9vdHAvdmVyaWZ5IiwiaWF0IjoxNzg2OTg1ODg1LCJleHAiOjE4MTgwODk4ODUsIm5iZiI6MTc4Njk4NTg4NSwianRpIjoiRENsbjE4Z1Y4a3hJNU9VOSJ9.iZ-Lmvj2NDv9MJTGqsU4PJk2v9-q7U8VQdpuZBQmx38";
+
 const SOBO_VENUES_DATA = [
   {
     id: "9672dd36-168a-40d8-85be-28d7bef3543b",
@@ -8,7 +11,11 @@ const SOBO_VENUES_DATA = [
     location: "Worli",
     type: "padel",
     sportsText: "Padel (3 Courts)",
-    priceOnwards: 2200,
+    facilities: [
+      "c598e535-9980-47d0-a0eb-ebaf5603b367",
+      "d6121c94-0fc9-4368-a93d-edc26583c2cd",
+      "b866b70f-c2a9-4ea0-91bf-1a95f67c15c3"
+    ],
     matrix: {}
   },
   {
@@ -18,7 +25,11 @@ const SOBO_VENUES_DATA = [
     location: "Worli",
     type: "padel",
     sportsText: "Padel & Pickleball (AC Indoor)",
-    priceOnwards: 2400,
+    facilities: [
+      "c93e354e-afd1-43a1-ac95-b0d9098946a6",
+      "dc6616fa-8d06-48e0-a48e-1cd2c8171e78",
+      "5a651275-a2d3-4b70-9bd1-d36467bd8116"
+    ],
     matrix: {}
   },
   {
@@ -28,7 +39,10 @@ const SOBO_VENUES_DATA = [
     location: "Worli",
     type: "padel",
     sportsText: "Padel (Members Only)",
-    priceOnwards: 1800,
+    facilities: [
+      "7d8585b8-7180-407b-b96f-088fe312980b",
+      "db84590b-7d36-4671-9ab4-42bcbb1919fa"
+    ],
     matrix: {}
   },
   {
@@ -38,7 +52,10 @@ const SOBO_VENUES_DATA = [
     location: "Malabar Hill",
     type: "padel",
     sportsText: "Padel (Priyadarshini Park)",
-    priceOnwards: 2000,
+    facilities: [
+      "e04e0284-8a02-44c3-ab7b-d7593125dd8c",
+      "d0670d76-57d1-4fe0-8358-05d156f79969"
+    ],
     matrix: {}
   },
   {
@@ -48,7 +65,10 @@ const SOBO_VENUES_DATA = [
     location: "Colaba",
     type: "pickleball",
     sportsText: "Pickleball (9-Layer Acrylic)",
-    priceOnwards: 1800,
+    facilities: [
+      "c46d28c1-d832-4554-ab09-13e3ba1cbf90",
+      "a88745d4-e0c7-451b-995a-961ff86104c8"
+    ],
     matrix: {}
   },
   {
@@ -58,7 +78,11 @@ const SOBO_VENUES_DATA = [
     location: "Lower Parel",
     type: "pickleball",
     sportsText: "Pickleball (Peninsula Corporate Park)",
-    priceOnwards: 1500,
+    facilities: [
+      "277c8585-2218-41b1-ab02-875ad0abb0c5",
+      "f6ed0b2b-da82-4830-92f3-163c7ffae033",
+      "5319184f-6229-4cb4-a05a-8f667ab1f8f9"
+    ],
     matrix: {}
   }
 ];
@@ -71,9 +95,13 @@ const ALL_TIMESLOTS = [
 ];
 
 let selectedDate = new Date().toISOString().split("T")[0];
-let currentSportFilter = "padel"; // DEFAULT TO PADEL (ONLY PADEL OR PICKLEBALL AVAILABLE)
+let currentSportFilter = "padel"; // DEFAULT TO PADEL (ONLY PADEL OR PICKLEBALL)
 
 document.addEventListener("DOMContentLoaded", () => {
+  if (!localStorage.getItem("HUDLE_AUTH_TOKEN")) {
+    localStorage.setItem("HUDLE_AUTH_TOKEN", DEFAULT_USER_TOKEN);
+  }
+  
   initClock();
   initBookingDate();
   renderDatePills();
@@ -151,43 +179,39 @@ function setSportFilter(filterMode) {
   renderCalendarMatrix();
 }
 
-// FETCH LIVE HUDLE SLOTS DIRECTLY FROM HUDLE REST API
+// FETCH LIVE REAL-TIME HUDLE SLOTS DIRECTLY FROM HUDLE REST API
 async function syncAllVenuesLiveSlots() {
-  const token = localStorage.getItem("HUDLE_AUTH_TOKEN");
+  const token = localStorage.getItem("HUDLE_AUTH_TOKEN") || DEFAULT_USER_TOKEN;
   const syncStatusText = document.getElementById("sync-status-text");
-
-  if (!token) {
-    syncStatusText.textContent = "⚙️ Add Bearer Token in Settings";
-    // Render initial structure
-    renderCalendarMatrix();
-    return;
-  }
 
   syncStatusText.textContent = "Syncing Hudle API...";
 
   for (let v of SOBO_VENUES_DATA) {
-    try {
-      // Use corsproxy.io to bypass browser CORS restriction when calling api.hudle.in directly from web app
-      const apiUrl = `https://corsproxy.io/?${encodeURIComponent(`https://api.hudle.in/api/v1/venues/${v.id}/slots?date=${selectedDate}`)}`;
-      
-      const response = await fetch(apiUrl, {
-        headers: {
-          "Accept": "application/json",
-          "Authorization": `Bearer ${token}`,
-          "api-secret": "hudle-api1798@prod",
-          "x-app-version": "1.0.1",
-          "x-app-source": "consumer"
-        }
-      });
+    v.matrix = {};
+    for (let facId of v.facilities) {
+      try {
+        const rawUrl = `https://api.hudle.in/api/v1/venues/${v.id}/facilities/${facId}/slots?start_date=${selectedDate}&end_date=${selectedDate}`;
+        const apiUrl = `https://corsproxy.io/?${encodeURIComponent(rawUrl)}`;
+        
+        const response = await fetch(apiUrl, {
+          headers: {
+            "Accept": "application/json",
+            "Authorization": `Bearer ${token}`,
+            "api-secret": "hudle-api1798@prod",
+            "x-app-version": "1.0.1",
+            "x-app-source": "consumer"
+          }
+        });
 
-      if (response.ok) {
-        const jsonRes = await response.json();
-        if (jsonRes.data && Array.isArray(jsonRes.data)) {
-          v.matrix = parseHudleSlotResponse(jsonRes.data);
+        if (response.ok) {
+          const jsonRes = await response.json();
+          if (jsonRes.data && Array.isArray(jsonRes.data)) {
+            parseHudleSlotResponse(v.matrix, jsonRes.data);
+          }
         }
+      } catch (err) {
+        console.warn(`Live sync warning for ${v.name}:`, err);
       }
-    } catch (err) {
-      console.warn(`Live sync warning for ${v.name}:`, err);
     }
   }
 
@@ -195,24 +219,31 @@ async function syncAllVenuesLiveSlots() {
   renderCalendarMatrix();
 }
 
-// PARSE HUDLE REST API SLOT JSON RESPONSE
-function parseHudleSlotResponse(slotsArray) {
-  const matrix = {};
+// PARSE HUDLE REST API SLOT JSON RESPONSE INTO TIME MATRIX
+function parseHudleSlotResponse(matrixObj, slotsArray) {
   slotsArray.forEach(slot => {
-    // slot format: { start_time: "19:00:00", is_available: true, price: 2800 }
+    // start_time format: "2026-08-17 19:00:00"
     if (slot.start_time) {
-      const timeStr = formatTimeTo12Hr(slot.start_time);
-      matrix[timeStr] = {
-        status: slot.is_available ? "open" : "booked",
-        price: slot.price || slot.discounted_price || 2000
-      };
+      const parts = slot.start_time.split(" ");
+      const timePart = parts[1] || parts[0];
+      const timeStr = formatTimeTo12Hr(timePart);
+      
+      const isAvail = slot.is_available && !slot.is_booked;
+      const slotPrice = slot.price || 1800;
+
+      // If slot is available on at least 1 court, mark as open
+      if (!matrixObj[timeStr] || isAvail) {
+        matrixObj[timeStr] = {
+          status: isAvail ? "open" : "booked",
+          price: slotPrice
+        };
+      }
     }
   });
-  return matrix;
 }
 
 function formatTimeTo12Hr(time24) {
-  const [hStr, mStr] = time24.split(":");
+  const [hStr] = time24.split(":");
   let h = parseInt(hStr, 10);
   const ampm = h >= 12 ? "PM" : "AM";
   h = h % 12 || 12;
@@ -290,7 +321,7 @@ function initModal() {
   openBtn.addEventListener("click", () => modal.classList.add("open"));
   closeBtn.addEventListener("click", () => modal.classList.remove("open"));
 
-  document.getElementById("hudle-token-input").value = localStorage.getItem("HUDLE_AUTH_TOKEN") || "";
+  document.getElementById("hudle-token-input").value = localStorage.getItem("HUDLE_AUTH_TOKEN") || DEFAULT_USER_TOKEN;
   document.getElementById("telegram-token-input").value = localStorage.getItem("TELEGRAM_BOT_TOKEN") || "";
   document.getElementById("telegram-chat-input").value = localStorage.getItem("TELEGRAM_CHAT_ID") || "";
 
