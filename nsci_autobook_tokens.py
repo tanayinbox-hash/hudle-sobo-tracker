@@ -15,7 +15,6 @@ import json
 import ssl
 import urllib.request
 import datetime
-from concurrent.futures import ThreadPoolExecutor
 
 try:
     from playwright.sync_api import sync_playwright
@@ -52,23 +51,18 @@ def run_zero_intervention_token_autobooker():
     diff_sec = (target_10am - now).total_seconds()
     print(f"⏰ Countdown to 10:00:00 AM Release: {int(diff_sec // 3600)}h {int((diff_sec % 3600) // 60)}m {int(diff_sec % 60)}s")
 
-    # If within 5 minutes of 10 AM or running test mode
-    if diff_sec > 300:
+    if diff_sec > 300 and "--test" not in sys.argv:
         print("\n💡 NOTE: Script armed in stand-by mode. It will trigger automatically at 09:59:55 AM.")
-        print("To run a test dry-run immediately, pass argument '--test'.")
-        if "--test" not in sys.argv:
-            time.sleep(max(0, diff_sec - 15)) # Wake up 15 seconds before 10 AM
 
-    print("\n⚡ Launching Headless Chromium Browser & Injecting User Auth Token...")
+    print("\n⚡ Launching Chromium Browser & Injecting User Auth Token...")
 
     with sync_playwright() as p:
-        # Launch browser
-        browser = p.chromium.launch(headless=False) # Set headless=False so user can watch live execution!
+        browser = p.chromium.launch(headless=False)
         context = browser.new_context(viewport={"width": 1400, "height": 900})
         page = context.new_page()
 
         # Inject User Bearer Token into LocalStorage & Cookies
-        page.goto("https://hudle.in", wait_until="domcontentloaded")
+        page.goto("https://hudle.in", wait_until="domcontentloaded", timeout=15000)
         page.evaluate(f"localStorage.setItem('HUDLE_AUTH_TOKEN', '{USER_TOKEN}')")
         page.evaluate(f"localStorage.setItem('token', '{USER_TOKEN}')")
 
@@ -80,13 +74,13 @@ def run_zero_intervention_token_autobooker():
             while datetime.datetime.now() < target_10am:
                 time.sleep(0.01)
 
-        print(f"🔥 [10:00:00.000 AM] Navigating to NSCI Venue Page for {target_date_str}...")
-        page.goto(NSCI_VENUE_URL, wait_until="networkidle")
+        print(f"🔥 [10:00:00.000 AM] Navigating to NSCI Venue Page...")
+        page.goto(NSCI_VENUE_URL, wait_until="domcontentloaded", timeout=15000)
+        page.wait_for_timeout(2000)
 
         # Step 1: Select Target Date
         print(f"👉 Selecting Target Date ({target_date_str})...")
         try:
-            # Click date picker / target date pill
             date_pills = page.query_selector_all(".date-item, .date-pill, button[class*='date']")
             for pill in date_pills:
                 if target_date_str in (pill.get_attribute("data-date") or ""):
@@ -95,9 +89,9 @@ def run_zero_intervention_token_autobooker():
         except Exception as e:
             print("Date selection note:", e)
 
-        time.sleep(0.5)
+        page.wait_for_timeout(1000)
 
-        # Step 2: Select 8:00 PM - 10:00 PM slots (20:00, 20:30, 21:00, 21:30)
+        # Step 2: Select 8:00 PM - 10:00 PM slots
         print("👉 Selecting 8:00 PM - 10:00 PM Slots...")
         slot_times = ["08:00 PM", "08:30 PM", "09:00 PM", "09:30 PM", "20:00", "20:30", "21:00", "21:30"]
         
@@ -111,7 +105,7 @@ def run_zero_intervention_token_autobooker():
                         b.click()
                         selected_count += 1
                         print(f"  └ Selected slot block: {st}")
-                        time.sleep(0.2)
+                        page.wait_for_timeout(200)
                         break
         except Exception as e:
             print("Slot selection note:", e)
@@ -127,7 +121,7 @@ def run_zero_intervention_token_autobooker():
         except Exception as e:
             print("Checkout button note:", e)
 
-        page.wait_for_timeout(1500)
+        page.wait_for_timeout(2000)
 
         # Step 4: Auto-Select NSCI Tokens Payment Method
         print("🎟️ Auto-selecting NSCI Tokens Payment Option...")
@@ -153,7 +147,6 @@ def run_zero_intervention_token_autobooker():
 
         page.wait_for_timeout(3000)
 
-        # Take confirmation screenshot
         screenshot_path = "nsci_booking_confirmation.png"
         page.screenshot(path=screenshot_path)
         print(f"📸 Saved confirmation screenshot to: {screenshot_path}")
@@ -162,7 +155,7 @@ def run_zero_intervention_token_autobooker():
         print("🎉 ZERO-INTERVENTION NSCI TOKEN BOOKING COMPLETE!")
         print("=" * 65)
 
-        time.sleep(5)
+        page.wait_for_timeout(4000)
         browser.close()
 
 if __name__ == "__main__":
