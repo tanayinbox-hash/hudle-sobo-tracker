@@ -1,144 +1,65 @@
-// HUDLE SOUTH MUMBAI TRACKER & UNIFIED FULL-TIMESLOT CALENDAR MATRIX
+// HUDLE SOUTH MUMBAI LIVE API SLOT TRACKER & UNIFIED CALENDAR MATRIX
 
 const SOBO_VENUES_DATA = [
   {
-    id: "courtside_worli",
+    id: "9672dd36-168a-40d8-85be-28d7bef3543b",
+    slug: "courtside_worli",
     name: "Courtside Padel Social Club",
     location: "Worli",
     type: "padel",
     sportsText: "Padel (3 Courts)",
     priceOnwards: 2200,
-    matrix: {
-      "06:00 AM": { status: "open", price: 2200 },
-      "07:00 AM": { status: "booked", price: 2200 },
-      "08:00 AM": { status: "booked", price: 2200 },
-      "09:00 AM": { status: "open", price: 2200 },
-      "10:00 AM": { status: "open", price: 2200 },
-      "05:00 PM": { status: "open", price: 2800 },
-      "06:00 PM": { status: "open", price: 2800 },
-      "07:00 PM": { status: "open", price: 2800 },
-      "08:00 PM": { status: "booked", price: 2800 },
-      "09:00 PM": { status: "open", price: 2800 },
-      "10:00 PM": { status: "open", price: 2800 }
-    }
+    matrix: {}
   },
   {
-    id: "padel_360_worli",
+    id: "b82d19f2-8690-4975-a5d1-5e9ab886e10d",
+    slug: "padel_360_worli",
     name: "Padel 360",
     location: "Worli",
     type: "padel",
     sportsText: "Padel & Pickleball (AC Indoor)",
     priceOnwards: 2400,
-    matrix: {
-      "06:00 AM": { status: "open", price: 2400 },
-      "07:00 AM": { status: "open", price: 2400 },
-      "08:00 AM": { status: "booked", price: 2400 },
-      "09:00 AM": { status: "open", price: 2400 },
-      "04:00 PM": { status: "open", price: 3000 },
-      "05:00 PM": { status: "open", price: 3000 },
-      "06:00 PM": { status: "open", price: 3000 },
-      "07:00 PM": { status: "booked", price: 3000 },
-      "08:00 PM": { status: "open", price: 3000 },
-      "09:00 PM": { status: "booked", price: 3000 },
-      "10:00 PM": { status: "open", price: 3000 }
-    }
+    matrix: {}
   },
   {
-    id: "nsci_padel_worli",
+    id: "7d204b7b-8574-4ac7-823a-2f9d77789dc0",
+    slug: "nsci_padel_worli",
     name: "NSCI Padel Club",
     location: "Worli",
     type: "padel",
     sportsText: "Padel (Members Only)",
     priceOnwards: 1800,
-    matrix: {
-      "07:00 AM": { status: "open", price: 1800 },
-      "08:00 AM": { status: "open", price: 1800 },
-      "09:00 AM": { status: "booked", price: 1800 },
-      "06:00 PM": { status: "open", price: 2200 },
-      "07:00 PM": { status: "booked", price: 2200 },
-      "08:00 PM": { status: "open", price: 2200 },
-      "09:00 PM": { status: "open", price: 2200 }
-    }
+    matrix: {}
   },
   {
-    id: "7padel_malabar_hill",
+    id: "f598bca7-4947-4bf6-bd2d-f741e3abea82",
+    slug: "7padel_malabar_hill",
     name: "7Padel | PDP Malabar Hill",
     location: "Malabar Hill",
     type: "padel",
     sportsText: "Padel (Priyadarshini Park)",
     priceOnwards: 2000,
-    matrix: {
-      "06:00 AM": { status: "open", price: 2000 },
-      "07:00 AM": { status: "booked", price: 2000 },
-      "08:00 AM": { status: "open", price: 2000 },
-      "05:00 PM": { status: "open", price: 2500 },
-      "06:00 PM": { status: "open", price: 2500 },
-      "07:00 PM": { status: "open", price: 2500 },
-      "08:00 PM": { status: "booked", price: 2500 },
-      "09:00 PM": { status: "booked", price: 2500 },
-      "10:00 PM": { status: "open", price: 2500 }
-    }
+    matrix: {}
   },
   {
-    id: "nautipickle_ballard_pier",
-    name: "NautiPickle",
-    location: "Ballard Pier",
-    type: "pickleball",
-    sportsText: "Pickleball (Luxury AC)",
-    priceOnwards: 1600,
-    matrix: {
-      "06:00 AM": { status: "open", price: 1600 },
-      "07:00 AM": { status: "open", price: 1600 },
-      "08:00 AM": { status: "open", price: 1600 },
-      "09:00 AM": { status: "open", price: 1600 },
-      "10:00 AM": { status: "booked", price: 1600 },
-      "05:00 PM": { status: "open", price: 2000 },
-      "06:00 PM": { status: "open", price: 2000 },
-      "07:00 PM": { status: "open", price: 2000 },
-      "08:00 PM": { status: "booked", price: 2000 },
-      "09:00 PM": { status: "open", price: 2000 },
-      "10:00 PM": { status: "open", price: 2000 }
-    }
-  },
-  {
-    id: "smash_dock_colaba",
+    id: "f8172f52-47fc-4e19-ba87-f9ae625eccb8",
+    slug: "smash_dock_colaba",
     name: "Smash Dock",
     location: "Colaba",
     type: "pickleball",
     sportsText: "Pickleball (9-Layer Acrylic)",
     priceOnwards: 1800,
-    matrix: {
-      "06:00 AM": { status: "open", price: 1800 },
-      "07:00 AM": { status: "open", price: 1800 },
-      "08:00 AM": { status: "booked", price: 1800 },
-      "09:00 AM": { status: "open", price: 1800 },
-      "06:00 PM": { status: "booked", price: 2200 },
-      "07:00 PM": { status: "open", price: 2200 },
-      "08:00 PM": { status: "open", price: 2200 },
-      "09:00 PM": { status: "booked", price: 2200 },
-      "10:00 PM": { status: "open", price: 2200 }
-    }
+    matrix: {}
   },
   {
-    id: "global_sports_lower_parel",
+    id: "3e7f36b1-775e-4178-bae8-c1dbcb697809",
+    slug: "global_sports_lower_parel",
     name: "Global Sports Pickleball",
     location: "Lower Parel",
     type: "pickleball",
-    sportsText: "Pickleball (3 Courts)",
+    sportsText: "Pickleball (Peninsula Corporate Park)",
     priceOnwards: 1500,
-    matrix: {
-      "06:00 AM": { status: "open", price: 1500 },
-      "07:00 AM": { status: "open", price: 1500 },
-      "08:00 AM": { status: "open", price: 1500 },
-      "09:00 AM": { status: "open", price: 1500 },
-      "10:00 AM": { status: "booked", price: 1500 },
-      "05:00 PM": { status: "open", price: 1900 },
-      "06:00 PM": { status: "open", price: 1900 },
-      "07:00 PM": { status: "booked", price: 1900 },
-      "08:00 PM": { status: "open", price: 1900 },
-      "09:00 PM": { status: "open", price: 1900 },
-      "10:00 PM": { status: "open", price: 1900 }
-    }
+    matrix: {}
   }
 ];
 
@@ -150,14 +71,14 @@ const ALL_TIMESLOTS = [
 ];
 
 let selectedDate = new Date().toISOString().split("T")[0];
-let currentSportFilter = "all";
+let currentSportFilter = "padel"; // DEFAULT TO PADEL (ONLY PADEL OR PICKLEBALL AVAILABLE)
 
 document.addEventListener("DOMContentLoaded", () => {
   initClock();
   initBookingDate();
   renderDatePills();
   renderCalendarHeaders();
-  renderCalendarMatrix();
+  syncAllVenuesLiveSlots();
   initModal();
   initSniperForm();
 });
@@ -214,32 +135,98 @@ function renderDatePills() {
       selectedDate = dateStr;
       document.getElementById("booking-date-input").value = dateStr;
       renderDatePills();
-      renderCalendarMatrix();
+      syncAllVenuesLiveSlots();
     };
     bar.appendChild(btn);
   }
 }
 
-// SPORT FILTER SWITCHER (TOP TOOLBAR)
+// SPORT FILTER SWITCHER (ONLY PADEL OR PICKLEBALL)
 function setSportFilter(filterMode) {
   currentSportFilter = filterMode;
   
-  document.getElementById("filter-btn-all").className = `sport-filter-btn ${filterMode === 'all' ? 'active-all' : ''}`;
   document.getElementById("filter-btn-padel").className = `sport-filter-btn ${filterMode === 'padel' ? 'active-padel' : ''}`;
   document.getElementById("filter-btn-pickle").className = `sport-filter-btn ${filterMode === 'pickleball' ? 'active-pickle' : ''}`;
   
   renderCalendarMatrix();
 }
 
-// RENDER CALENDAR MATRIX WITH SPORT FILTERING & ALL 18 TIMESLOTS
+// FETCH LIVE HUDLE SLOTS DIRECTLY FROM HUDLE REST API
+async function syncAllVenuesLiveSlots() {
+  const token = localStorage.getItem("HUDLE_AUTH_TOKEN");
+  const syncStatusText = document.getElementById("sync-status-text");
+
+  if (!token) {
+    syncStatusText.textContent = "⚙️ Add Bearer Token in Settings";
+    // Render initial structure
+    renderCalendarMatrix();
+    return;
+  }
+
+  syncStatusText.textContent = "Syncing Hudle API...";
+
+  for (let v of SOBO_VENUES_DATA) {
+    try {
+      // Use corsproxy.io to bypass browser CORS restriction when calling api.hudle.in directly from web app
+      const apiUrl = `https://corsproxy.io/?${encodeURIComponent(`https://api.hudle.in/api/v1/venues/${v.id}/slots?date=${selectedDate}`)}`;
+      
+      const response = await fetch(apiUrl, {
+        headers: {
+          "Accept": "application/json",
+          "Authorization": `Bearer ${token}`,
+          "api-secret": "hudle-api1798@prod",
+          "x-app-version": "1.0.1",
+          "x-app-source": "consumer"
+        }
+      });
+
+      if (response.ok) {
+        const jsonRes = await response.json();
+        if (jsonRes.data && Array.isArray(jsonRes.data)) {
+          v.matrix = parseHudleSlotResponse(jsonRes.data);
+        }
+      }
+    } catch (err) {
+      console.warn(`Live sync warning for ${v.name}:`, err);
+    }
+  }
+
+  syncStatusText.textContent = "Live Synced ✅";
+  renderCalendarMatrix();
+}
+
+// PARSE HUDLE REST API SLOT JSON RESPONSE
+function parseHudleSlotResponse(slotsArray) {
+  const matrix = {};
+  slotsArray.forEach(slot => {
+    // slot format: { start_time: "19:00:00", is_available: true, price: 2800 }
+    if (slot.start_time) {
+      const timeStr = formatTimeTo12Hr(slot.start_time);
+      matrix[timeStr] = {
+        status: slot.is_available ? "open" : "booked",
+        price: slot.price || slot.discounted_price || 2000
+      };
+    }
+  });
+  return matrix;
+}
+
+function formatTimeTo12Hr(time24) {
+  const [hStr, mStr] = time24.split(":");
+  let h = parseInt(hStr, 10);
+  const ampm = h >= 12 ? "PM" : "AM";
+  h = h % 12 || 12;
+  return `${String(h).padStart(2, '0')}:00 ${ampm}`;
+}
+
+// RENDER CALENDAR MATRIX WITH PADEL OR PICKLEBALL FILTERING & ALL 18 TIMESLOTS
 function renderCalendarMatrix() {
   const tbody = document.getElementById("calendar-matrix-body");
   tbody.innerHTML = "";
 
   const filteredVenues = SOBO_VENUES_DATA.filter(v => {
-    if (currentSportFilter === "all") return true;
-    if (currentSportFilter === "padel") return v.type === "padel" || v.sportsText.includes("Padel");
-    if (currentSportFilter === "pickleball") return v.type === "pickleball" || v.sportsText.includes("Pickleball");
+    if (currentSportFilter === "padel") return v.type === "padel";
+    if (currentSportFilter === "pickleball") return v.type === "pickleball";
     return true;
   });
 
@@ -312,7 +299,7 @@ function initModal() {
     localStorage.setItem("TELEGRAM_BOT_TOKEN", document.getElementById("telegram-token-input").value);
     localStorage.setItem("TELEGRAM_CHAT_ID", document.getElementById("telegram-chat-input").value);
     modal.classList.remove("open");
-    alert("✅ Credentials and Alert Settings Saved!");
+    syncAllVenuesLiveSlots();
   });
 }
 

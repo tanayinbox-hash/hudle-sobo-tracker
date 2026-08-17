@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hudle SoBo Slot Tracker & Calendar | South Mumbai</title>
+  <title>Hudle SoBo Live Slot Tracker & Calendar | South Mumbai</title>
   <meta name="description" content="Automated multi-venue calendar schedule tracker and slot sniper for Padel and Pickleball venues in South Mumbai on Hudle.in">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -142,7 +142,7 @@
       cursor: pointer;
     }
 
-    /* TOOLBAR BAR: SPORT FILTER & DATE SELECTION */
+    /* TOOLBAR BAR: PADEL OR PICKLE FILTER & DATE SELECTION */
     .toolbar-bar {
       display: flex;
       flex-wrap: wrap;
@@ -159,7 +159,7 @@
     .sport-filter-group {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .filter-label {
@@ -168,42 +168,36 @@
       color: var(--text-secondary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-right: 4px;
+      margin-right: 2px;
     }
 
     .sport-filter-btn {
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255, 255, 255, 0.12);
       color: var(--text-secondary);
-      padding: 8px 16px;
-      border-radius: 8px;
-      font-size: 13px;
-      font-weight: 700;
+      padding: 8px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       transition: all 0.2s ease;
     }
 
-    .sport-filter-btn.active-all {
-      background: rgba(255, 255, 255, 0.18);
-      border-color: #ffffff;
-      color: #ffffff;
-    }
-
     .sport-filter-btn.active-padel {
-      background: rgba(204, 255, 0, 0.2);
+      background: rgba(204, 255, 0, 0.22);
       border-color: var(--accent-padel);
       color: var(--accent-padel);
-      box-shadow: 0 0 15px rgba(204, 255, 0, 0.25);
+      box-shadow: 0 0 20px rgba(204, 255, 0, 0.35);
     }
 
     .sport-filter-btn.active-pickle {
-      background: rgba(0, 240, 255, 0.2);
+      background: rgba(0, 240, 255, 0.22);
       border-color: var(--accent-pickle);
       color: var(--accent-pickle);
-      box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
     }
 
     .date-pills {
@@ -293,7 +287,7 @@
       z-index: 20;
       background: #111827;
       text-align: left;
-      min-width: 230px;
+      min-width: 240px;
       color: var(--text-primary);
       box-shadow: 4px 0 10px rgba(0,0,0,0.5);
     }
@@ -317,7 +311,7 @@
       padding: 10px 12px;
       border: 1px solid rgba(255, 255, 255, 0.08);
       box-shadow: 4px 0 10px rgba(0,0,0,0.5);
-      min-width: 230px;
+      min-width: 240px;
     }
 
     .venue-title-text {
@@ -489,14 +483,14 @@
         <div class="brand-icon">🎾</div>
         <div class="brand-title">
           <h1>Hudle SoBo Schedule Tracker</h1>
-          <p>South Mumbai Padel & Pickleball Multi-Venue Calendar</p>
+          <p>South Mumbai Padel & Pickleball Court Engine</p>
         </div>
       </div>
       
       <div class="header-actions">
-        <div class="live-badge">
+        <div class="live-badge" id="live-sync-badge">
           <span class="pulse"></span>
-          Live Sync
+          <span id="sync-status-text">Hudle API Sync</span>
         </div>
         <div class="clock-display" id="clock">17:49:36.000 IST</div>
         <button class="btn-settings" id="btn-open-settings">
@@ -505,15 +499,12 @@
       </div>
     </header>
 
-    <!-- TOOLBAR BAR: SPORT FILTER & DATE SELECTION -->
+    <!-- TOOLBAR BAR: PADEL OR PICKLE FILTER & DATE SELECTION -->
     <div class="toolbar-bar">
-      <!-- TOP SPORT FILTER -->
+      <!-- TOP SPORT FILTER (ONLY PADEL & PICKLEBALL) -->
       <div class="sport-filter-group">
-        <span class="filter-label">Sport:</span>
-        <button class="sport-filter-btn active-all" id="filter-btn-all" onclick="setSportFilter('all')">
-          ⚡ All (7)
-        </button>
-        <button class="sport-filter-btn" id="filter-btn-padel" onclick="setSportFilter('padel')">
+        <span class="filter-label">Sport Filter:</span>
+        <button class="sport-filter-btn active-padel" id="filter-btn-padel" onclick="setSportFilter('padel')">
           🎾 Padel (4)
         </button>
         <button class="sport-filter-btn" id="filter-btn-pickle" onclick="setSportFilter('pickleball')">
@@ -555,13 +546,12 @@
         <div class="form-group">
           <label>Target Venue</label>
           <select class="form-control" id="target-venue-select">
-            <option value="courtside_worli">Courtside Padel Social Club (Worli)</option>
-            <option value="padel_360_worli">Padel 360 (Worli)</option>
-            <option value="nsci_padel_worli">NSCI Padel Club (Worli)</option>
-            <option value="7padel_malabar_hill">7Padel | PDP (Malabar Hill)</option>
-            <option value="nautipickle_ballard_pier">NautiPickle (Ballard Pier)</option>
-            <option value="smash_dock_colaba">Smash Dock (Colaba)</option>
-            <option value="global_sports_lower_parel">Global Sports (Lower Parel)</option>
+            <option value="9672dd36-168a-40d8-85be-28d7bef3543b">Courtside Padel Social Club (Worli)</option>
+            <option value="b82d19f2-8690-4975-a5d1-5e9ab886e10d">Padel 360 (Worli)</option>
+            <option value="7d204b7b-8574-4ac7-823a-2f9d77789dc0">NSCI Padel Club (Worli)</option>
+            <option value="f598bca7-4947-4bf6-bd2d-f741e3abea82">7Padel | PDP (Malabar Hill)</option>
+            <option value="f8172f52-47fc-4e19-ba87-f9ae625eccb8">Smash Dock (Colaba)</option>
+            <option value="3e7f36b1-775e-4178-bae8-c1dbcb697809">Global Sports (Lower Parel)</option>
           </select>
         </div>
         
@@ -599,8 +589,9 @@
       
       <div style="display: flex; flex-direction: column; gap: 16px;">
         <div class="form-group">
-          <label>Hudle Bearer Token</label>
+          <label>Hudle Authorization Token</label>
           <input type="password" class="form-control" id="hudle-token-input" placeholder="Paste Authorization Bearer Token here">
+          <small style="color: var(--text-muted); font-size: 11px; margin-top: 4px;">Extract from Chrome DevTools -> Network -> Request Headers -> Authorization</small>
         </div>
         
         <div class="form-group">
@@ -614,7 +605,7 @@
         </div>
         
         <button class="btn-snipe" id="btn-save-settings" style="width: 100%; margin-top: 10px;">
-          Save Configuration
+          Save Configuration & Sync Live API
         </button>
       </div>
     </div>
