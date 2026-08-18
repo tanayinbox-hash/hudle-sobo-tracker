@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hudle South Mumbai Slot Tracker | Padel & Pickleball</title>
-  <meta name="description" content="Live court availability and schedule tracker for Padel and Pickleball venues in South Mumbai on Hudle.in">
+  <title>Hudle Mumbai Live Court Tracker | All Locations</title>
+  <meta name="description" content="Live court availability and schedule tracker for Padel and Pickleball venues across Mumbai on Hudle.in">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    /* CLEAN & SIMPLIFIED HUDLE DESIGN SYSTEM */
     :root {
       --bg-main: #0B0F19;
       --bg-card: #111827;
@@ -18,9 +17,9 @@
       --border-light: rgba(255, 255, 255, 0.08);
       
       --hudle-blue: #2563EB;
+      --hudle-blue-light: rgba(37, 99, 235, 0.15);
       --hudle-green: #10B981;
       --hudle-green-bg: rgba(16, 185, 129, 0.12);
-      --hudle-green-hover: #059669;
       --hudle-red: #EF4444;
       --hudle-red-bg: rgba(239, 68, 68, 0.08);
       
@@ -47,7 +46,7 @@
     }
 
     .container {
-      max-width: 1550px;
+      max-width: 1600px;
       margin: 0 auto;
     }
 
@@ -58,7 +57,7 @@
       align-items: center;
       padding-bottom: 18px;
       border-bottom: 1px solid var(--border-color);
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .brand {
@@ -95,7 +94,7 @@
     .header-controls {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .sync-status {
@@ -119,29 +118,32 @@
       box-shadow: 0 0 8px var(--hudle-green);
     }
 
-    .btn-settings {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-main);
+    .btn-user-profile {
+      background: var(--hudle-blue-light);
+      border: 1px solid rgba(37, 99, 235, 0.4);
+      color: #FFFFFF;
       padding: 8px 16px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
       transition: background 0.2s;
     }
 
-    .btn-settings:hover {
-      background: rgba(255, 255, 255, 0.12);
+    .btn-user-profile:hover {
+      background: var(--hudle-blue);
     }
 
-    /* CONTROLS BAR: SPORT TABS & DATE BAR */
+    /* CONTROLS BAR: SPORT SELECTION, DATE PICKER & DATE PILLS */
     .controls-bar {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 12px;
       padding: 14px 18px;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -176,19 +178,58 @@
       box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
     }
 
+    /* DATE BAR WITH CALENDAR PICKER INPUT */
+    .date-selection-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow-x: auto;
+    }
+
+    .calendar-input-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #0B0F19;
+      border: 1px solid var(--hudle-blue);
+      padding: 6px 12px;
+      border-radius: 8px;
+    }
+
+    .calendar-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--hudle-blue);
+    }
+
+    .date-picker-input {
+      background: transparent;
+      border: none;
+      color: #FFFFFF;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .date-picker-input::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor: pointer;
+    }
+
     .date-pills {
       display: flex;
-      gap: 8px;
-      overflow-x: auto;
+      gap: 6px;
     }
 
     .date-pill {
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--border-light);
       color: var(--text-muted);
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 8px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
@@ -196,7 +237,93 @@
     }
 
     .date-pill.active {
+      background: rgba(37, 99, 235, 0.2);
+      border-color: var(--hudle-blue);
+      color: #FFFFFF;
+    }
+
+    /* MULTI-SELECT LOCATION FILTER BAR */
+    .location-filter-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+    }
+
+    .location-filter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .location-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .location-count-badge {
+      font-size: 11px;
+      font-weight: 700;
       background: rgba(37, 99, 235, 0.15);
+      color: var(--hudle-blue);
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    .location-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .loc-pill {
+      background: #0B0F19;
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .loc-pill:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+    }
+
+    .loc-pill.active {
+      background: rgba(37, 99, 235, 0.2);
+      border-color: var(--hudle-blue);
+      color: #FFFFFF;
+    }
+
+    .loc-pill .check-icon {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+    }
+
+    .loc-pill.active .check-icon {
+      background: var(--hudle-blue);
       border-color: var(--hudle-blue);
       color: #FFFFFF;
     }
@@ -265,7 +392,7 @@
       border-top: 1px solid var(--border-color) !important;
       border-bottom: 1px solid var(--border-color) !important;
       padding: 10px 18px !important;
-      text-align: left !alignment;
+      text-align: left;
     }
 
     .venue-header-content {
@@ -375,14 +502,14 @@
       opacity: 0.25;
     }
 
-    /* MODAL */
+    /* MODAL OVERLAYS */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0, 0, 0, 0.75);
       backdrop-filter: blur(8px);
       display: none;
       align-items: center;
@@ -447,8 +574,8 @@
       <div class="brand">
         <div class="brand-logo">🎾</div>
         <div class="brand-text">
-          <h1>Hudle South Mumbai Slot Tracker</h1>
-          <p>Live Court Schedule & Availability Matrix</p>
+          <h1>Hudle Mumbai Slot Tracker</h1>
+          <p>Live Court Schedule Across All Mumbai Locations</p>
         </div>
       </div>
       
@@ -457,13 +584,16 @@
           <span class="pulse-dot"></span>
           <span id="sync-status-text">Hudle API Sync</span>
         </div>
-        <button class="btn-settings" id="btn-open-settings">
-          ⚙️ Settings
+
+        <!-- LOGIN / USER PROFILE BUTTON -->
+        <button class="btn-user-profile" id="btn-open-login">
+          <span id="user-avatar-icon">👤</span>
+          <span id="user-display-name">Login</span>
         </button>
       </div>
     </header>
 
-    <!-- CONTROLS BAR: SPORT SELECTION & DATE BAR -->
+    <!-- CONTROLS BAR: SPORT SELECTION, CALENDAR DATE PICKER & QUICK DATE PILLS -->
     <div class="controls-bar">
       <!-- SPORT TABS -->
       <div class="sport-tabs">
@@ -475,9 +605,37 @@
         </button>
       </div>
 
-      <!-- DATE SELECTION PILLS -->
-      <div class="date-pills" id="date-pills-bar">
-        <!-- Date pills rendered dynamically -->
+      <!-- DATE SELECTION WITH CALENDAR PICKER -->
+      <div class="date-selection-group">
+        <!-- CALENDAR DATE PICKER -->
+        <div class="calendar-input-wrapper">
+          <span class="calendar-label">📅 Date:</span>
+          <input type="date" class="date-picker-input" id="calendar-date-input">
+        </div>
+
+        <!-- QUICK DATE PILLS -->
+        <div class="date-pills" id="date-pills-bar">
+          <!-- Quick date pills rendered dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- MULTI-SELECT LOCATION FILTER BAR -->
+    <div class="location-filter-bar">
+      <div class="location-filter-header">
+        <div class="location-title">
+          <span>📍 Filter Locations / Areas:</span>
+          <span class="location-count-badge" id="location-count-badge">85 Venues</span>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <button style="background: transparent; border: none; color: var(--hudle-blue); font-size: 12px; font-weight: 600; cursor: pointer;" onclick="selectAllLocations()">Select All</button>
+          <span style="color: var(--text-dim);">|</span>
+          <button style="background: transparent; border: none; color: var(--text-muted); font-size: 12px; font-weight: 600; cursor: pointer;" onclick="clearAllLocations()">Reset</button>
+        </div>
+      </div>
+
+      <div class="location-pills" id="location-pills-bar">
+        <!-- Location filter pills rendered dynamically -->
       </div>
     </div>
 
@@ -486,7 +644,7 @@
       <table class="schedule-table">
         <thead>
           <tr id="calendar-header-row">
-            <th class="venue-corner">South Mumbai Venue & Court</th>
+            <th class="venue-corner">Mumbai Venue & Court</th>
             <!-- Dynamic timeslot headers -->
           </tr>
         </thead>
@@ -498,21 +656,36 @@
 
   </div>
 
-  <!-- SETTINGS MODAL -->
-  <div class="modal-overlay" id="settings-modal">
+  <!-- LOGIN & PREFERENCES MODAL -->
+  <div class="modal-overlay" id="login-modal">
     <div class="modal-box">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
-        <h3 style="font-size: 16px; font-weight: 700;">⚙️ Hudle API Settings</h3>
-        <button id="btn-close-settings" style="background: transparent; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer;">&times;</button>
+        <h3 style="font-size: 16px; font-weight: 700;">👤 User Profile & Location Preferences</h3>
+        <button id="btn-close-login" style="background: transparent; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer;">&times;</button>
+      </div>
+      
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" class="form-control" id="login-name-input" placeholder="e.g. Tanay Gandhi">
+      </div>
+
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" class="form-control" id="login-phone-input" placeholder="9167939419">
       </div>
       
       <div class="form-group">
         <label>Hudle Authorization Token</label>
         <input type="password" class="form-control" id="hudle-token-input" placeholder="Paste Authorization Bearer Token here">
       </div>
+
+      <div style="margin-top: 10px; margin-bottom: 18px; display: flex; align-items: center; gap: 8px;">
+        <input type="checkbox" id="save-preference-checkbox" checked style="accent-color: var(--hudle-blue); cursor: pointer;">
+        <label for="save-preference-checkbox" style="font-size: 12px; color: var(--text-muted); cursor: pointer;">Remember my location filters & default sport</label>
+      </div>
       
-      <button class="btn-primary" id="btn-save-settings" style="margin-top: 10px;">
-        Save Configuration
+      <button class="btn-primary" id="btn-save-login">
+        Save Profile & Preferences
       </button>
     </div>
   </div>
