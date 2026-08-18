@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hudle Mumbai Live Court Tracker | All Locations</title>
-  <meta name="description" content="Live court availability and schedule tracker for Padel and Pickleball venues across Mumbai on Hudle.in">
+  <title>Hudle Mumbai Live Slot Tracker | Select Locations & Courts</title>
+  <meta name="description" content="Live court availability schedule tracker for Padel and Pickleball venues across Mumbai on Hudle.in">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -137,7 +137,7 @@
       background: var(--hudle-blue);
     }
 
-    /* CONTROLS BAR: SPORT SELECTION, DATE PICKER & DATE PILLS */
+    /* CONTROLS BAR: SPORT SELECTION & CALENDAR DATE PICKER */
     .controls-bar {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
@@ -178,7 +178,7 @@
       box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
     }
 
-    /* DATE BAR WITH CALENDAR PICKER INPUT */
+    /* DATE SELECTION WITH CALENDAR PICKER */
     .date-selection-group {
       display: flex;
       align-items: center;
@@ -242,23 +242,25 @@
       color: #FFFFFF;
     }
 
-    /* MULTI-SELECT LOCATION FILTER BAR */
-    .location-filter-bar {
+    /* SPECIFIC VENUE / LOCATION MULTI-SELECT FILTER BAR */
+    .venue-filter-bar {
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       border-radius: 12px;
-      padding: 14px 18px;
+      padding: 16px 18px;
       margin-bottom: 20px;
     }
 
-    .location-filter-header {
+    .venue-filter-top {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 10px;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
-    .location-title {
+    .venue-filter-title {
       font-size: 12px;
       font-weight: 700;
       color: var(--text-muted);
@@ -266,10 +268,10 @@
       letter-spacing: 0.5px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
-    .location-count-badge {
+    .venue-count-badge {
       font-size: 11px;
       font-weight: 700;
       background: rgba(37, 99, 235, 0.15);
@@ -278,40 +280,87 @@
       border-radius: 10px;
     }
 
-    .location-pills {
+    .venue-search-box {
+      background: #0B0F19;
+      border: 1px solid var(--border-color);
+      color: #FFFFFF;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-family: var(--font-body);
+      min-width: 220px;
+      outline: none;
+    }
+
+    .venue-search-box:focus {
+      border-color: var(--hudle-blue);
+    }
+
+    .venue-action-btns {
       display: flex;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 8px;
     }
 
-    .loc-pill {
+    .btn-text-action {
+      background: transparent;
+      border: none;
+      color: var(--hudle-blue);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-text-action:hover {
+      text-decoration: underline;
+    }
+
+    .venue-pills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      max-height: 180px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .venue-pills-grid::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .venue-pills-grid::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+    }
+
+    .venue-pill {
       background: #0B0F19;
       border: 1px solid var(--border-light);
       color: var(--text-muted);
-      padding: 6px 14px;
-      border-radius: 20px;
+      padding: 6px 12px;
+      border-radius: 8px;
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s;
+      transition: all 0.15s;
       user-select: none;
     }
 
-    .loc-pill:hover {
+    .venue-pill:hover {
       border-color: rgba(255, 255, 255, 0.2);
       color: #FFFFFF;
     }
 
-    .loc-pill.active {
+    .venue-pill.active {
       background: rgba(37, 99, 235, 0.2);
       border-color: var(--hudle-blue);
       color: #FFFFFF;
     }
 
-    .loc-pill .check-icon {
+    .venue-pill .check-icon {
       width: 14px;
       height: 14px;
       border-radius: 50%;
@@ -322,7 +371,7 @@
       font-size: 9px;
     }
 
-    .loc-pill.active .check-icon {
+    .venue-pill.active .check-icon {
       background: var(--hudle-blue);
       border-color: var(--hudle-blue);
       color: #FFFFFF;
@@ -574,8 +623,8 @@
       <div class="brand">
         <div class="brand-logo">🎾</div>
         <div class="brand-text">
-          <h1>Hudle Mumbai Slot Tracker</h1>
-          <p>Live Court Schedule Across All Mumbai Locations</p>
+          <h1>Hudle Mumbai Court Tracker</h1>
+          <p>Live Court Schedule & Availability Matrix</p>
         </div>
       </div>
       
@@ -620,22 +669,27 @@
       </div>
     </div>
 
-    <!-- MULTI-SELECT LOCATION FILTER BAR -->
-    <div class="location-filter-bar">
-      <div class="location-filter-header">
-        <div class="location-title">
-          <span>📍 Filter Locations / Areas:</span>
-          <span class="location-count-badge" id="location-count-badge">85 Venues</span>
+    <!-- SPECIFIC VENUE / LOCATION MULTI-SELECT FILTER BAR -->
+    <div class="venue-filter-bar">
+      <div class="venue-filter-top">
+        <div class="venue-filter-title">
+          <span>📍 Select Specific Locations:</span>
+          <span class="venue-count-badge" id="venue-count-badge">84 Venues</span>
         </div>
-        <div style="display: flex; gap: 8px;">
-          <button style="background: transparent; border: none; color: var(--hudle-blue); font-size: 12px; font-weight: 600; cursor: pointer;" onclick="selectAllLocations()">Select All</button>
+
+        <input type="text" class="venue-search-box" id="venue-search-input" placeholder="🔍 Search location name..." oninput="filterVenuePillsBySearch()">
+
+        <div class="venue-action-btns">
+          <button class="btn-text-action" onclick="selectAllVenues()">Select All</button>
           <span style="color: var(--text-dim);">|</span>
-          <button style="background: transparent; border: none; color: var(--text-muted); font-size: 12px; font-weight: 600; cursor: pointer;" onclick="clearAllLocations()">Reset</button>
+          <button class="btn-text-action" onclick="selectSoboVenuesOnly()">SoBo Only</button>
+          <span style="color: var(--text-dim);">|</span>
+          <button class="btn-text-action" style="color: var(--text-muted);" onclick="clearAllVenues()">Reset</button>
         </div>
       </div>
 
-      <div class="location-pills" id="location-pills-bar">
-        <!-- Location filter pills rendered dynamically -->
+      <div class="venue-pills-grid" id="venue-pills-grid">
+        <!-- Individual venue location pills rendered dynamically -->
       </div>
     </div>
 
@@ -660,7 +714,7 @@
   <div class="modal-overlay" id="login-modal">
     <div class="modal-box">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
-        <h3 style="font-size: 16px; font-weight: 700;">👤 User Profile & Location Preferences</h3>
+        <h3 style="font-size: 16px; font-weight: 700;">👤 User Profile & Venue Preferences</h3>
         <button id="btn-close-login" style="background: transparent; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer;">&times;</button>
       </div>
       
@@ -681,7 +735,7 @@
 
       <div style="margin-top: 10px; margin-bottom: 18px; display: flex; align-items: center; gap: 8px;">
         <input type="checkbox" id="save-preference-checkbox" checked style="accent-color: var(--hudle-blue); cursor: pointer;">
-        <label for="save-preference-checkbox" style="font-size: 12px; color: var(--text-muted); cursor: pointer;">Remember my location filters & default sport</label>
+        <label for="save-preference-checkbox" style="font-size: 12px; color: var(--text-muted); cursor: pointer;">Remember my selected venues & preferred sport</label>
       </div>
       
       <button class="btn-primary" id="btn-save-login">

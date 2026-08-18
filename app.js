@@ -1,20 +1,9 @@
-// HUDLE MUMBAI LIVE COURT AVAILABILITY TRACKER - ALL 85 VENUES & 438 COURTS
+// HUDLE MUMBAI LIVE COURT AVAILABILITY TRACKER - STRICT COURTS ONLY & SPECIFIC VENUE FILTERING
 
 // AUTHENTIC USER TOKEN (TANAY GANDHI)
 const DEFAULT_USER_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoiVjNWY3FEM1pOYkdweHhlU2VWRVl6MUZEQjlKcDBvazBKYUlsNWhCb2NZdm1FdVdBbXdVcGlJemwzSWJDIiwic3ViIjoyODAxMDgsImlzcyI6Imh0dHBzOi8vYXBpLmh1ZGxlLmluL2FwaS92MS9vdHAvdmVyaWZ5IiwiaWF0IjoxNzg2OTg1ODg1LCJleHAiOjE4MTgwODk4ODUsIm5iZiI6MTc4Njk4NTg4NSwianRpIjoiRENsbjE4Z1Y4a3hJNU9VOSJ9.iZ-Lmvj2NDv9MJTGqsU4PJk2v9-q7U8VQdpuZBQmx38";
 
-// ALL MUMBAI REGIONS
-const ALL_MUMBAI_REGIONS = [
-  "South Mumbai (SoBo)",
-  "Bandra / Khar / Santacruz",
-  "Juhu / Andheri / Marol",
-  "Goregaon / Malad / Borivali",
-  "Lower Parel / Dadar",
-  "Powai / Chembur / Eastern Suburbs",
-  "Thane & Beyond"
-];
-
-// ALL 438 INDIVIDUAL COURTS ACROSS 85 MUMBAI VENUES
+// ALL STRICT INDIVIDUAL COURTS ACROSS MUMBAI VENUES (NO RACKETS/EQUIPMENT/COACHING)
 const INDIVIDUAL_COURTS_DATA = [
   {
     "venueId": "ed9be2dd-1ae2-46da-a681-c40fc63e0972",
@@ -22,7 +11,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone | Kandivali West",
     "courtName": "Court 1",
     "location": "Urban sports zone Thakur Kandivali, C.T.",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -32,7 +20,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone | Kandivali West",
     "courtName": "Court 2",
     "location": "Urban sports zone Thakur Kandivali, C.T.",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -42,7 +29,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone | Kandivali West",
     "courtName": "Court 3",
     "location": "Urban sports zone Thakur Kandivali, C.T.",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -52,7 +38,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone | Kandivali West",
     "courtName": "Court 1",
     "location": "Urban sports zone Thakur Kandivali, C.T.",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -62,7 +47,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone | Kandivali West",
     "courtName": "Court 2",
     "location": "Urban sports zone Thakur Kandivali, C.T.",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -72,7 +56,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone | Kandivali West",
     "courtName": "Court 3",
     "location": "Urban sports zone Thakur Kandivali, C.T.",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -82,7 +65,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Padel and Pickleball l GTC Vile Parle",
     "courtName": "Padel Court 1",
     "location": "Urban Padel and Pickleball, 4th floor, G",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -92,7 +74,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Padel and Pickleball l GTC Vile Parle",
     "courtName": "Padel Court 2",
     "location": "Urban Padel and Pickleball, 4th floor, G",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -102,7 +83,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Padel and Pickleball l GTC Vile Parle",
     "courtName": "Padel Court 3",
     "location": "Urban Padel and Pickleball, 4th floor, G",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -112,7 +92,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Pickleball | Parel",
     "courtName": "Court 1",
     "location": "Urban Sports Zone Pickleball - Parel, 73",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -122,7 +101,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Pickleball | Parel",
     "courtName": "Court 2",
     "location": "Urban Sports Zone Pickleball - Parel, 73",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -132,7 +110,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Pickleball | Parel",
     "courtName": "Court 1",
     "location": "Urban Sports Zone Pickleball - Parel, 73",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -142,7 +119,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Pickleball | Parel",
     "courtName": "Court 2",
     "location": "Urban Sports Zone Pickleball - Parel, 73",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -152,7 +128,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Pickleball | Parel",
     "courtName": "Court 1",
     "location": "Urban Sports Zone Pickleball - Parel, 73",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -162,7 +137,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Padel And Pickleball l Mahalaxmi",
     "courtName": "Padel Court",
     "location": "Urban Padel And Pickleball, Finland Inte",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -172,7 +146,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Padel And Pickleball l Mahalaxmi",
     "courtName": "Padel Court",
     "location": "Urban Padel And Pickleball, Finland Inte",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -182,7 +155,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Pickleball | Peninsula Business Park",
     "courtName": "Court 1",
     "location": "Urban Sports Zone Pickleball, Inside Pen",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -192,7 +164,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Urban Sports Zone Pickleball | Peninsula Business Park",
     "courtName": "Court 2",
     "location": "Urban Sports Zone Pickleball, Inside Pen",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -202,7 +173,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "7Padel X Super SportsPark",
     "courtName": "Padel Court",
     "location": "Parklane Apartments, Bandra West, Mumbai",
-    "region": "Bandra / Khar / Santacruz",
     "type": "padel",
     "matrix": {}
   },
@@ -212,7 +182,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Score Indoor Pickleball | Saki Naka",
     "courtName": "Court 2",
     "location": "Krishanlal Marwah Industrial Estate, Sak",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -222,7 +191,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Score Indoor Pickleball | Saki Naka",
     "courtName": "Court 1",
     "location": "Krishanlal Marwah Industrial Estate, Sak",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -232,7 +200,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Score Indoor Pickleball | Saki Naka",
     "courtName": "Court 2",
     "location": "Krishanlal Marwah Industrial Estate, Sak",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -242,7 +209,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Score Indoor Pickleball | Saki Naka",
     "courtName": "Court 2",
     "location": "Krishanlal Marwah Industrial Estate, Sak",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -252,7 +218,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Score Indoor Pickleball | Saki Naka",
     "courtName": "Court 1",
     "location": "Krishanlal Marwah Industrial Estate, Sak",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -262,7 +227,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Score Indoor Pickleball | Saki Naka",
     "courtName": "Court 2(old)",
     "location": "Krishanlal Marwah Industrial Estate, Sak",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -272,7 +236,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Score Indoor Pickleball | Saki Naka",
     "courtName": "Court 1(old)",
     "location": "Krishanlal Marwah Industrial Estate, Sak",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -282,7 +245,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Score Indoor Pickleball | Saki Naka",
     "courtName": "Court 2",
     "location": "Krishanlal Marwah Industrial Estate, Sak",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -292,7 +254,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Court 7",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -302,7 +263,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Court 6",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -312,7 +272,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Court 5",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -322,7 +281,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Court 4",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -332,7 +290,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Court 3",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -342,7 +299,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Court 2",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -352,7 +308,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Court 1",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -362,7 +317,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Court 4",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -372,7 +326,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Court 3",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -382,7 +335,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Court 2",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -392,7 +344,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Court 1",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -402,7 +353,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Pickleball Arena | All India Balkanji Bari Santacruz West",
     "courtName": "Multipurpose Court",
     "location": "Juhu Rd, GOI Staff Colony, Santacruz Wes",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -412,7 +362,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena @ Ajmera Global School (AGS) | Borivali W",
     "courtName": "5v5 Cricket Turf",
     "location": "Eksar road, Yogi Nagar, Borivali West, M",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -422,7 +371,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena @ Ajmera Global School (AGS) | Borivali W",
     "courtName": "5v5 (Turf)",
     "location": "Eksar road, Yogi Nagar, Borivali West, M",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -432,7 +380,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena @ Ajmera Global School (AGS) | Borivali W",
     "courtName": "Ajmera Global School Turf",
     "location": "Eksar road, Yogi Nagar, Borivali West, M",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -442,7 +389,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 4",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -452,7 +398,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 3",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -462,7 +407,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 2",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -472,7 +416,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 1",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -482,7 +425,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 5 (Shade)",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -492,7 +434,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Badminton Court",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -502,7 +443,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 2",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -512,7 +452,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 1",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -522,7 +461,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 3",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -532,7 +470,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 4",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -542,7 +479,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 2",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -552,7 +488,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 1",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -562,7 +497,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 1",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -572,7 +506,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 4",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -582,7 +515,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG Sports Arena | Willingdon Catholic Gymkhana",
     "courtName": "Court 3",
     "location": "Willingdon Catholic Gymkhana, Church Ave",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -592,7 +524,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods x TSG x Phorce Sports Arena | SVIS Kandivali",
     "courtName": "Court 1",
     "location": "MG Cross Road No. 1, Kandivali, Gokul Na",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -602,7 +533,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods x TSG x Phorce Sports Arena | SVIS Kandivali",
     "courtName": "Court 2",
     "location": "MG Cross Road No. 1, Kandivali, Gokul Na",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -612,7 +542,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods x TSG x Phorce Sports Arena | SVIS Kandivali",
     "courtName": "Court 3",
     "location": "MG Cross Road No. 1, Kandivali, Gokul Na",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -622,7 +551,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods x TSG x Phorce Sports Arena | SVIS Kandivali",
     "courtName": "Court 1",
     "location": "MG Cross Road No. 1, Kandivali, Gokul Na",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -632,7 +560,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods x TSG x Phorce Sports Arena | SVIS Kandivali",
     "courtName": "Court 2",
     "location": "MG Cross Road No. 1, Kandivali, Gokul Na",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -642,7 +569,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods x TSG x Phorce Sports Arena | SVIS Kandivali",
     "courtName": "Court 3",
     "location": "MG Cross Road No. 1, Kandivali, Gokul Na",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -652,7 +578,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods x TSG x Phorce Sports Arena | SVIS Kandivali",
     "courtName": "Court 1",
     "location": "MG Cross Road No. 1, Kandivali, Gokul Na",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -662,7 +587,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods x TSG x Phorce Sports Arena | SVIS Kandivali",
     "courtName": "Court 2",
     "location": "MG Cross Road No. 1, Kandivali, Gokul Na",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -672,7 +596,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods x TSG x Phorce Sports Arena | SVIS Kandivali",
     "courtName": "Court 3",
     "location": "MG Cross Road No. 1, Kandivali, Gokul Na",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -682,7 +605,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG x Inbox Woods Sports Arena | Eskay Club and Resorts",
     "courtName": "Court 1",
     "location": "TSG Sports Arena @ Eskay Resort, Eskay R",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -692,7 +614,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG x Inbox Woods Sports Arena | Eskay Club and Resorts",
     "courtName": "Court 2",
     "location": "TSG Sports Arena @ Eskay Resort, Eskay R",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -702,7 +623,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG x Inbox Woods Sports Arena | Eskay Club and Resorts",
     "courtName": "Court 3",
     "location": "TSG Sports Arena @ Eskay Resort, Eskay R",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -712,7 +632,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG x Inbox Woods Sports Arena | Eskay Club and Resorts",
     "courtName": "Court 4",
     "location": "TSG Sports Arena @ Eskay Resort, Eskay R",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -722,7 +641,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG x Inbox Woods Sports Arena | Eskay Club and Resorts",
     "courtName": "Padel Court 1",
     "location": "TSG Sports Arena @ Eskay Resort, Eskay R",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -732,7 +650,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG x Inbox Woods Sports Arena | Eskay Club and Resorts",
     "courtName": "Padel Court 2",
     "location": "TSG Sports Arena @ Eskay Resort, Eskay R",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -742,7 +659,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG x Inbox Woods Sports Arena | Eskay Club and Resorts",
     "courtName": "Lawn Tennis Court",
     "location": "TSG Sports Arena @ Eskay Resort, Eskay R",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -752,7 +668,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG x Inbox Woods Sports Arena | Eskay Club and Resorts",
     "courtName": "Lawn Tennis Court",
     "location": "TSG Sports Arena @ Eskay Resort, Eskay R",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -762,7 +677,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sanskriti Pickleball and Cricket Arena | Andheri",
     "courtName": "Court 1",
     "location": "Shri Rajashthan Recreation Club Sanskrit",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -772,7 +686,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sanskriti Pickleball and Cricket Arena | Andheri",
     "courtName": "Court 2",
     "location": "Shri Rajashthan Recreation Club Sanskrit",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -782,7 +695,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Sports Foundry @Bhandup",
     "courtName": "Court 1",
     "location": "Rolex Metal Industries Compound, Village",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -792,7 +704,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Sports Foundry @Bhandup",
     "courtName": "Court 2",
     "location": "Rolex Metal Industries Compound, Village",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -802,7 +713,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Sports Foundry @Bhandup",
     "courtName": "Court 3",
     "location": "Rolex Metal Industries Compound, Village",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -812,7 +722,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Sports Foundry @Bhandup",
     "courtName": "Court 4",
     "location": "Rolex Metal Industries Compound, Village",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -822,7 +731,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Sports Foundry @Bhandup",
     "courtName": "Court 5",
     "location": "Rolex Metal Industries Compound, Village",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -832,7 +740,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Sports Foundry @Bhandup",
     "courtName": "Padel Court",
     "location": "Rolex Metal Industries Compound, Village",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -842,7 +749,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sportzella Pickleball Center | Santacruz East",
     "courtName": "Upper Court",
     "location": "Sportzella Turf, Aaram Society Rd, Hind ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -852,7 +758,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sportzella Pickleball Center | Santacruz East",
     "courtName": "Lower Court",
     "location": "Sportzella Turf, Aaram Society Rd, Hind ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -862,7 +767,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sportzella Pickleball Center | Santacruz East",
     "courtName": "Upper Court",
     "location": "Sportzella Turf, Aaram Society Rd, Hind ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -872,7 +776,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sportzella Pickleball Center | Santacruz East",
     "courtName": "Court 2",
     "location": "Sportzella Turf, Aaram Society Rd, Hind ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -882,7 +785,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sportzella Pickleball Center | Santacruz East",
     "courtName": "Court 2",
     "location": "Sportzella Turf, Aaram Society Rd, Hind ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -892,7 +794,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sportzella Pickleball Center | Santacruz East",
     "courtName": "Court 1",
     "location": "Sportzella Turf, Aaram Society Rd, Hind ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -902,7 +803,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sportzella Pickleball Center | Santacruz East",
     "courtName": "Court 1",
     "location": "Sportzella Turf, Aaram Society Rd, Hind ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -912,7 +812,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sportzella Pickleball Center | Santacruz East",
     "courtName": "Lower Court",
     "location": "Sportzella Turf, Aaram Society Rd, Hind ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -922,7 +821,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sportzella Pickleball Center | Santacruz East",
     "courtName": "Court 3 (Pro Court)",
     "location": "Sportzella Turf, Aaram Society Rd, Hind ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -932,7 +830,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | Juhu",
     "courtName": "Court 1",
     "location": "N A. Ahuja Marg, Near Ritambhara College",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -942,7 +839,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | Juhu",
     "courtName": "Court 2",
     "location": "N A. Ahuja Marg, Near Ritambhara College",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -952,7 +848,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | Juhu",
     "courtName": "Court 3",
     "location": "N A. Ahuja Marg, Near Ritambhara College",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -962,7 +857,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | Juhu",
     "courtName": "Court 4",
     "location": "N A. Ahuja Marg, Near Ritambhara College",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -972,7 +866,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | Juhu",
     "courtName": "Court 1",
     "location": "N A. Ahuja Marg, Near Ritambhara College",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -982,7 +875,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | Juhu",
     "courtName": "Court 2",
     "location": "N A. Ahuja Marg, Near Ritambhara College",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -992,7 +884,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | Juhu",
     "courtName": "Court 3",
     "location": "N A. Ahuja Marg, Near Ritambhara College",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1002,7 +893,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | Juhu",
     "courtName": "Court 4",
     "location": "N A. Ahuja Marg, Near Ritambhara College",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1012,7 +902,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | Peninsula Corporate Park",
     "courtName": "Court 1",
     "location": "Peninsula Corporate park, Ganapatrao Kad",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1022,7 +911,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | Peninsula Corporate Park",
     "courtName": "Court 2",
     "location": "Peninsula Corporate park, Ganapatrao Kad",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1032,7 +920,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | Peninsula Corporate Park",
     "courtName": "Court 3",
     "location": "Peninsula Corporate park, Ganapatrao Kad",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1042,7 +929,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 15",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1052,7 +938,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 14",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1062,7 +947,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 13",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1072,7 +956,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 12",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1082,7 +965,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 11",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1092,7 +974,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 10",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1102,7 +983,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 1",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1112,7 +992,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 2",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1122,7 +1001,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 3",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1132,7 +1010,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 4",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1142,7 +1019,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 5",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1152,7 +1028,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 6",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1162,7 +1037,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 7",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1172,7 +1046,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 8",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1182,7 +1055,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG X Global Sports Pickleball | Andheri Sports Complex",
     "courtName": "Court 9",
     "location": "Sports Complex, JP Road, Sahayog Society",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1192,7 +1064,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Sion",
     "courtName": "Court 1",
     "location": "The Hindustan Mineral Products Terrace, ",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1202,7 +1073,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Sion",
     "courtName": "Court 2",
     "location": "The Hindustan Mineral Products Terrace, ",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1212,7 +1082,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Sion",
     "courtName": "Court 3",
     "location": "The Hindustan Mineral Products Terrace, ",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1222,7 +1091,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Sion",
     "courtName": "Court 1",
     "location": "The Hindustan Mineral Products Terrace, ",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1232,7 +1100,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Sion",
     "courtName": "Court 2",
     "location": "The Hindustan Mineral Products Terrace, ",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1242,7 +1109,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Sion",
     "courtName": "Court 3",
     "location": "The Hindustan Mineral Products Terrace, ",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1252,7 +1118,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Sion",
     "courtName": "Court 1",
     "location": "The Hindustan Mineral Products Terrace, ",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1262,7 +1127,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Sion",
     "courtName": "Court 1",
     "location": "The Hindustan Mineral Products Terrace, ",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1272,7 +1136,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Sion",
     "courtName": "Court 1",
     "location": "The Hindustan Mineral Products Terrace, ",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1282,7 +1145,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Sion",
     "courtName": "Court 2",
     "location": "The Hindustan Mineral Products Terrace, ",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1292,7 +1154,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Sion",
     "courtName": "Court 3",
     "location": "The Hindustan Mineral Products Terrace, ",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1302,7 +1163,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 1",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1312,7 +1172,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 2",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1322,7 +1181,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 3",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1332,7 +1190,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 4",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1342,7 +1199,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 5",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1352,7 +1208,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 6",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1362,7 +1217,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 1",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1372,7 +1226,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 2",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1382,7 +1235,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 3",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1392,7 +1244,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 4",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1402,7 +1253,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 5",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1412,7 +1262,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Malad West",
     "courtName": "Court 6",
     "location": "Eaze Zone Mall, Goregaon - Mulund Link R",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1422,7 +1271,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre NSM School l Vile Parle East",
     "courtName": "Court 1",
     "location": "NSM School, Nava Samaj Mandal Marg, Dixi",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1432,7 +1280,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre NSM School l Vile Parle East",
     "courtName": "Court 2",
     "location": "NSM School, Nava Samaj Mandal Marg, Dixi",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1442,7 +1289,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre NSM School l Vile Parle East",
     "courtName": "Court 1",
     "location": "NSM School, Nava Samaj Mandal Marg, Dixi",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1452,7 +1298,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre NSM School l Vile Parle East",
     "courtName": "Court 2",
     "location": "NSM School, Nava Samaj Mandal Marg, Dixi",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1462,7 +1307,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | WTC",
     "courtName": "Court 1",
     "location": "World Trade Center Mumbai, Ganesh Murti ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1472,7 +1316,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | WTC",
     "courtName": "Court 2",
     "location": "World Trade Center Mumbai, Ganesh Murti ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1482,7 +1325,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | WTC",
     "courtName": "Court 3",
     "location": "World Trade Center Mumbai, Ganesh Murti ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1492,7 +1334,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | WTC",
     "courtName": "Court 4",
     "location": "World Trade Center Mumbai, Ganesh Murti ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1502,7 +1343,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | WTC",
     "courtName": "Court 1",
     "location": "World Trade Center Mumbai, Ganesh Murti ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1512,7 +1352,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | WTC",
     "courtName": "Court 2",
     "location": "World Trade Center Mumbai, Ganesh Murti ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1522,7 +1361,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | WTC",
     "courtName": "Court 3",
     "location": "World Trade Center Mumbai, Ganesh Murti ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1532,7 +1370,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Center | WTC",
     "courtName": "Court 4",
     "location": "World Trade Center Mumbai, Ganesh Murti ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1542,7 +1379,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG x Global Sports Padel | Andheri Sports Complex",
     "courtName": "Court 1",
     "location": "TSG x Global Sports | Andheri Sports Com",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -1552,7 +1388,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "TSG x Global Sports Padel | Andheri Sports Complex",
     "courtName": "Court 2",
     "location": "TSG x Global Sports | Andheri Sports Com",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -1562,7 +1397,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Dahisar West",
     "courtName": "Court 1",
     "location": "Gopinath, Mandapeshwar, Dahisar West, Mu",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1572,7 +1406,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Dahisar West",
     "courtName": "Court 2",
     "location": "Gopinath, Mandapeshwar, Dahisar West, Mu",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1582,7 +1415,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Dahisar West",
     "courtName": "Court 3",
     "location": "Gopinath, Mandapeshwar, Dahisar West, Mu",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1592,7 +1424,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Global Sports Pickleball Centre | Dahisar West",
     "courtName": "Court 4",
     "location": "Gopinath, Mandapeshwar, Dahisar West, Mu",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1602,7 +1433,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Manohar Joshi Pickleball Court",
     "courtName": "Outdoor Court",
     "location": "Manohar Joshi College, Near Maharashtra ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1612,7 +1442,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Manohar Joshi Pickleball Court",
     "courtName": "Badminton Court (Outdoor)",
     "location": "Manohar Joshi College, Near Maharashtra ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1622,7 +1451,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "7Padel | PDP Malabar Hill",
     "courtName": "Court 1",
     "location": "Priyadarshini Park, Nepean Sea Rd, Malab",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1632,7 +1460,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "7Padel | PDP Malabar Hill",
     "courtName": "Court 2 (Sea Side)",
     "location": "Priyadarshini Park, Nepean Sea Rd, Malab",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1642,7 +1469,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Willingdon Outdoor Sports Arena | Maali Khata",
     "courtName": "Padel Court 4",
     "location": "Willingdon Outdoor Sports Arena at the M",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -1652,7 +1478,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Willingdon Outdoor Sports Arena | Maali Khata",
     "courtName": "Padel Court 3",
     "location": "Willingdon Outdoor Sports Arena at the M",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -1662,7 +1487,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Willingdon Outdoor Sports Arena | Maali Khata",
     "courtName": "Padel Court 1",
     "location": "Willingdon Outdoor Sports Arena at the M",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -1672,7 +1496,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Willingdon Outdoor Sports Arena | Maali Khata",
     "courtName": "Padel Court 2",
     "location": "Willingdon Outdoor Sports Arena at the M",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -1682,7 +1505,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Willingdon Outdoor Sports Arena | Maali Khata",
     "courtName": "Padel Court 4 (DNU)",
     "location": "Willingdon Outdoor Sports Arena at the M",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -1692,7 +1514,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Willingdon Outdoor Sports Arena | Maali Khata",
     "courtName": "Padel Court 4 (DNU)",
     "location": "Willingdon Outdoor Sports Arena at the M",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -1702,7 +1523,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Willingdon Outdoor Sports Arena | Maali Khata",
     "courtName": "Padel Court 4 (DNU)",
     "location": "Willingdon Outdoor Sports Arena at the M",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -1712,7 +1532,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Willingdon Outdoor Sports Arena | Maali Khata",
     "courtName": "Padel Court 4 (DNU)",
     "location": "Willingdon Outdoor Sports Arena at the M",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -1722,7 +1541,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Willingdon Outdoor Sports Arena | Maali Khata",
     "courtName": "Padel Court 4 (DNU)",
     "location": "Willingdon Outdoor Sports Arena at the M",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -1732,7 +1550,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Cricket Club Of India",
     "courtName": "Padel Court 1",
     "location": "Stadium House, Churchgate, Mumbai 400020",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1742,7 +1559,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Cricket Club Of India",
     "courtName": "Padel Court 2",
     "location": "Stadium House, Churchgate, Mumbai 400020",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1752,7 +1568,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Cricket Club Of India",
     "courtName": "Padel Court 3",
     "location": "Stadium House, Churchgate, Mumbai 400020",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1762,7 +1577,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Cricket Club Of India",
     "courtName": "CCI Padel Court 1",
     "location": "Stadium House, Churchgate, Mumbai 400020",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1772,7 +1586,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Cricket Club Of India",
     "courtName": "CCI Padel Court 1",
     "location": "Stadium House, Churchgate, Mumbai 400020",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1782,7 +1595,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Cricket Club Of India",
     "courtName": "CCI Padel Court 2",
     "location": "Stadium House, Churchgate, Mumbai 400020",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1792,7 +1604,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Cricket Club Of India",
     "courtName": "CCI Padel Court 3",
     "location": "Stadium House, Churchgate, Mumbai 400020",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1802,7 +1613,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "NSCI Padel Club | Members Only",
     "courtName": "Court 1",
     "location": "Lala Lajpatrai Marg, Lotus Colony, Worli",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1812,7 +1622,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "NSCI Padel Club | Members Only",
     "courtName": "Court 2",
     "location": "Lala Lajpatrai Marg, Lotus Colony, Worli",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1822,7 +1631,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "NSCI Padel Club | Members Only",
     "courtName": "Court 1",
     "location": "Lala Lajpatrai Marg, Lotus Colony, Worli",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1832,7 +1640,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "NSCI Padel Club | Members Only",
     "courtName": "Court 2",
     "location": "Lala Lajpatrai Marg, Lotus Colony, Worli",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -1842,7 +1649,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 1",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1852,7 +1658,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 2",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1862,7 +1667,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 3",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1872,7 +1676,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 4",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1882,7 +1685,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 1",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1892,7 +1694,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 3",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1902,7 +1703,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 1",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1912,7 +1712,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 2",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1922,7 +1721,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 3",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1932,7 +1730,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 4",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1942,7 +1739,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 1",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1952,7 +1748,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 2",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1962,7 +1757,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 3",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1972,7 +1766,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Mihir Sen Sports Complex | Pickleball",
     "courtName": "Court 4",
     "location": "Mihir Sen Sports Complex, Pandurang Wadi",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1982,7 +1775,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "CJ Sports Turf | Bhayandar",
     "courtName": "Court 1",
     "location": "Rbk Global School, Indralok Phase 6, Pan",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -1992,7 +1784,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "CJ Sports Turf | Bhayandar",
     "courtName": "Court 2",
     "location": "Rbk Global School, Indralok Phase 6, Pan",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2002,7 +1793,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "CJ Sports Turf | Bhayandar",
     "courtName": "Court 3",
     "location": "Rbk Global School, Indralok Phase 6, Pan",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2012,7 +1802,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "CJ Sports Turf | Bhayandar",
     "courtName": "Lawn Tennis Court",
     "location": "Rbk Global School, Indralok Phase 6, Pan",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2022,7 +1811,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Trinity Sports Pickleball | Bandra",
     "courtName": "Court 1",
     "location": "Khar Danda Centre, Plot No. 308 & 423 Of",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2032,7 +1820,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Trinity Sports Pickleball | Bandra",
     "courtName": "Court 2",
     "location": "Khar Danda Centre, Plot No. 308 & 423 Of",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2042,7 +1829,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Trinity Sports Pickleball | Bandra",
     "courtName": "Court 3 (Beginners)",
     "location": "Khar Danda Centre, Plot No. 308 & 423 Of",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2052,7 +1838,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Trinity Sports Pickleball | Bandra",
     "courtName": "Court 3 (Intermediate)",
     "location": "Khar Danda Centre, Plot No. 308 & 423 Of",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2062,7 +1847,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Trinity Sports Pickleball | Bandra",
     "courtName": "Court 1",
     "location": "Khar Danda Centre, Plot No. 308 & 423 Of",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2072,7 +1856,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Trinity Sports Pickleball | Bandra",
     "courtName": "Court 2",
     "location": "Khar Danda Centre, Plot No. 308 & 423 Of",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2082,7 +1865,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Trinity Sports Pickleball | Bandra",
     "courtName": "Court 3 (Beginners)",
     "location": "Khar Danda Centre, Plot No. 308 & 423 Of",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2092,7 +1874,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 1",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2102,7 +1883,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 2",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2112,7 +1892,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 3",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2122,7 +1901,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 4",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2132,7 +1910,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 5",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2142,7 +1919,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 6",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2152,7 +1928,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 7",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2162,7 +1937,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 8",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2172,7 +1946,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 1",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2182,7 +1955,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 2",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2192,7 +1964,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 3",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2202,7 +1973,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Emma Sports Academy | Powai",
     "courtName": "Court 4",
     "location": "Plot no.103, Behind Hiranandani Hospital",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2212,7 +1982,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Torba Pickleball Centre",
     "courtName": "Court 4 (Singles - Chilli Pickle)",
     "location": "Torba, Bandra, St. Anne's Basement, Narg",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2222,7 +1991,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Torba Pickleball Centre",
     "courtName": "Court 1 (Mango Pickle)",
     "location": "Torba, Bandra, St. Anne's Basement, Narg",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2232,7 +2000,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Torba Pickleball Centre",
     "courtName": "Court 2 (Lime Pickle)",
     "location": "Torba, Bandra, St. Anne's Basement, Narg",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2242,7 +2009,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Torba Pickleball Centre",
     "courtName": "Court 3 (Mixed Pickle)",
     "location": "Torba, Bandra, St. Anne's Basement, Narg",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2252,7 +2018,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Torba Pickleball Centre",
     "courtName": "Court 5",
     "location": "Torba, Bandra, St. Anne's Basement, Narg",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2262,7 +2027,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Ghatkopar",
     "courtName": "Badminton Court 3",
     "location": "Shivaji Technical School, Next to SBI Ba",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2272,7 +2036,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Ghatkopar",
     "courtName": "Badminton Court 1",
     "location": "Shivaji Technical School, Next to SBI Ba",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2282,7 +2045,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Ghatkopar",
     "courtName": "Badminton Court 2",
     "location": "Shivaji Technical School, Next to SBI Ba",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2292,7 +2054,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Ghatkopar",
     "courtName": "Court 1",
     "location": "Shivaji Technical School, Next to SBI Ba",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2302,7 +2063,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Ghatkopar",
     "courtName": "Court 2",
     "location": "Shivaji Technical School, Next to SBI Ba",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2312,7 +2072,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Ghatkopar",
     "courtName": "Badminton Court 1",
     "location": "Shivaji Technical School, Next to SBI Ba",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2322,7 +2081,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Ghatkopar",
     "courtName": "Badminton Court 2",
     "location": "Shivaji Technical School, Next to SBI Ba",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2332,7 +2090,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Ghatkopar",
     "courtName": "Padel Court",
     "location": "Shivaji Technical School, Next to SBI Ba",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -2342,7 +2099,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Padel | Ghatkopar",
     "courtName": "Padel Court",
     "location": "Shivaji Technical School, Next to SBI Ba",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -2352,7 +2108,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Padel | Ghatkopar",
     "courtName": "Padel Court",
     "location": "Shivaji Technical School, Next to SBI Ba",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -2362,7 +2117,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Badminton Court 1",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2372,7 +2126,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Badminton Court 2",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2382,7 +2135,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Badminton Court 3",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2392,7 +2144,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Badminton Court 4",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2402,7 +2153,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Badminton Court 5",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2412,7 +2162,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Court 1",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2422,7 +2171,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Court 2",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2432,7 +2180,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Badminton Court 1",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2442,7 +2189,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Badminton Court 2",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2452,7 +2198,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Badminton Court 3",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2462,7 +2207,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Badminton Court 4",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2472,7 +2216,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Court 2",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2482,7 +2225,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hurdles Sports Academy | Chembur",
     "courtName": "Court 1",
     "location": "7th Floor, K Star Mall, VN Purav Marg, D",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2492,7 +2234,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Radio Club | Bombay Pickleball and Padel Club",
     "courtName": "Padel Court",
     "location": "157, Arthur Bunder rd, Apollo Bunder, Co",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -2502,7 +2243,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Radio Club | Bombay Pickleball and Padel Club",
     "courtName": "Padel Court",
     "location": "157, Arthur Bunder rd, Apollo Bunder, Co",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -2512,17 +2252,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Radio Club | Bombay Pickleball and Padel Club",
     "courtName": "Padel Court",
     "location": "157, Arthur Bunder rd, Apollo Bunder, Co",
-    "region": "Thane & Beyond",
-    "type": "padel",
-    "matrix": {}
-  },
-  {
-    "venueId": "b82d19f2-8690-4975-a5d1-5e9ab886e10d",
-    "facId": "ee9bac63-17f7-402a-af36-27799396bc93",
-    "venueName": "Padel 360 | Worli",
-    "courtName": "Padel Racquet",
-    "location": "Oricon Enterprises Ltd.\r\n1076, Dr. E. Mo",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -2532,7 +2261,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Padel 360 | Worli",
     "courtName": "Court 1 Padel",
     "location": "Oricon Enterprises Ltd.\r\n1076, Dr. E. Mo",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -2542,17 +2270,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Padel 360 | Worli",
     "courtName": "Court 2 Padel",
     "location": "Oricon Enterprises Ltd.\r\n1076, Dr. E. Mo",
-    "region": "South Mumbai (SoBo)",
-    "type": "padel",
-    "matrix": {}
-  },
-  {
-    "venueId": "b82d19f2-8690-4975-a5d1-5e9ab886e10d",
-    "facId": "a3cf754c-ece4-45c1-a74b-4b4e200ba06e",
-    "venueName": "Padel 360 | Worli",
-    "courtName": "Padel Racquet",
-    "location": "Oricon Enterprises Ltd.\r\n1076, Dr. E. Mo",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -2562,7 +2279,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Padel 360 | Worli",
     "courtName": "Maitrya (Court 1)",
     "location": "Oricon Enterprises Ltd.\r\n1076, Dr. E. Mo",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -2572,7 +2288,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Bombay Gymkhana | Members Only",
     "courtName": "Court 1 (Old Court)",
     "location": "Mahatma Gandhi Road, Opp Fashion Street,",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -2582,7 +2297,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Bombay Gymkhana | Members Only",
     "courtName": "Court 2 (New Court)",
     "location": "Mahatma Gandhi Road, Opp Fashion Street,",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -2592,7 +2306,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Bombay Gymkhana | Members Only",
     "courtName": "Padel Court",
     "location": "Mahatma Gandhi Road, Opp Fashion Street,",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -2602,7 +2315,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Don Bosco Pickleball Centre | Matunga East",
     "courtName": "Court 2",
     "location": "Gate 10, Don Bosco High School, Nathalal",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2612,7 +2324,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Don Bosco Pickleball Centre | Matunga East",
     "courtName": "Court 3",
     "location": "Gate 10, Don Bosco High School, Nathalal",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2622,7 +2333,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Don Bosco Pickleball Centre | Matunga East",
     "courtName": "Court 4",
     "location": "Gate 10, Don Bosco High School, Nathalal",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2632,7 +2342,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Don Bosco Pickleball Centre | Matunga East",
     "courtName": "Court 1",
     "location": "Gate 10, Don Bosco High School, Nathalal",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2642,7 +2351,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Don Bosco Pickleball Centre | Matunga East",
     "courtName": "Pickle Court 2 (old)",
     "location": "Gate 10, Don Bosco High School, Nathalal",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2652,7 +2360,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Don Bosco Pickleball Centre | Matunga East",
     "courtName": "Pickle Court 3 (old)",
     "location": "Gate 10, Don Bosco High School, Nathalal",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2662,7 +2369,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Don Bosco Pickleball Centre | Matunga East",
     "courtName": "Pickle Court 4 (old)",
     "location": "Gate 10, Don Bosco High School, Nathalal",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2672,7 +2378,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Don Bosco Pickleball Centre | Matunga East",
     "courtName": "Pickle Court 1(old)",
     "location": "Gate 10, Don Bosco High School, Nathalal",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2682,7 +2387,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Don Bosco Pickleball Centre | Matunga East",
     "courtName": "Pickle Court 2 (old)",
     "location": "Gate 10, Don Bosco High School, Nathalal",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2692,7 +2396,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Don Bosco Pickleball Centre | Matunga East",
     "courtName": "Pickle Court 3 (old)",
     "location": "Gate 10, Don Bosco High School, Nathalal",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2702,7 +2405,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Don Bosco Pickleball Centre | Matunga East",
     "courtName": "Pickle Court 4(old)",
     "location": "Gate 10, Don Bosco High School, Nathalal",
-    "region": "Lower Parel / Dadar",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2712,7 +2414,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Padel Project | Powai | Supreme Business Park",
     "courtName": "Padel Court",
     "location": "Padel Project/High Rock, S4, A wing, Sup",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -2722,7 +2423,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Padel Project | Powai | Supreme Business Park",
     "courtName": "Padel Court",
     "location": "Padel Project/High Rock, S4, A wing, Sup",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -2732,7 +2432,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Padel Project | Powai | Supreme Business Park",
     "courtName": "Padel Court",
     "location": "Padel Project/High Rock, S4, A wing, Sup",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "padel",
     "matrix": {}
   },
@@ -2742,7 +2441,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "AITA Trust Tennis Centre Of Excellence | Santacruz East",
     "courtName": "Court 2",
     "location": "AITA Trust Tennis Courts, inside univers",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2752,7 +2450,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "AITA Trust Tennis Centre Of Excellence | Santacruz East",
     "courtName": "Court 1",
     "location": "AITA Trust Tennis Courts, inside univers",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2762,7 +2459,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "AITA Trust Tennis Centre Of Excellence | Santacruz East",
     "courtName": "Court 2(old)",
     "location": "AITA Trust Tennis Courts, inside univers",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2772,7 +2468,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "AITA Trust Tennis Centre Of Excellence | Santacruz East",
     "courtName": "Court 2 (old)",
     "location": "AITA Trust Tennis Courts, inside univers",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2782,7 +2477,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Wodehouse Gymkhana",
     "courtName": "Padel Court",
     "location": "Wodehouse Gymkhana, Maharshi Karve Road,",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -2792,7 +2486,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Wodehouse Gymkhana",
     "courtName": "Padel Court",
     "location": "Wodehouse Gymkhana, Maharshi Karve Road,",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -2802,7 +2495,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Wodehouse Gymkhana",
     "courtName": "Padel Court",
     "location": "Wodehouse Gymkhana, Maharshi Karve Road,",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -2812,7 +2504,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "The Wodehouse Gymkhana",
     "courtName": "Padel Court",
     "location": "Wodehouse Gymkhana, Maharshi Karve Road,",
-    "region": "Thane & Beyond",
     "type": "padel",
     "matrix": {}
   },
@@ -2822,7 +2513,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Aim Sports Pickleball | Nanavati",
     "courtName": "Court 1",
     "location": "Shree Chandulal Nanavati Vinay Mandir (N",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2832,7 +2522,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Aim Sports Pickleball | Nanavati",
     "courtName": "Court 2",
     "location": "Shree Chandulal Nanavati Vinay Mandir (N",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2842,7 +2531,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Aim Sports Pickleball | Nanavati",
     "courtName": "Court 3",
     "location": "Shree Chandulal Nanavati Vinay Mandir (N",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2852,7 +2540,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Aim Sports Pickleball | Nanavati",
     "courtName": "Court 1",
     "location": "Shree Chandulal Nanavati Vinay Mandir (N",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2862,7 +2549,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Aim Sports Pickleball | Nanavati",
     "courtName": "Court 1",
     "location": "Shree Chandulal Nanavati Vinay Mandir (N",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2872,7 +2558,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Aim Sports Pickleball | Nanavati",
     "courtName": "Court 4",
     "location": "Shree Chandulal Nanavati Vinay Mandir (N",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2882,7 +2567,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Ace Padel Andheri",
     "courtName": "Padel Court",
     "location": "ACE PADEL ANDHERI, Mahakali Caves Road, ",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -2892,7 +2576,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Playflex | Bhandup West",
     "courtName": "Court 1",
     "location": "Yashwant Smruti, Bhandup Village Road, O",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2902,7 +2585,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Playflex | Bhandup West",
     "courtName": "Court 2",
     "location": "Yashwant Smruti, Bhandup Village Road, O",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2912,7 +2594,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Playflex | Bhandup West",
     "courtName": "Court 3",
     "location": "Yashwant Smruti, Bhandup Village Road, O",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -2922,7 +2603,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Players Sports Arena | Goregaon East",
     "courtName": "Court 1",
     "location": "New Satguru Nanik industrial state, Geet",
-    "region": "Goregaon / Malad / Borivali",
     "type": "padel",
     "matrix": {}
   },
@@ -2932,7 +2612,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Players Sports Arena | Goregaon East",
     "courtName": "Court 2",
     "location": "New Satguru Nanik industrial state, Geet",
-    "region": "Goregaon / Malad / Borivali",
     "type": "padel",
     "matrix": {}
   },
@@ -2942,7 +2621,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Players Sports Arena | Goregaon East",
     "courtName": "Padel Court 1 Wrong",
     "location": "New Satguru Nanik industrial state, Geet",
-    "region": "Goregaon / Malad / Borivali",
     "type": "padel",
     "matrix": {}
   },
@@ -2952,7 +2630,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Players Sports Arena | Goregaon East",
     "courtName": "Padel Court 2 Wrong",
     "location": "New Satguru Nanik industrial state, Geet",
-    "region": "Goregaon / Malad / Borivali",
     "type": "padel",
     "matrix": {}
   },
@@ -2962,7 +2639,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Palm Padickle | Andheri West",
     "courtName": "Court 5 (Beginner Court)",
     "location": "Sarita Lawns & Banquets, beside Good She",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -2972,7 +2648,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Palm Padickle | Andheri West",
     "courtName": "Court 4",
     "location": "Sarita Lawns & Banquets, beside Good She",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -2982,7 +2657,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Palm Padickle | Andheri West",
     "courtName": "Court 3",
     "location": "Sarita Lawns & Banquets, beside Good She",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -2992,7 +2666,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Palm Padickle | Andheri West",
     "courtName": "Court 2",
     "location": "Sarita Lawns & Banquets, beside Good She",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -3002,7 +2675,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Palm Padickle | Andheri West",
     "courtName": "Court 1",
     "location": "Sarita Lawns & Banquets, beside Good She",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -3012,7 +2684,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Palm Padickle | Andheri West",
     "courtName": "Badminton Court",
     "location": "Sarita Lawns & Banquets, beside Good She",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -3022,7 +2693,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Palm Padickle | Andheri West",
     "courtName": "Padel Court",
     "location": "Sarita Lawns & Banquets, beside Good She",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -3032,7 +2702,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Palm Padickle | Andheri West",
     "courtName": "Court 5",
     "location": "Sarita Lawns & Banquets, beside Good She",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -3042,7 +2711,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Palm Padickle | Andheri West",
     "courtName": "Court 5 (Beginner Court)",
     "location": "Sarita Lawns & Banquets, beside Good She",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -3052,7 +2720,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Palm Padickle | Andheri West",
     "courtName": "Court 4",
     "location": "Sarita Lawns & Banquets, beside Good She",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -3062,7 +2729,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Ace Padel Ball | Bandra West",
     "courtName": "Padel Court",
     "location": "stella maris, road, Bandra West, Mumbai,",
-    "region": "Bandra / Khar / Santacruz",
     "type": "padel",
     "matrix": {}
   },
@@ -3072,7 +2738,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "BandrArcade | Taj Lands End Mumbai",
     "courtName": "Padel Court",
     "location": "Taj Lands End, Mumbai, Byramji Jeejeebho",
-    "region": "Bandra / Khar / Santacruz",
     "type": "padel",
     "matrix": {}
   },
@@ -3082,7 +2747,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "OTM Pickleball & Badminton | Supreme Business Park | Powai",
     "courtName": "Badminton Court",
     "location": "401, Wing B, Supreme Business Park, Hira",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3092,7 +2756,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "OTM Pickleball & Badminton | Supreme Business Park | Powai",
     "courtName": "Court 1",
     "location": "401, Wing B, Supreme Business Park, Hira",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3102,7 +2765,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "OTM Pickleball & Badminton | Supreme Business Park | Powai",
     "courtName": "Court 2",
     "location": "401, Wing B, Supreme Business Park, Hira",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3112,7 +2774,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "OTM Pickleball & Badminton | Supreme Business Park | Powai",
     "courtName": "Court 1",
     "location": "401, Wing B, Supreme Business Park, Hira",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3122,7 +2783,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "OTM Pickleball & Badminton | Supreme Business Park | Powai",
     "courtName": "Court 2",
     "location": "401, Wing B, Supreme Business Park, Hira",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3132,7 +2792,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "OTM Pickleball & Badminton | Supreme Business Park | Powai",
     "courtName": "Badminton Court",
     "location": "401, Wing B, Supreme Business Park, Hira",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3142,7 +2801,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "OTM Pickleball & Badminton | Supreme Business Park | Powai",
     "courtName": "Badminton Court",
     "location": "401, Wing B, Supreme Business Park, Hira",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3152,7 +2810,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Goalster Pickleball St. Joseph's | Bandra West",
     "courtName": "Court 1",
     "location": "Gate no.1, St. Joseph's Convent High Sch",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3162,7 +2819,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Goalster Pickleball St. Joseph's | Bandra West",
     "courtName": "Court 2",
     "location": "Gate no.1, St. Joseph's Convent High Sch",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3172,7 +2828,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Goalster Pickleball St. Joseph's | Bandra West",
     "courtName": "Court 3",
     "location": "Gate no.1, St. Joseph's Convent High Sch",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3182,37 +2837,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Goalster Pickleball St. Joseph's | Bandra West",
     "courtName": "Court 4",
     "location": "Gate no.1, St. Joseph's Convent High Sch",
-    "region": "Bandra / Khar / Santacruz",
-    "type": "pickleball",
-    "matrix": {}
-  },
-  {
-    "venueId": "3b685388-933e-4aff-bee7-846c803c4106",
-    "facId": "391dc16c-a717-4c54-9583-a95a92246347",
-    "venueName": "Atlas Apartments (Residents Only)",
-    "courtName": "Resident",
-    "location": "Atlas Apartments, Harkness Road, Teen Ba",
-    "region": "Thane & Beyond",
-    "type": "pickleball",
-    "matrix": {}
-  },
-  {
-    "venueId": "3b685388-933e-4aff-bee7-846c803c4106",
-    "facId": "dcf02d90-bc2a-480d-b9e3-5d4564024d3c",
-    "venueName": "Atlas Apartments (Residents Only)",
-    "courtName": "Resident",
-    "location": "Atlas Apartments, Harkness Road, Teen Ba",
-    "region": "Thane & Beyond",
-    "type": "pickleball",
-    "matrix": {}
-  },
-  {
-    "venueId": "3b685388-933e-4aff-bee7-846c803c4106",
-    "facId": "134d518d-0822-44e3-96ac-1f5a9bf498c1",
-    "venueName": "Atlas Apartments (Residents Only)",
-    "courtName": "Resident",
-    "location": "Atlas Apartments, Harkness Road, Teen Ba",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3222,7 +2846,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "AMP Pickle Arena | Hume High School Byculla",
     "courtName": "Court 1",
     "location": "HUME HIGH SCHOOL, Sir Jamshedji Jeejeebh",
-    "region": "South Mumbai (SoBo)",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3232,7 +2855,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "AMP Pickle Arena | Hume High School Byculla",
     "courtName": "Court 2",
     "location": "HUME HIGH SCHOOL, Sir Jamshedji Jeejeebh",
-    "region": "South Mumbai (SoBo)",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3242,7 +2864,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "AMP Pickle Arena | Esplanade High School Kandivali West",
     "courtName": "Court 1",
     "location": "Esplanade High School, Kandivali, Hemu C",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3252,7 +2873,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "AMP Pickle Arena | Esplanade High School Kandivali West",
     "courtName": "Court 2",
     "location": "Esplanade High School, Kandivali, Hemu C",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3262,7 +2882,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Dink Arena | Malad West",
     "courtName": "Indoor Studio",
     "location": "Nylon House, Ramchandra Lane, Malad, Nav",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3272,7 +2891,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Dink Arena | Malad West",
     "courtName": "Indoor Studio",
     "location": "Nylon House, Ramchandra Lane, Malad, Nav",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3282,7 +2900,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Aura Club House | Andheri East",
     "courtName": "Court 1",
     "location": "Aura Club House, Sahar Plaza Complex, J.",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3292,7 +2909,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Aura Club House | Andheri East",
     "courtName": "Court 2",
     "location": "Aura Club House, Sahar Plaza Complex, J.",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3302,7 +2918,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Aura Club House | Andheri East",
     "courtName": "Court 2",
     "location": "Aura Club House, Sahar Plaza Complex, J.",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3312,7 +2927,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PadelPro Club | Xavier | Mahim",
     "courtName": "Padel Court",
     "location": "Xavier Institute of Engineering, Raheja ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "padel",
     "matrix": {}
   },
@@ -3322,7 +2936,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | Xavier | Mahim",
     "courtName": "Court 1",
     "location": "Xavier Institute of Engineering, Raheja ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3332,7 +2945,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | Xavier | Mahim",
     "courtName": "Court 2",
     "location": "Xavier Institute of Engineering, Raheja ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3342,7 +2954,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | Xavier | Mahim",
     "courtName": "Court 3",
     "location": "Xavier Institute of Engineering, Raheja ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3352,7 +2963,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | Xavier | Mahim",
     "courtName": "Court 4",
     "location": "Xavier Institute of Engineering, Raheja ",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3362,7 +2972,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Breach Candy Swimming Bath Trust | Members Only",
     "courtName": "Court 1",
     "location": "Breach Candy Swimming Bath Trust, Bhulab",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -3372,7 +2981,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Breach Candy Swimming Bath Trust | Members Only",
     "courtName": "Court 2",
     "location": "Breach Candy Swimming Bath Trust, Bhulab",
-    "region": "South Mumbai (SoBo)",
     "type": "padel",
     "matrix": {}
   },
@@ -3382,7 +2990,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Core Clubb Pickleball | Santacruz West",
     "courtName": "Court 1",
     "location": "Lido Cinema Building, 2nd Floor, Juhu Ta",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3392,7 +2999,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Badminton Court 2",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3402,7 +3008,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Court 7",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3412,7 +3017,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Court 6",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3422,7 +3026,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Court 5",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3432,7 +3035,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Court 4",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3442,7 +3044,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Court 3",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3452,7 +3053,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Court 2",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3462,7 +3062,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Court 1",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3472,7 +3071,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Badminton Court 8",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3482,7 +3080,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Badminton Court 7",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3492,7 +3089,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Badminton Court 6",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3502,7 +3098,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Badminton Court 5",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3512,7 +3107,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Badminton Court 4",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3522,7 +3116,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Badminton Court 3",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3532,7 +3125,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Inbox Woods X Phorce X TSG Sports Arena | North Park",
     "courtName": "Badminton Court 1",
     "location": "Jaichandlal Karwa Marg, Mindspace, Goreg",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3542,7 +3134,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Level One | Marol Naka",
     "courtName": "Court 1",
     "location": "Level One, 1st Floor, Mineral Process eq",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3552,7 +3143,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Level One | Marol Naka",
     "courtName": "Court 2",
     "location": "Level One, 1st Floor, Mineral Process eq",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3562,7 +3152,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Level One | Marol Naka",
     "courtName": "Neon Court 1",
     "location": "Level One, 1st Floor, Mineral Process eq",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3572,7 +3161,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Level One | Marol Naka",
     "courtName": "Neon Court 2",
     "location": "Level One, 1st Floor, Mineral Process eq",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3582,7 +3170,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Level One | Marol Naka",
     "courtName": "Alpha (Court 1)",
     "location": "Level One, 1st Floor, Mineral Process eq",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3592,7 +3179,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Level One | Marol Naka",
     "courtName": "Omega (Court 1)",
     "location": "Level One, 1st Floor, Mineral Process eq",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3602,7 +3188,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Level One | Marol Naka",
     "courtName": "Neon Courts",
     "location": "Level One, 1st Floor, Mineral Process eq",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3612,7 +3197,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Francis | Borivali West",
     "courtName": "Court 1",
     "location": "St. Francis D'Assisi High School, Mount ",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3622,7 +3206,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Francis | Borivali West",
     "courtName": "Court 2",
     "location": "St. Francis D'Assisi High School, Mount ",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3632,7 +3215,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Francis | Borivali West",
     "courtName": "Court 3",
     "location": "St. Francis D'Assisi High School, Mount ",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3642,7 +3224,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Francis | Borivali West",
     "courtName": "Court 1",
     "location": "St. Francis D'Assisi High School, Mount ",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3652,7 +3233,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Francis | Borivali West",
     "courtName": "Court 2",
     "location": "St. Francis D'Assisi High School, Mount ",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3662,7 +3242,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Francis | Borivali West",
     "courtName": "Court 3",
     "location": "St. Francis D'Assisi High School, Mount ",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3672,7 +3251,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Francis | Borivali West",
     "courtName": "Court 4",
     "location": "St. Francis D'Assisi High School, Mount ",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3682,7 +3260,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | KES | Khar West",
     "courtName": "Badminton Court",
     "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3692,7 +3269,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | KES | Khar West",
     "courtName": "Centre Court",
     "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3702,7 +3278,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | KES | Khar West",
     "courtName": "Court 1",
     "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3712,7 +3287,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | KES | Khar West",
     "courtName": "Court 2",
     "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3722,7 +3296,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | KES | Khar West",
     "courtName": "Court 3",
     "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3732,7 +3305,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | KES | Khar West",
     "courtName": "Court 4",
     "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3742,17 +3314,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | KES | Khar West",
     "courtName": "Court 4",
     "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
-    "type": "pickleball",
-    "matrix": {}
-  },
-  {
-    "venueId": "789ae27b-27e9-47b0-9322-d45895b08f91",
-    "facId": "e88b9bf8-91c2-48ac-a782-a7e955d770f3",
-    "venueName": "PicklePro Club | KES | Khar West",
-    "courtName": "Training Court",
-    "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3762,7 +3323,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | KES | Khar West",
     "courtName": "Centre Court",
     "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3772,7 +3332,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | KES | Khar West",
     "courtName": "Court 1",
     "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3782,7 +3341,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | KES | Khar West",
     "courtName": "Court 2",
     "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3792,7 +3350,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | KES | Khar West",
     "courtName": "Court 3",
     "location": "Khar Education Society, SV Road, Khar We",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3802,7 +3359,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Super Sports Park x Maniac PicklePro | Bandra West",
     "courtName": "Court 1",
     "location": "Apostolic Carmel High School, Hill Road,",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3812,7 +3368,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Super Sports Park x Maniac PicklePro | Bandra West",
     "courtName": "Court 2",
     "location": "Apostolic Carmel High School, Hill Road,",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3822,7 +3377,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Super Sports Park x Maniac PicklePro | Bandra West",
     "courtName": "Court 3",
     "location": "Apostolic Carmel High School, Hill Road,",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3832,7 +3386,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Super Sports Park x Maniac PicklePro | Bandra West",
     "courtName": "Court 4",
     "location": "Apostolic Carmel High School, Hill Road,",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3842,7 +3395,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Super Sports Park x Maniac PicklePro | Bandra West",
     "courtName": "Court 5",
     "location": "Apostolic Carmel High School, Hill Road,",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3852,7 +3404,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Super Sports Park x Maniac PicklePro | Bandra West",
     "courtName": "Court 6",
     "location": "Apostolic Carmel High School, Hill Road,",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3862,7 +3413,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Super Sports Park x Maniac PicklePro | Bandra West",
     "courtName": "Court 7",
     "location": "Apostolic Carmel High School, Hill Road,",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3872,7 +3422,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Mary\u2019s Mazgaon",
     "courtName": "Court 1",
     "location": "St. Mary's ICSE, ISC & International Sch",
-    "region": "South Mumbai (SoBo)",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3882,7 +3431,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Mary\u2019s Mazgaon",
     "courtName": "Court 2",
     "location": "St. Mary's ICSE, ISC & International Sch",
-    "region": "South Mumbai (SoBo)",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3892,7 +3440,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Theresa's Bandra",
     "courtName": "Indoor Court",
     "location": "Parklane Apartments, Bandra West, Mumbai",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3902,7 +3449,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Theresa's Bandra",
     "courtName": "Semi Indoor Court",
     "location": "Parklane Apartments, Bandra West, Mumbai",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3912,7 +3458,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | St Theresa's Bandra",
     "courtName": "Outdoor Court",
     "location": "Parklane Apartments, Bandra West, Mumbai",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3922,7 +3467,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | Fairmont | Powai",
     "courtName": "Court 1",
     "location": "Hiranandani Gardens, Fairmont, Powai, Mu",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3932,7 +3476,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "PicklePro Club | Fairmont | Powai",
     "courtName": "Court 2",
     "location": "Hiranandani Gardens, Fairmont, Powai, Mu",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3942,7 +3485,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Smash Yard | Bandra",
     "courtName": "Court 1",
     "location": "Smash Yard Pickleball, Khar, Bandra West",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3952,7 +3494,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Smash Yard | Bandra",
     "courtName": "Court 2",
     "location": "Smash Yard Pickleball, Khar, Bandra West",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3962,7 +3503,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Smash Yard | Bandra",
     "courtName": "Court 3",
     "location": "Smash Yard Pickleball, Khar, Bandra West",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3972,7 +3512,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Smash Yard | Bandra",
     "courtName": "Multipurpose Court (Indoor)",
     "location": "Smash Yard Pickleball, Khar, Bandra West",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3982,7 +3521,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Smash Yard | Bandra",
     "courtName": "Court 2",
     "location": "Smash Yard Pickleball, Khar, Bandra West",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -3992,7 +3530,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Matoshree Arts & Sports Trust l Andheri East",
     "courtName": "Court 1",
     "location": "Matoshri Arts and Sports Trust, Jogeshwa",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4002,7 +3539,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Matoshree Arts & Sports Trust l Andheri East",
     "courtName": "Court 2",
     "location": "Matoshri Arts and Sports Trust, Jogeshwa",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4012,17 +3548,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Epic Play | Lokhandwala",
     "courtName": "Pickle Padel",
     "location": "Plot no.7, P Tandon Marg, between Runwal",
-    "region": "Juhu / Andheri / Marol",
-    "type": "padel",
-    "matrix": {}
-  },
-  {
-    "venueId": "782e7d09-8f9e-404d-90a7-7a809b90ddb7",
-    "facId": "eb987470-2032-4699-9347-d564f307c93a",
-    "venueName": "Epic Play | Lokhandwala",
-    "courtName": "Padel Racquet",
-    "location": "Plot no.7, P Tandon Marg, between Runwal",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -4032,7 +3557,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Epic Play | Lokhandwala",
     "courtName": "Padel Court",
     "location": "Plot no.7, P Tandon Marg, between Runwal",
-    "region": "Juhu / Andheri / Marol",
     "type": "padel",
     "matrix": {}
   },
@@ -4042,7 +3566,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Winning Edge Sports l Karmveer Sports Complex",
     "courtName": "Court 1",
     "location": "Karmveer Sports Complex, RTO Road, Near ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4052,7 +3575,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Winning Edge Sports l Karmveer Sports Complex",
     "courtName": "Court 2",
     "location": "Karmveer Sports Complex, RTO Road, Near ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4062,7 +3584,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Winning Edge Sports l Karmveer Sports Complex",
     "courtName": "Court 3",
     "location": "Karmveer Sports Complex, RTO Road, Near ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4072,7 +3593,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Winning Edge Sports l Karmveer Sports Complex",
     "courtName": "Court 4",
     "location": "Karmveer Sports Complex, RTO Road, Near ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4082,7 +3602,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Winning Edge Sports l Karmveer Sports Complex",
     "courtName": "Court 1",
     "location": "Karmveer Sports Complex, RTO Road, Near ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4092,7 +3611,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Winning Edge Sports l Karmveer Sports Complex",
     "courtName": "Court 2",
     "location": "Karmveer Sports Complex, RTO Road, Near ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4102,7 +3620,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Winning Edge Sports l Karmveer Sports Complex",
     "courtName": "Court 3",
     "location": "Karmveer Sports Complex, RTO Road, Near ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4112,7 +3629,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Winning Edge Sports l Karmveer Sports Complex",
     "courtName": "Court 4",
     "location": "Karmveer Sports Complex, RTO Road, Near ",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4122,7 +3638,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Pickle Point KCA Sports Hall | Bandra West",
     "courtName": "Badminton Court",
     "location": "KCA Hall, KCA Administrative Office, Ver",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4132,7 +3647,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Pickle Point KCA Sports Hall | Bandra West",
     "courtName": "Badminton Court",
     "location": "KCA Hall, KCA Administrative Office, Ver",
-    "region": "Bandra / Khar / Santacruz",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4142,7 +3656,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Racquet Republic | Sacred Heart Khar",
     "courtName": "Padel Court 1",
     "location": "Inside Sacred Heart Boys High School, Sw",
-    "region": "Bandra / Khar / Santacruz",
     "type": "padel",
     "matrix": {}
   },
@@ -4152,7 +3665,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Racquet Republic | Sacred Heart Khar",
     "courtName": "Padel Court 2",
     "location": "Inside Sacred Heart Boys High School, Sw",
-    "region": "Bandra / Khar / Santacruz",
     "type": "padel",
     "matrix": {}
   },
@@ -4162,7 +3674,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Racquet Republic | Sacred Heart Khar",
     "courtName": "Smart Padel Court 3",
     "location": "Inside Sacred Heart Boys High School, Sw",
-    "region": "Bandra / Khar / Santacruz",
     "type": "padel",
     "matrix": {}
   },
@@ -4172,7 +3683,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Racquet Republic | Sacred Heart Khar",
     "courtName": "Padel Court 1 Old",
     "location": "Inside Sacred Heart Boys High School, Sw",
-    "region": "Bandra / Khar / Santacruz",
     "type": "padel",
     "matrix": {}
   },
@@ -4182,7 +3692,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Racquet Republic | Sacred Heart Khar",
     "courtName": "Padel Court 2 Old",
     "location": "Inside Sacred Heart Boys High School, Sw",
-    "region": "Bandra / Khar / Santacruz",
     "type": "padel",
     "matrix": {}
   },
@@ -4192,7 +3701,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Racquet Republic | Sacred Heart Khar",
     "courtName": "Padel Court 3 Old",
     "location": "Inside Sacred Heart Boys High School, Sw",
-    "region": "Bandra / Khar / Santacruz",
     "type": "padel",
     "matrix": {}
   },
@@ -4202,7 +3710,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "D Arena Sports | Powai",
     "courtName": "Multisport Court",
     "location": "Hiranandani Knowledge Park, Hiranandani ",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4212,7 +3719,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "D Arena Sports | Powai",
     "courtName": "Multisport Court",
     "location": "Hiranandani Knowledge Park, Hiranandani ",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4222,7 +3728,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Sportyhead Pickleball | Andheri",
     "courtName": "Badminton Court",
     "location": "Inside RC Maruti High School, Subhash Na",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4232,7 +3737,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Smash Dock | Colaba",
     "courtName": "Badminton Court",
     "location": "Azad Nagar, Colaba, Mumbai, Maharashtra",
-    "region": "South Mumbai (SoBo)",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4242,7 +3746,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "CS Pickleball Academy | Saki Naka",
     "courtName": "Court 1",
     "location": "Joshi Building, Saki Vihar Road, Muranja",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4252,7 +3755,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "CS Pickleball Academy | Saki Naka",
     "courtName": "Court 2",
     "location": "Joshi Building, Saki Vihar Road, Muranja",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4262,7 +3764,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "CS Pickleball Academy | Saki Naka",
     "courtName": "Court 3",
     "location": "Joshi Building, Saki Vihar Road, Muranja",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4272,7 +3773,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "CS Pickleball Academy | Saki Naka",
     "courtName": "Court 3",
     "location": "Joshi Building, Saki Vihar Road, Muranja",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4282,7 +3782,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "SW19 Pickle l Badhwar Park",
     "courtName": "Court 1",
     "location": "Zainab Beauty Studio & Academy, opp. Bud",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4292,7 +3791,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "SW19 Pickle l Badhwar Park",
     "courtName": "Court 2",
     "location": "Zainab Beauty Studio & Academy, opp. Bud",
-    "region": "Thane & Beyond",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4302,7 +3800,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Score Metropole Pickleball | Ghatkopar West",
     "courtName": "Court 1",
     "location": "The Metropole 14th floor, Jethalal Parek",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4312,7 +3809,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Score Metropole Pickleball | Ghatkopar West",
     "courtName": "Court 2",
     "location": "The Metropole 14th floor, Jethalal Parek",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4322,7 +3818,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Score Metropole Pickleball | Ghatkopar West",
     "courtName": "Court 3",
     "location": "The Metropole 14th floor, Jethalal Parek",
-    "region": "Powai / Chembur / Eastern Suburbs",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4332,7 +3827,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Jiza Pickle Club | MVM School Andheri West",
     "courtName": "Court 1 - Prime",
     "location": "MVM International School, CBSE, Ambivali",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4342,7 +3836,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Jiza Pickle Club | MVM School Andheri West",
     "courtName": "Court 2 - Grand",
     "location": "MVM International School, CBSE, Ambivali",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4352,7 +3845,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Jiza Pickle Club | MVM School Andheri West",
     "courtName": "Court 3 - Elite",
     "location": "MVM International School, CBSE, Ambivali",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4362,7 +3854,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Jiza Pickle Club | MVM School Andheri West",
     "courtName": "Court 4 - Crown",
     "location": "MVM International School, CBSE, Ambivali",
-    "region": "Juhu / Andheri / Marol",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4372,7 +3863,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Apex Pickle and Turf | Kandivali East",
     "courtName": "Court 1",
     "location": "Pioneer Public School, Akurli Cross Road",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4382,7 +3872,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Apex Pickle and Turf | Kandivali East",
     "courtName": "Court 2",
     "location": "Pioneer Public School, Akurli Cross Road",
-    "region": "Goregaon / Malad / Borivali",
     "type": "pickleball",
     "matrix": {}
   },
@@ -4392,7 +3881,6 @@ const INDIVIDUAL_COURTS_DATA = [
     "venueName": "Hiray College Padel & Pickleball Park | Bandra",
     "courtName": "Padel",
     "location": "Hiray College, near Kherwadi Police Stat",
-    "region": "Bandra / Khar / Santacruz",
     "type": "padel",
     "matrix": {}
   }
@@ -4405,21 +3893,25 @@ const ALL_TIMESLOTS = [
   "06:00 PM", "07:00 PM", "08:00 PM", "09:00 PM", "10:00 PM", "11:00 PM"
 ];
 
+// EXTRACT ALL UNIQUE VENUES
+const UNIQUE_VENUES = Array.from(new Map(INDIVIDUAL_COURTS_DATA.map(c => [c.venueId, { venueId: c.venueId, venueName: c.venueName, location: c.location })]).values());
+
 let selectedDate = new Date().toISOString().split("T")[0];
 let currentSportFilter = "padel";
-let selectedRegions = new Set(ALL_MUMBAI_REGIONS); // Default to all regions
+let selectedVenueIds = new Set(UNIQUE_VENUES.map(v => v.venueId)); // Default all selected
+let searchQuery = "";
 
 document.addEventListener("DOMContentLoaded", () => {
   loadUserPreferences();
   initCalendarPicker();
-  renderLocationPills();
+  renderVenuePills();
   renderDatePills();
   renderCalendarMatrix();
   syncAllVenuesLiveSlots();
   initLoginModal();
 });
 
-// LOAD USER LOGIN & LOCATION PREFERENCES FROM LOCALSTORAGE
+// LOAD USER LOGIN & SPECIFIC VENUE PREFERENCES FROM LOCALSTORAGE
 function loadUserPreferences() {
   const savedToken = localStorage.getItem("HUDLE_AUTH_TOKEN");
   if (!savedToken) {
@@ -4427,17 +3919,16 @@ function loadUserPreferences() {
   }
 
   const userName = localStorage.getItem("HUDLE_USER_NAME") || "Tanay Gandhi";
-  const userPhone = localStorage.getItem("HUDLE_USER_PHONE") || "9167939419";
   
   const savedSport = localStorage.getItem("PREF_SPORT");
   if (savedSport) currentSportFilter = savedSport;
 
-  const savedRegionsJson = localStorage.getItem("PREF_REGIONS");
-  if (savedRegionsJson) {
+  const savedVenuesJson = localStorage.getItem("PREF_VENUES");
+  if (savedVenuesJson) {
     try {
-      const arr = JSON.parse(savedRegionsJson);
+      const arr = JSON.parse(savedVenuesJson);
       if (Array.isArray(arr) && arr.length > 0) {
-        selectedRegions = new Set(arr);
+        selectedVenueIds = new Set(arr);
       }
     } catch (e) {}
   }
@@ -4527,67 +4018,95 @@ function renderDatePills() {
   }
 }
 
-// MULTI-SELECT LOCATION FILTER PILLS
-function renderLocationPills() {
-  const bar = document.getElementById("location-pills-bar");
-  bar.innerHTML = "";
+// SEARCH FILTER FOR VENUE PILLS
+function filterVenuePillsBySearch() {
+  const input = document.getElementById("venue-search-input");
+  if (input) {
+    searchQuery = input.value.toLowerCase().trim();
+    renderVenuePills();
+  }
+}
 
-  ALL_MUMBAI_REGIONS.forEach(region => {
-    const isSel = selectedRegions.has(region);
+// MULTI-SELECT SPECIFIC VENUE PILLS RENDER
+function renderVenuePills() {
+  const grid = document.getElementById("venue-pills-grid");
+  grid.innerHTML = "";
+
+  // Filter venues by search query if present
+  const displayVenues = UNIQUE_VENUES.filter(v => {
+    if (!searchQuery) return true;
+    return (v.venueName + ' ' + v.location).toLowerCase().includes(searchQuery);
+  });
+
+  displayVenues.forEach(v => {
+    const isSel = selectedVenueIds.has(v.venueId);
     
     const pill = document.createElement("div");
-    pill.className = `loc-pill ${isSel ? 'active' : ''}`;
+    pill.className = `venue-pill ${isSel ? 'active' : ''}`;
     pill.innerHTML = `
       <span class="check-icon">${isSel ? '✓' : ''}</span>
-      <span>${region}</span>
+      <span>${v.venueName}</span>
     `;
     
     pill.onclick = () => {
-      if (selectedRegions.has(region)) {
-        if (selectedRegions.size > 1) {
-          selectedRegions.delete(region);
+      if (selectedVenueIds.has(v.venueId)) {
+        if (selectedVenueIds.size > 1) {
+          selectedVenueIds.delete(v.venueId);
         }
       } else {
-        selectedRegions.add(region);
+        selectedVenueIds.add(v.venueId);
       }
-      saveLocationPreferences();
-      renderLocationPills();
+      saveVenuePreferences();
+      renderVenuePills();
       renderCalendarMatrix();
       syncAllVenuesLiveSlots();
     };
     
-    bar.appendChild(pill);
+    grid.appendChild(pill);
   });
 
-  updateLocationCountBadge();
+  updateVenueCountBadge();
 }
 
-function selectAllLocations() {
-  selectedRegions = new Set(ALL_MUMBAI_REGIONS);
-  saveLocationPreferences();
-  renderLocationPills();
+function selectAllVenues() {
+  selectedVenueIds = new Set(UNIQUE_VENUES.map(v => v.venueId));
+  saveVenuePreferences();
+  renderVenuePills();
   renderCalendarMatrix();
   syncAllVenuesLiveSlots();
 }
 
-function clearAllLocations() {
-  selectedRegions = new Set([ALL_MUMBAI_REGIONS[0]]); // Keep SoBo default
-  saveLocationPreferences();
-  renderLocationPills();
+function selectSoboVenuesOnly() {
+  const soboKeywords = ['worli', 'malabar', 'colaba', 'churchgate', 'marine', 'nariman', 'cuffe', 'cooperage', 'fort', 'tardeo', 'mahalaxmi', 'nsci', 'breach'];
+  const soboIds = UNIQUE_VENUES.filter(v => {
+    const text = (v.venueName + ' ' + v.location).toLowerCase();
+    return soboKeywords.some(k => text.includes(k));
+  }).map(v => v.venueId);
+
+  selectedVenueIds = new Set(soboIds.length > 0 ? soboIds : UNIQUE_VENUES.map(v => v.venueId));
+  saveVenuePreferences();
+  renderVenuePills();
   renderCalendarMatrix();
   syncAllVenuesLiveSlots();
 }
 
-function saveLocationPreferences() {
-  localStorage.setItem("PREF_REGIONS", JSON.stringify(Array.from(selectedRegions)));
+function clearAllVenues() {
+  // Reset to first 5 venues
+  selectedVenueIds = new Set(UNIQUE_VENUES.slice(0, 5).map(v => v.venueId));
+  saveVenuePreferences();
+  renderVenuePills();
+  renderCalendarMatrix();
+  syncAllVenuesLiveSlots();
+}
+
+function saveVenuePreferences() {
+  localStorage.setItem("PREF_VENUES", JSON.stringify(Array.from(selectedVenueIds)));
   localStorage.setItem("PREF_SPORT", currentSportFilter);
 }
 
-function updateLocationCountBadge() {
-  const badge = document.getElementById("location-count-badge");
-  const filteredCourts = getFilteredCourts();
-  const visibleVenuesCount = new Set(filteredCourts.map(c => c.venueName)).size;
-  if (badge) badge.textContent = `${visibleVenuesCount} Venues Visible`;
+function updateVenueCountBadge() {
+  const badge = document.getElementById("venue-count-badge");
+  if (badge) badge.textContent = `${selectedVenueIds.size} of ${UNIQUE_VENUES.length} Venues Selected`;
 }
 
 // SPORT FILTER SWITCHER (PADEL OR PICKLEBALL)
@@ -4595,8 +4114,8 @@ function setSportFilter(filterMode) {
   currentSportFilter = filterMode;
   localStorage.setItem("PREF_SPORT", filterMode);
   
-  const padelCount = new Set(INDIVIDUAL_COURTS_DATA.filter(c => c.type === 'padel' && selectedRegions.has(c.region)).map(c => c.venueName)).size;
-  const pickleCount = new Set(INDIVIDUAL_COURTS_DATA.filter(c => c.type === 'pickleball' && selectedRegions.has(c.region)).map(c => c.venueName)).size;
+  const padelCount = new Set(INDIVIDUAL_COURTS_DATA.filter(c => c.type === 'padel' && selectedVenueIds.has(c.venueId)).map(c => c.venueName)).size;
+  const pickleCount = new Set(INDIVIDUAL_COURTS_DATA.filter(c => c.type === 'pickleball' && selectedVenueIds.has(c.venueId)).map(c => c.venueName)).size;
 
   const btnPadel = document.getElementById("filter-btn-padel");
   const btnPickle = document.getElementById("filter-btn-pickle");
@@ -4610,12 +4129,12 @@ function setSportFilter(filterMode) {
   renderCalendarMatrix();
 }
 
-// GET COURTS FILTERED BY SPORT AND SELECTED REGIONS
+// GET COURTS FILTERED BY SPORT AND SELECTED VENUE IDS (STRICT COURTS ONLY)
 function getFilteredCourts() {
   return INDIVIDUAL_COURTS_DATA.filter(c => {
     const sportMatch = c.type === currentSportFilter;
-    const regionMatch = selectedRegions.has(c.region);
-    return sportMatch && regionMatch;
+    const venueMatch = selectedVenueIds.has(c.venueId);
+    return sportMatch && venueMatch;
   });
 }
 
@@ -4702,10 +4221,9 @@ function renderCalendarMatrix() {
   renderCalendarHeaders(visibleSlots);
 
   const filteredCourts = getFilteredCourts();
-  updateLocationCountBadge();
 
   if (filteredCourts.length === 0) {
-    tbody.innerHTML = `<tr><td colSpan="${visibleSlots.length + 1}" style="padding: 40px; text-align: center; color: var(--text-muted);">No courts available for selected sport and location filters. Try selecting more locations above.</td></tr>`;
+    tbody.innerHTML = `<tr><td colSpan="${visibleSlots.length + 1}" style="padding: 40px; text-align: center; color: var(--text-muted);">No courts available for selected sport and venue filters. Select more venues in the location filter above.</td></tr>`;
     return;
   }
 
@@ -4717,7 +4235,6 @@ function renderCalendarMatrix() {
         venueId: c.venueId,
         name: c.venueName,
         location: c.location,
-        region: c.region,
         type: c.type,
         courts: []
       };
@@ -4737,13 +4254,13 @@ function renderCalendarMatrix() {
       <div class="venue-header-content">
         <span class="venue-badge">${group.type === 'padel' ? 'PADEL' : 'PICKLEBALL'}</span>
         <span class="venue-name">${group.name}</span>
-        <span class="venue-loc">📍 ${group.region} (${group.location})</span>
+        <span class="venue-loc">📍 ${group.location}</span>
       </div>
     `;
     dividerTr.appendChild(dividerTd);
     tbody.appendChild(dividerTr);
 
-    // 2. Individual Court Rows
+    // 2. Individual Court Rows (STRICTLY COURTS ONLY)
     group.courts.forEach(c => {
       const tr = document.createElement("tr");
       
@@ -4810,7 +4327,7 @@ function initLoginModal() {
     localStorage.setItem("HUDLE_USER_PHONE", phone);
     if (token) localStorage.setItem("HUDLE_AUTH_TOKEN", token);
 
-    saveLocationPreferences();
+    saveVenuePreferences();
     updateUserDisplay(name);
     modal.classList.remove("open");
     syncAllVenuesLiveSlots();
