@@ -3906,6 +3906,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCalendarPicker();
   renderVenuePills();
   renderDatePills();
+  setSportFilter(currentSportFilter);
   renderCalendarMatrix();
   syncAllVenuesLiveSlots();
   initLoginModal();
@@ -3921,16 +3922,26 @@ function loadUserPreferences() {
   const userName = localStorage.getItem("HUDLE_USER_NAME") || "Tanay Gandhi";
   
   const savedSport = localStorage.getItem("PREF_SPORT");
-  if (savedSport) currentSportFilter = savedSport;
+  if (savedSport === "padel" || savedSport === "pickleball") {
+    currentSportFilter = savedSport;
+  }
 
   const savedVenuesJson = localStorage.getItem("PREF_VENUES");
   if (savedVenuesJson) {
     try {
       const arr = JSON.parse(savedVenuesJson);
       if (Array.isArray(arr) && arr.length > 0) {
-        selectedVenueIds = new Set(arr);
+        const validSet = new Set(arr.filter(id => UNIQUE_VENUES.some(v => v.venueId === id)));
+        if (validSet.size > 0) {
+          selectedVenueIds = validSet;
+        }
       }
     } catch (e) {}
+  }
+
+  // Guarantee selectedVenueIds is never empty
+  if (selectedVenueIds.size === 0) {
+    selectedVenueIds = new Set(UNIQUE_VENUES.map(v => v.venueId));
   }
 
   updateUserDisplay(userName);
@@ -4058,6 +4069,7 @@ function renderVenuePills() {
       }
       saveVenuePreferences();
       renderVenuePills();
+      setSportFilter(currentSportFilter);
       renderCalendarMatrix();
       syncAllVenuesLiveSlots();
     };
@@ -4072,6 +4084,7 @@ function selectAllVenues() {
   selectedVenueIds = new Set(UNIQUE_VENUES.map(v => v.venueId));
   saveVenuePreferences();
   renderVenuePills();
+  setSportFilter(currentSportFilter);
   renderCalendarMatrix();
   syncAllVenuesLiveSlots();
 }
@@ -4086,15 +4099,16 @@ function selectSoboVenuesOnly() {
   selectedVenueIds = new Set(soboIds.length > 0 ? soboIds : UNIQUE_VENUES.map(v => v.venueId));
   saveVenuePreferences();
   renderVenuePills();
+  setSportFilter(currentSportFilter);
   renderCalendarMatrix();
   syncAllVenuesLiveSlots();
 }
 
 function clearAllVenues() {
-  // Reset to first 5 venues
-  selectedVenueIds = new Set(UNIQUE_VENUES.slice(0, 5).map(v => v.venueId));
+  selectedVenueIds = new Set(UNIQUE_VENUES.map(v => v.venueId));
   saveVenuePreferences();
   renderVenuePills();
+  setSportFilter(currentSportFilter);
   renderCalendarMatrix();
   syncAllVenuesLiveSlots();
 }
@@ -4138,7 +4152,7 @@ function getFilteredCourts() {
   });
 }
 
-// FETCH LIVE HUDLE SLOTS IN PARALLEL FOR FILTERED VENUES
+// FETCH LIVE HUDLE SLOTS IN PARALLEL VIA VERCEL SERVERLESS PROXY (/api/slots)
 async function syncAllVenuesLiveSlots() {
   const token = localStorage.getItem("HUDLE_AUTH_TOKEN") || DEFAULT_USER_TOKEN;
   const syncStatusText = document.getElementById("sync-status-text");
@@ -4150,17 +4164,11 @@ async function syncAllVenuesLiveSlots() {
 
   targetCourts.forEach(courtObj => {
     courtObj.matrix = {};
-    const apiUrl = `/hudle-api/venues/${courtObj.venueId}/facilities/${courtObj.facId}/slots?start_date=${selectedDate}&end_date=${selectedDate}`;
     
-    const p = fetch(apiUrl, {
-      headers: {
-        "Accept": "application/json",
-        "Authorization": `Bearer ${token}`,
-        "api-secret": "hudle-api1798@prod",
-        "x-app-version": "1.0.1",
-        "x-app-source": "consumer"
-      }
-    })
+    // Serverless proxy endpoint to bypass CORS & auth header restrictions
+    const proxyUrl = `/api/slots?venueId=${courtObj.venueId}&facId=${courtObj.facId}&date=${selectedDate}&token=${encodeURIComponent(token)}`;
+    
+    const p = fetch(proxyUrl)
     .then(res => res.ok ? res.json() : null)
     .then(jsonRes => {
       if (jsonRes && jsonRes.data && Array.isArray(jsonRes.data)) {
@@ -4168,7 +4176,7 @@ async function syncAllVenuesLiveSlots() {
       }
     })
     .catch(err => {
-      console.warn(`Parallel fetch warning for ${courtObj.courtName}:`, err);
+      console.warn(`Proxy fetch warning for ${courtObj.courtName}:`, err);
     });
 
     fetchPromises.push(p);
@@ -4223,7 +4231,7 @@ function renderCalendarMatrix() {
   const filteredCourts = getFilteredCourts();
 
   if (filteredCourts.length === 0) {
-    tbody.innerHTML = `<tr><td colSpan="${visibleSlots.length + 1}" style="padding: 40px; text-align: center; color: var(--text-muted);">No courts available for selected sport and venue filters. Select more venues in the location filter above.</td></tr>`;
+    tbody.innerHTML = `<tr><td colSpan="${visibleSlots.length + 1}" style="padding: 40px; text-align: center; color: var(--text-muted);">No courts available for selected sport and venue filters. Click <b>"Select All"</b> or switch between Padel and Pickleball above.</td></tr>`;
     return;
   }
 

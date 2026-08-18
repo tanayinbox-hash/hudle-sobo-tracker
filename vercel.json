@@ -1,9 +1,9 @@
 {
   "cleanUrls": true,
-  "rewrites": [
-    {
-      "source": "/hudle-api/:path*",
-      "destination": "https://api.hudle.in/api/v1/:path*"
+  "functions": {
+    "api/slots.js": {
+      "memory": 1024,
+      "maxDuration": 15
     }
-  ]
+  }
 }
