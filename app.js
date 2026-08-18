@@ -1,4 +1,4 @@
-// HUDLE MUMBAI LIVE COURT AVAILABILITY TRACKER - RELIABLE SLOT SYNC & VENUE FILTERING
+// HUDLE MUMBAI LIVE COURT AVAILABILITY TRACKER - RELIABLE VERCEL PROXY SYNC
 
 // AUTHENTIC USER TOKEN (TANAY GANDHI)
 const DEFAULT_USER_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoiVjNWY3FEM1pOYkdweHhlU2VWRVl6MUZEQjlKcDBvazBKYUlsNWhCb2NZdm1FdVdBbXdVcGlJemwzSWJDIiwic3ViIjoyODAxMDgsImlzcyI6Imh0dHBzOi8vYXBpLmh1ZGxlLmluL2FwaS92MS9vdHAvdmVyaWZ5IiwiaWF0IjoxNzg2OTg1ODg1LCJleHAiOjE4MTgwODk4ODUsIm5iZiI6MTc4Njk4NTg4NSwianRpIjoiRENsbjE4Z1Y4a3hJNU9VOSJ9.iZ-Lmvj2NDv9MJTGqsU4PJk2v9-q7U8VQdpuZBQmx38";
@@ -4152,7 +4152,7 @@ function getFilteredCourts() {
   });
 }
 
-// FETCH LIVE HUDLE SLOTS IN PARALLEL
+// FETCH LIVE HUDLE SLOTS IN PARALLEL VIA VERCEL PROXY REWRITE (/hudle-api/...)
 async function syncAllVenuesLiveSlots() {
   const token = localStorage.getItem("HUDLE_AUTH_TOKEN") || DEFAULT_USER_TOKEN;
   const syncStatusText = document.getElementById("sync-status-text");
@@ -4165,8 +4165,8 @@ async function syncAllVenuesLiveSlots() {
   targetCourts.forEach(courtObj => {
     courtObj.matrix = {};
     
-    // Direct Hudle API slot endpoint with authentic Bearer Token header
-    const apiUrl = `https://api.hudle.in/api/v1/venues/${courtObj.venueId}/facilities/${courtObj.facId}/slots?start_date=${selectedDate}&end_date=${selectedDate}`;
+    // Use Vercel rewrite route /hudle-api/... to proxy requests server-side
+    const apiUrl = `/hudle-api/venues/${courtObj.venueId}/facilities/${courtObj.facId}/slots?start_date=${selectedDate}&end_date=${selectedDate}`;
     
     const p = fetch(apiUrl, {
       headers: {
@@ -4184,7 +4184,7 @@ async function syncAllVenuesLiveSlots() {
       }
     })
     .catch(err => {
-      console.warn(`Direct fetch warning for ${courtObj.courtName}:`, err);
+      console.warn(`Proxy fetch warning for ${courtObj.courtName}:`, err);
     });
 
     fetchPromises.push(p);
