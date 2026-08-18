@@ -3,7 +3,7 @@
 // AUTHENTIC USER TOKEN (TANAY GANDHI)
 const DEFAULT_USER_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoiVjNWY3FEM1pOYkdweHhlU2VWRVl6MUZEQjlKcDBvazBKYUlsNWhCb2NZdm1FdVdBbXdVcGlJemwzSWJDIiwic3ViIjoyODAxMDgsImlzcyI6Imh0dHBzOi8vYXBpLmh1ZGxlLmluL2FwaS92MS9vdHAvdmVyaWZ5IiwiaWF0IjoxNzg2OTg1ODg1LCJleHAiOjE4MTgwODk4ODUsIm5iZiI6MTc4Njk4NTg4NSwianRpIjoiRENsbjE4Z1Y4a3hJNU9VOSJ9.iZ-Lmvj2NDv9MJTGqsU4PJk2v9-q7U8VQdpuZBQmx38";
 
-// ALL 10 SOUTH MUMBAI VENUES & INDIVIDUAL COURTS MAP
+// ALL 15 SOUTH MUMBAI VENUES & INDIVIDUAL COURTS MAP
 const INDIVIDUAL_COURTS_DATA = [
   // --- COURTSIDE WORLI ---
   {
@@ -101,6 +101,44 @@ const INDIVIDUAL_COURTS_DATA = [
     matrix: {}
   },
 
+  // --- SERVE SOCIETY KOHINOOR DADAR WEST ---
+  {
+    venueId: "68a8c6d0-b287-412e-b93b-d6bccda98017",
+    facId: "38aab321-461d-4313-9a8e-012d5c5ef16e",
+    venueName: "Serve Society Kohinoor",
+    courtName: "Padel Court 1",
+    location: "Dadar West",
+    type: "padel",
+    matrix: {}
+  },
+  {
+    venueId: "68a8c6d0-b287-412e-b93b-d6bccda98017",
+    facId: "8c4831c8-0935-4a20-9934-29e5766d6f3d",
+    venueName: "Serve Society Kohinoor",
+    courtName: "Padel Court 2",
+    location: "Dadar West",
+    type: "padel",
+    matrix: {}
+  },
+  {
+    venueId: "68a8c6d0-b287-412e-b93b-d6bccda98017",
+    facId: "3b7755c5-38c5-4105-bfc7-1e4db631e8a3",
+    venueName: "Serve Society Kohinoor",
+    courtName: "Padel Court 3",
+    location: "Dadar West",
+    type: "padel",
+    matrix: {}
+  },
+  {
+    venueId: "68a8c6d0-b287-412e-b93b-d6bccda98017",
+    facId: "f14a2ecd-9192-47a9-9d01-2f07dcad4b88",
+    venueName: "Serve Society Kohinoor",
+    courtName: "Pickleball Court",
+    location: "Dadar West",
+    type: "pickleball",
+    matrix: {}
+  },
+
   // --- 7PADEL MALABAR HILL ---
   {
     venueId: "f598bca7-4947-4bf6-bd2d-f741e3abea82",
@@ -118,6 +156,37 @@ const INDIVIDUAL_COURTS_DATA = [
     courtName: "Court 2 (Sea Side)",
     location: "Malabar Hill",
     type: "padel",
+    matrix: {}
+  },
+
+  // --- PICKLE PARTNERS MALABAR HILL ---
+  {
+    venueId: "754ded61-f8fa-40aa-a1f5-e63a80b02cec",
+    facId: "96490d43-43e9-47ea-9ddb-9058ca985644",
+    venueName: "Pickle Partners",
+    courtName: "Court 1",
+    location: "Malabar Hill",
+    type: "pickleball",
+    matrix: {}
+  },
+  {
+    venueId: "754ded61-f8fa-40aa-a1f5-e63a80b02cec",
+    facId: "4b47d50e-4d58-4e96-a1bc-2c1b05cbb9b0",
+    venueName: "Pickle Partners",
+    courtName: "Court 2",
+    location: "Malabar Hill",
+    type: "pickleball",
+    matrix: {}
+  },
+
+  // --- ATLAS APARTMENTS MALABAR HILL ---
+  {
+    venueId: "3b685388-933e-4aff-bee7-846c803c4106",
+    facId: "391dc16c-a717-4c54-9583-a95a92246347",
+    venueName: "Atlas Apartments",
+    courtName: "Resident Court",
+    location: "Malabar Hill",
+    type: "pickleball",
     matrix: {}
   },
 
@@ -146,6 +215,55 @@ const INDIVIDUAL_COURTS_DATA = [
     venueName: "Urban Sports Zone",
     courtName: "Pickleball Court",
     location: "Mahalaxmi",
+    type: "pickleball",
+    matrix: {}
+  },
+
+  // --- PLAYOSPORT TARDEO / HAJI ALI ---
+  {
+    venueId: "9f8a1c64-7501-4ff3-90d1-1cf66e8be6ef",
+    facId: "3c8608bf-a35f-4d36-a62b-427adb24ea36",
+    venueName: "PlayOSport",
+    courtName: "Pickleball Court 1",
+    location: "Tardeo",
+    type: "pickleball",
+    matrix: {}
+  },
+  {
+    venueId: "9f8a1c64-7501-4ff3-90d1-1cf66e8be6ef",
+    facId: "4676b5dd-db54-49dc-b15f-57241f67d727",
+    venueName: "PlayOSport",
+    courtName: "Court 2",
+    location: "Tardeo",
+    type: "pickleball",
+    matrix: {}
+  },
+
+  // --- OCEAN'S EDGE CHURCHGATE / MARINE DRIVE ---
+  {
+    venueId: "7c5a0e6d-b720-473b-ae91-5af284e01ee6",
+    facId: "271964a6-8d2f-49d2-913b-e3793807cf9c",
+    venueName: "Ocean's Edge (Jai Hind)",
+    courtName: "Ground Floor Court",
+    location: "Churchgate",
+    type: "pickleball",
+    matrix: {}
+  },
+  {
+    venueId: "7c5a0e6d-b720-473b-ae91-5af284e01ee6",
+    facId: "a57abc12-3474-494b-b829-fc245ee3108c",
+    venueName: "Ocean's Edge (Jai Hind)",
+    courtName: "Terrace Court 1",
+    location: "Churchgate",
+    type: "pickleball",
+    matrix: {}
+  },
+  {
+    venueId: "7c5a0e6d-b720-473b-ae91-5af284e01ee6",
+    facId: "7840f388-016a-459e-8523-f87cb1443228",
+    venueName: "Ocean's Edge (Jai Hind)",
+    courtName: "Terrace Court 2",
+    location: "Churchgate",
     type: "pickleball",
     matrix: {}
   },
