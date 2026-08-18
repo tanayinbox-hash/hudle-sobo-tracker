@@ -12,7 +12,7 @@ def deploy_to_vercel(token=None):
         print("VERCEL TOKEN REQUIRED")
         return False
 
-    files_to_upload = ["index.html", "styles.css", "app.js", "vercel.json"]
+    files_to_upload = ["index.html", "app.js", "vercel.json", "api/slots.js"]
     files_payload = []
 
     for fname in files_to_upload:
@@ -30,7 +30,6 @@ def deploy_to_vercel(token=None):
         "Content-Type": "application/json"
     }
 
-    # TARGET PRODUCTION SO IT UPDATES YOUR MAIN VERCEL URL IMMEDIATELY
     payload = {
         "name": "hudle-sobo-tracker",
         "target": "production",

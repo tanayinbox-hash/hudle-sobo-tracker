@@ -1,4 +1,4 @@
-// HUDLE MUMBAI LIVE COURT AVAILABILITY TRACKER - STRICT COURTS ONLY & SPECIFIC VENUE FILTERING
+// HUDLE MUMBAI LIVE COURT AVAILABILITY TRACKER - RELIABLE SLOT SYNC & VENUE FILTERING
 
 // AUTHENTIC USER TOKEN (TANAY GANDHI)
 const DEFAULT_USER_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoiVjNWY3FEM1pOYkdweHhlU2VWRVl6MUZEQjlKcDBvazBKYUlsNWhCb2NZdm1FdVdBbXdVcGlJemwzSWJDIiwic3ViIjoyODAxMDgsImlzcyI6Imh0dHBzOi8vYXBpLmh1ZGxlLmluL2FwaS92MS9vdHAvdmVyaWZ5IiwiaWF0IjoxNzg2OTg1ODg1LCJleHAiOjE4MTgwODk4ODUsIm5iZiI6MTc4Njk4NTg4NSwianRpIjoiRENsbjE4Z1Y4a3hJNU9VOSJ9.iZ-Lmvj2NDv9MJTGqsU4PJk2v9-q7U8VQdpuZBQmx38";
@@ -4152,7 +4152,7 @@ function getFilteredCourts() {
   });
 }
 
-// FETCH LIVE HUDLE SLOTS IN PARALLEL VIA VERCEL SERVERLESS PROXY (/api/slots)
+// FETCH LIVE HUDLE SLOTS IN PARALLEL
 async function syncAllVenuesLiveSlots() {
   const token = localStorage.getItem("HUDLE_AUTH_TOKEN") || DEFAULT_USER_TOKEN;
   const syncStatusText = document.getElementById("sync-status-text");
@@ -4165,10 +4165,18 @@ async function syncAllVenuesLiveSlots() {
   targetCourts.forEach(courtObj => {
     courtObj.matrix = {};
     
-    // Serverless proxy endpoint to bypass CORS & auth header restrictions
-    const proxyUrl = `/api/slots?venueId=${courtObj.venueId}&facId=${courtObj.facId}&date=${selectedDate}&token=${encodeURIComponent(token)}`;
+    // Direct Hudle API slot endpoint with authentic Bearer Token header
+    const apiUrl = `https://api.hudle.in/api/v1/venues/${courtObj.venueId}/facilities/${courtObj.facId}/slots?start_date=${selectedDate}&end_date=${selectedDate}`;
     
-    const p = fetch(proxyUrl)
+    const p = fetch(apiUrl, {
+      headers: {
+        "Accept": "application/json",
+        "Authorization": `Bearer ${token}`,
+        "api-secret": "hudle-api1798@prod",
+        "x-app-version": "1.0.1",
+        "x-app-source": "consumer"
+      }
+    })
     .then(res => res.ok ? res.json() : null)
     .then(jsonRes => {
       if (jsonRes && jsonRes.data && Array.isArray(jsonRes.data)) {
@@ -4176,7 +4184,7 @@ async function syncAllVenuesLiveSlots() {
       }
     })
     .catch(err => {
-      console.warn(`Proxy fetch warning for ${courtObj.courtName}:`, err);
+      console.warn(`Direct fetch warning for ${courtObj.courtName}:`, err);
     });
 
     fetchPromises.push(p);
