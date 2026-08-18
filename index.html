@@ -3,31 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hudle SoBo Live Slot Tracker & Calendar | South Mumbai</title>
-  <meta name="description" content="Automated multi-venue calendar schedule tracker and slot sniper for Padel and Pickleball venues in South Mumbai on Hudle.in">
+  <title>Hudle South Mumbai Slot Tracker | Padel & Pickleball</title>
+  <meta name="description" content="Live court availability and schedule tracker for Padel and Pickleball venues in South Mumbai on Hudle.in">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
-    /* CRITICAL STYLES FOR GUARANTEED DARK MODE, SPORT FILTERS & PERFECT STICKY SCROLLING */
+    /* CLEAN & SIMPLIFIED HUDLE DESIGN SYSTEM */
     :root {
-      --bg-primary: #0a0f1d;
-      --bg-secondary: #111827;
-      --bg-card: rgba(17, 24, 39, 0.95);
-      --border-color: rgba(255, 255, 255, 0.12);
-      --border-highlight: rgba(0, 240, 255, 0.35);
+      --bg-main: #0B0F19;
+      --bg-card: #111827;
+      --bg-header: #1E293B;
+      --border-color: #1E293B;
+      --border-light: rgba(255, 255, 255, 0.08);
       
-      --accent-padel: #ccff00;      /* Electric Neon Lime */
-      --accent-pickle: #00f0ff;     /* Cyan Neon */
-      --accent-success: #10b981;    /* Emerald Green */
-      --accent-warning: #f59e0b;    /* Amber */
-      --accent-danger: #ef4444;     /* Coral Red */
+      --hudle-blue: #2563EB;
+      --hudle-green: #10B981;
+      --hudle-green-bg: rgba(16, 185, 129, 0.12);
+      --hudle-green-hover: #059669;
+      --hudle-red: #EF4444;
+      --hudle-red-bg: rgba(239, 68, 68, 0.08);
       
-      --text-primary: #f8fafc;
-      --text-secondary: #94a3b8;
-      --text-muted: #64748b;
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
       
-      --font-main: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
@@ -38,118 +39,109 @@
     }
 
     body {
-      font-family: var(--font-main);
-      background-color: var(--bg-primary);
-      color: var(--text-primary);
+      font-family: var(--font-body);
+      background-color: var(--bg-main);
+      color: var(--text-main);
       min-height: 100vh;
-      background-image: 
-        radial-gradient(circle at 15% 15%, rgba(204, 255, 0, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.08) 0%, transparent 45%);
-      background-attachment: fixed;
-      padding: 16px 14px 60px;
+      padding: 20px 16px 60px;
     }
 
-    .app-container {
+    .container {
       max-width: 1550px;
       margin: 0 auto;
     }
 
     /* HEADER */
-    header.app-header {
+    .app-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-bottom: 16px;
+      padding-bottom: 18px;
       border-bottom: 1px solid var(--border-color);
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
 
-    .brand-wrapper {
+    .brand {
       display: flex;
       align-items: center;
       gap: 14px;
     }
 
-    .brand-icon {
-      width: 46px;
-      height: 46px;
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #2563EB, #1D4ED8);
       border-radius: 12px;
-      background: linear-gradient(135deg, var(--accent-padel), var(--accent-pickle));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 24px;
-      box-shadow: 0 0 20px rgba(204, 255, 0, 0.4);
-    }
-
-    .brand-title h1 {
       font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
     }
 
-    .brand-title p {
+    .brand-text h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFFFFF;
+      letter-spacing: -0.3px;
+    }
+
+    .brand-text p {
       font-size: 13px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
+      margin-top: 2px;
     }
 
-    .header-actions {
+    .header-controls {
       display: flex;
       align-items: center;
       gap: 12px;
     }
 
-    .live-badge {
+    .sync-status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.4);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
       padding: 6px 14px;
       border-radius: 20px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent-success);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--hudle-green);
     }
 
-    .pulse {
+    .pulse-dot {
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background-color: var(--accent-success);
-      box-shadow: 0 0 10px var(--accent-success);
-    }
-
-    .clock-display {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: var(--accent-pickle);
-      background: rgba(0, 240, 255, 0.08);
-      padding: 8px 14px;
-      border-radius: 8px;
-      border: 1px solid rgba(0, 240, 255, 0.2);
+      background-color: var(--hudle-green);
+      box-shadow: 0 0 8px var(--hudle-green);
     }
 
     .btn-settings {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text-main);
       padding: 8px 16px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
+      transition: background 0.2s;
     }
 
-    /* DEDICATED NSCI 10 AM SHARP SNIPER HERO BANNER */
-    .nsci-hero-banner {
-      background: linear-gradient(135deg, rgba(204, 255, 0, 0.12), rgba(0, 240, 255, 0.15));
-      border: 2px solid var(--accent-padel);
-      border-radius: 16px;
-      padding: 20px 24px;
+    .btn-settings:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* CONTROLS BAR: SPORT TABS & DATE BAR */
+    .controls-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 14px 18px;
       margin-bottom: 24px;
-      box-shadow: 0 0 30px rgba(204, 255, 0, 0.2);
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -157,320 +149,193 @@
       gap: 16px;
     }
 
-    .nsci-hero-info h2 {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--accent-padel);
+    .sport-tabs {
       display: flex;
-      align-items: center;
       gap: 8px;
-      margin-bottom: 4px;
-    }
-
-    .nsci-hero-info p {
-      font-size: 13px;
-      color: var(--text-secondary);
-    }
-
-    .nsci-target-pills {
-      display: flex;
-      gap: 10px;
-      margin-top: 8px;
-    }
-
-    .nsci-pill {
-      background: rgba(15, 23, 42, 0.8);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 12px;
-      font-weight: 700;
-      font-family: var(--font-mono);
-      color: var(--accent-pickle);
-    }
-
-    .nsci-countdown-box {
-      text-align: center;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 10px 18px;
-      border-radius: 12px;
-    }
-
-    .nsci-countdown-time {
-      font-family: var(--font-mono);
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--accent-padel);
-    }
-
-    .nsci-countdown-lbl {
-      font-size: 10px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .btn-arm-nsci {
-      background: linear-gradient(135deg, var(--accent-padel), #a3e635);
-      color: #0f172a;
-      border: none;
-      padding: 14px 28px;
-      border-radius: 12px;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 0 25px rgba(204, 255, 0, 0.4);
-      transition: all 0.2s ease;
-    }
-
-    .btn-arm-nsci:hover {
-      transform: scale(1.04);
-      box-shadow: 0 0 35px rgba(204, 255, 0, 0.6);
-    }
-
-    /* TOOLBAR BAR: PADEL OR PICKLE FILTER & DATE SELECTION */
-    .toolbar-bar {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      background: rgba(17, 24, 39, 0.9);
-      border: 1px solid var(--border-color);
-      padding: 12px 18px;
-      border-radius: 14px;
-      margin-bottom: 20px;
-    }
-
-    .sport-filter-group {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .filter-label {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--text-secondary);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-right: 2px;
-    }
-
-    .sport-filter-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      color: var(--text-secondary);
-      padding: 8px 20px;
+      background: #0B0F19;
+      padding: 4px;
       border-radius: 10px;
-      font-size: 14px;
-      font-weight: 800;
+      border: 1px solid var(--border-light);
+    }
+
+    .sport-tab {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
 
-    .sport-filter-btn.active-padel {
-      background: rgba(204, 255, 0, 0.22);
-      border-color: var(--accent-padel);
-      color: var(--accent-padel);
-      box-shadow: 0 0 20px rgba(204, 255, 0, 0.35);
-    }
-
-    .sport-filter-btn.active-pickle {
-      background: rgba(0, 240, 255, 0.22);
-      border-color: var(--accent-pickle);
-      color: var(--accent-pickle);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+    .sport-tab.active {
+      background: var(--hudle-blue);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
     }
 
     .date-pills {
       display: flex;
-      gap: 6px;
+      gap: 8px;
       overflow-x: auto;
-      padding-bottom: 2px;
     }
 
-    .date-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: var(--text-secondary);
-      padding: 6px 14px;
+    .date-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      padding: 8px 16px;
       border-radius: 8px;
-      font-size: 12px;
-      font-weight: 700;
+      font-size: 13px;
+      font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
 
-    .date-btn.active {
-      background: rgba(204, 255, 0, 0.18);
-      border-color: var(--accent-padel);
-      color: var(--accent-padel);
+    .date-pill.active {
+      background: rgba(37, 99, 235, 0.15);
+      border-color: var(--hudle-blue);
+      color: #FFFFFF;
     }
 
-    /* FULL TIMESLOT CALENDAR MATRIX CONTAINER WITH DUAL SCROLLING & PINNED FIRST COLUMN */
-    .calendar-container {
-      background: #0f172a;
+    /* SCHEDULE MATRIX TABLE */
+    .table-container {
+      background: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 0;
+      border-radius: 12px;
       overflow-x: auto;
       overflow-y: auto;
-      max-height: 600px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.5);
-      margin-bottom: 28px;
-      position: relative;
+      max-height: 640px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
 
-    /* CUSTOM SCROLLBAR */
-    .calendar-container::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
+    .table-container::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
     }
 
-    .calendar-container::-webkit-scrollbar-track {
-      background: rgba(10, 15, 29, 0.6);
+    .table-container::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
     }
 
-    .calendar-container::-webkit-scrollbar-thumb {
-      background: rgba(255, 255, 255, 0.25);
-      border-radius: 4px;
-    }
-
-    /* TABLE LAYOUT FIXES FOR ZERO-GLITCH SCROLLING */
-    .calendar-table {
+    .schedule-table {
       width: max-content;
       border-collapse: separate;
-      border-spacing: 0; /* ELIMINATE GAPS TO PREVENT BG SCROLL BLEED */
+      border-spacing: 0;
     }
 
-    /* CORNER PINNED HEADER CELL */
-    .calendar-table th.venue-col-header {
+    .schedule-table th.venue-corner {
       position: sticky;
       left: 0;
       top: 0;
-      z-index: 40; /* HIGHEST Z-INDEX SO CORNER NEVER OVERLAPS */
-      background: #111827;
+      z-index: 40;
+      background: #1E293B;
       text-align: left;
-      min-width: 260px;
-      color: var(--text-primary);
-      border-right: 2px solid rgba(255, 255, 255, 0.15);
-      border-bottom: 2px solid rgba(255, 255, 255, 0.15);
-      padding: 12px 16px;
-      box-shadow: 4px 0 10px rgba(0,0,0,0.5);
+      min-width: 270px;
+      color: var(--text-main);
+      font-size: 13px;
+      font-weight: 700;
+      border-right: 2px solid var(--border-color);
+      border-bottom: 2px solid var(--border-color);
+      padding: 14px 18px;
     }
 
-    /* TIMESLOT HEADERS */
-    .calendar-table th {
-      background: #0f172a;
-      color: var(--text-secondary);
-      padding: 12px 14px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
+    .schedule-table th {
+      background: #1E293B;
+      color: var(--text-muted);
+      padding: 12px 16px;
+      font-size: 12px;
+      font-weight: 600;
       text-align: center;
-      border-bottom: 2px solid rgba(255, 255, 255, 0.15);
-      border-right: 1px solid rgba(255, 255, 255, 0.08);
-      min-width: 90px;
+      border-bottom: 2px solid var(--border-color);
+      border-right: 1px solid var(--border-light);
+      min-width: 96px;
       position: sticky;
       top: 0;
       z-index: 20;
     }
 
-    /* VENUE SECTION DIVIDER ROW (ALWAYS PINNED ON LEFT WHEN SCROLLING RIGHT) */
-    .venue-divider-cell {
-      background: #1e293b;
-      border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
-      padding: 10px 16px !important;
-      text-align: left !important;
+    /* VENUE DIVIDER ROW */
+    .venue-header-row td {
+      background: #0B0F19 !important;
+      border-top: 1px solid var(--border-color) !important;
+      border-bottom: 1px solid var(--border-color) !important;
+      padding: 10px 18px !important;
+      text-align: left !alignment;
     }
 
-    .divider-content {
+    .venue-header-content {
       position: sticky;
-      left: 16px; /* LOCKS VENUE TITLE 16px FROM THE LEFT WHEN SCROLLING RIGHT */
+      left: 18px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       width: max-content;
-      z-index: 30;
     }
 
-    .divider-badge {
-      font-size: 10px;
-      font-weight: 800;
-      padding: 2px 8px;
+    .venue-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
       border-radius: 4px;
-      background: rgba(204, 255, 0, 0.2);
-      color: var(--accent-padel);
-      border: 1px solid rgba(204, 255, 0, 0.4);
-      letter-spacing: 0.5px;
+      background: rgba(37, 99, 235, 0.15);
+      color: var(--hudle-blue);
+      border: 1px solid rgba(37, 99, 235, 0.3);
     }
 
-    .divider-title {
+    .venue-name {
       font-size: 14px;
-      font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.2px;
+      font-weight: 700;
+      color: #FFFFFF;
     }
 
-    .divider-location {
+    .venue-loc {
       font-size: 12px;
-      color: var(--text-secondary);
+      color: var(--text-muted);
     }
 
-    /* INDIVIDUAL COURT ROWS */
-    .calendar-table td {
-      background: #0f172a;
+    /* COURT ROW & CELLS */
+    .schedule-table td {
+      background: var(--bg-card);
       padding: 6px;
       text-align: center;
       vertical-align: middle;
-      border-right: 1px solid rgba(255, 255, 255, 0.05);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      border-right: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
     }
 
-    /* STICKY COURT NAME CELL (SOLID BG, ZERO TRANSPARENCY, NO BLEED) */
-    .calendar-table td.venue-label-cell {
+    .schedule-table td.court-label-cell {
       position: sticky;
       left: 0;
       z-index: 10;
-      background: #111827; /* SOLID OPAQUE DARK BACKGROUND */
+      background: #111827;
       text-align: left;
-      padding: 10px 16px;
-      border-right: 2px solid rgba(255, 255, 255, 0.15);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      box-shadow: 4px 0 10px rgba(0,0,0,0.5);
-      min-width: 260px;
+      padding: 10px 18px 10px 30px;
+      border-right: 2px solid var(--border-color);
+      border-bottom: 1px solid var(--border-light);
+      min-width: 270px;
     }
 
-    .court-row-label {
-      padding-left: 24px !important;
-    }
-
-    .court-title-text {
+    .court-name {
       font-size: 13px;
-      font-weight: 700;
-      color: var(--text-primary);
+      font-weight: 600;
+      color: var(--text-main);
       white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 6px;
     }
 
-    .matrix-slot-btn {
+    /* HUDLE CLEAN SLOT BUTTONS */
+    .slot-btn {
       width: 100%;
-      min-width: 82px;
-      padding: 8px 4px;
+      min-width: 84px;
+      padding: 8px 6px;
       border-radius: 6px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      font-weight: 700;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
       border: none;
       cursor: pointer;
       display: flex;
@@ -478,47 +343,47 @@
       align-items: center;
       justify-content: center;
       gap: 2px;
-      transition: all 0.2s ease;
+      transition: all 0.15s ease;
     }
 
-    .matrix-slot-btn.open {
-      background: rgba(16, 185, 129, 0.16);
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      color: var(--accent-success);
+    .slot-btn.available {
+      background: var(--hudle-green-bg);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--hudle-green);
     }
 
-    .matrix-slot-btn.open:hover {
-      background: var(--accent-padel);
-      color: #0f172a;
-      transform: scale(1.06);
-      box-shadow: 0 0 12px rgba(204, 255, 0, 0.6);
+    .slot-btn.available:hover {
+      background: var(--hudle-green);
+      color: #FFFFFF;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.4);
     }
 
-    .matrix-slot-btn.booked {
-      background: rgba(239, 68, 68, 0.08);
+    .slot-btn.booked {
+      background: var(--hudle-red-bg);
       border: 1px solid rgba(239, 68, 68, 0.2);
-      color: var(--accent-danger);
-      opacity: 0.55;
+      color: var(--hudle-red);
+      opacity: 0.6;
       cursor: not-allowed;
     }
 
-    .matrix-slot-btn.empty {
+    .slot-btn.empty {
       background: transparent;
-      border: 1px dashed rgba(255, 255, 255, 0.04);
-      color: var(--text-muted);
+      border: 1px dashed rgba(255, 255, 255, 0.05);
+      color: var(--text-dim);
       cursor: default;
-      opacity: 0.3;
+      opacity: 0.25;
     }
 
-    /* MODAL OVERLAY */
+    /* MODAL */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: rgba(10, 15, 29, 0.85);
-      backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
       display: none;
       align-items: center;
       justify-content: center;
@@ -529,74 +394,84 @@
       display: flex;
     }
 
-    .modal-content {
-      background: #111827;
-      border: 1px solid rgba(255, 255, 255, 0.15);
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
       width: 90%;
-      max-width: 480px;
-      border-radius: 16px;
+      max-width: 440px;
+      border-radius: 12px;
       padding: 24px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .form-control {
+      background: #0B0F19;
+      border: 1px solid var(--border-color);
+      color: #FFFFFF;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+    }
+
+    .btn-primary {
+      background: var(--hudle-blue);
+      color: #FFFFFF;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
     }
   </style>
 </head>
 <body>
-  <div class="app-container">
+  <div class="container">
     
     <!-- HEADER -->
     <header class="app-header">
-      <div class="brand-wrapper">
-        <div class="brand-icon">🎾</div>
-        <div class="brand-title">
-          <h1>Hudle SoBo Schedule Tracker</h1>
-          <p>South Mumbai Padel & Pickleball Court Engine</p>
+      <div class="brand">
+        <div class="brand-logo">🎾</div>
+        <div class="brand-text">
+          <h1>Hudle South Mumbai Slot Tracker</h1>
+          <p>Live Court Schedule & Availability Matrix</p>
         </div>
       </div>
       
-      <div class="header-actions">
-        <div class="live-badge" id="live-sync-badge">
-          <span class="pulse"></span>
+      <div class="header-controls">
+        <div class="sync-status" id="live-sync-badge">
+          <span class="pulse-dot"></span>
           <span id="sync-status-text">Hudle API Sync</span>
         </div>
-        <div class="clock-display" id="clock">17:49:36.000 IST</div>
         <button class="btn-settings" id="btn-open-settings">
           ⚙️ Settings
         </button>
       </div>
     </header>
 
-    <!-- DEDICATED NSCI 10 AM SHARP AUTO-SNIPER HERO BANNER -->
-    <div class="nsci-hero-banner">
-      <div class="nsci-hero-info">
-        <h2>⚡ NSCI Padel 10:00:00 AM Sharp Auto-Sniper Engine</h2>
-        <p>Pre-armed for 7-Day Advance Release (Instant Millisecond Booking)</p>
-        <div class="nsci-target-pills">
-          <span class="nsci-pill">📍 NSCI Padel (Worli)</span>
-          <span class="nsci-pill">📅 Target: Tuesday 25th Aug 2026</span>
-          <span class="nsci-pill">⏰ Slot: 8:00 PM - 10:00 PM (2 Hours)</span>
-        </div>
-      </div>
-
-      <div class="nsci-countdown-box">
-        <div class="nsci-countdown-lbl">Next Release Countdown</div>
-        <div class="nsci-countdown-time" id="nsci-countdown">11h 03m 24s</div>
-      </div>
-
-      <button class="btn-arm-nsci" id="btn-arm-nsci-hero" onclick="armNsciSniper()">
-        🚀 ARM NSCI 10 AM SNIPER
-      </button>
-    </div>
-
-    <!-- TOOLBAR BAR: PADEL OR PICKLE FILTER & DATE SELECTION -->
-    <div class="toolbar-bar">
-      <!-- TOP SPORT FILTER (ONLY PADEL & PICKLEBALL) -->
-      <div class="sport-filter-group">
-        <span class="filter-label">Sport Filter:</span>
-        <button class="sport-filter-btn active-padel" id="filter-btn-padel" onclick="setSportFilter('padel')">
-          🎾 Padel (4 Venues)
+    <!-- CONTROLS BAR: SPORT SELECTION & DATE BAR -->
+    <div class="controls-bar">
+      <!-- SPORT TABS -->
+      <div class="sport-tabs">
+        <button class="sport-tab active" id="filter-btn-padel" onclick="setSportFilter('padel')">
+          🎾 Padel
         </button>
-        <button class="sport-filter-btn" id="filter-btn-pickle" onclick="setSportFilter('pickleball')">
-          🏓 Pickleball (4 Venues)
+        <button class="sport-tab" id="filter-btn-pickle" onclick="setSportFilter('pickleball')">
+          🏓 Pickleball
         </button>
       </div>
 
@@ -606,12 +481,12 @@
       </div>
     </div>
 
-    <!-- UNIFIED CALENDAR SCHEDULE MATRIX (PINNED VENUE LOCATION HEADERS WHEN SCROLLING RIGHT) -->
-    <div class="calendar-container">
-      <table class="calendar-table">
+    <!-- SCHEDULE MATRIX TABLE -->
+    <div class="table-container">
+      <table class="schedule-table">
         <thead>
           <tr id="calendar-header-row">
-            <th class="venue-col-header">South Mumbai Venue & Court</th>
+            <th class="venue-corner">South Mumbai Venue & Court</th>
             <!-- Dynamic timeslot headers -->
           </tr>
         </thead>
@@ -625,32 +500,20 @@
 
   <!-- SETTINGS MODAL -->
   <div class="modal-overlay" id="settings-modal">
-    <div class="modal-content">
+    <div class="modal-box">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
-        <h3 style="font-size: 18px; font-weight: 800;">⚙️ Hudle API & Alert Settings</h3>
-        <button id="btn-close-settings" style="background: transparent; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer;">&times;</button>
+        <h3 style="font-size: 16px; font-weight: 700;">⚙️ Hudle API Settings</h3>
+        <button id="btn-close-settings" style="background: transparent; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer;">&times;</button>
       </div>
       
-      <div style="display: flex; flex-direction: column; gap: 16px;">
-        <div class="form-group">
-          <label>Hudle Authorization Token</label>
-          <input type="password" class="form-control" id="hudle-token-input" placeholder="Paste Authorization Bearer Token here">
-        </div>
-        
-        <div class="form-group">
-          <label>Telegram Bot Token (Optional)</label>
-          <input type="text" class="form-control" id="telegram-token-input" placeholder="123456789:ABCdef...">
-        </div>
-        
-        <div class="form-group">
-          <label>Telegram Chat ID (Optional)</label>
-          <input type="text" class="form-control" id="telegram-chat-input" placeholder="-100123456789">
-        </div>
-        
-        <button class="btn-snipe" id="btn-save-settings" style="width: 100%; margin-top: 10px;">
-          Save Configuration & Sync Live API
-        </button>
+      <div class="form-group">
+        <label>Hudle Authorization Token</label>
+        <input type="password" class="form-control" id="hudle-token-input" placeholder="Paste Authorization Bearer Token here">
       </div>
+      
+      <button class="btn-primary" id="btn-save-settings" style="margin-top: 10px;">
+        Save Configuration
+      </button>
     </div>
   </div>
 

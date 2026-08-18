@@ -1,4 +1,4 @@
-// HUDLE SOUTH MUMBAI LIVE API COURT-BY-COURT TRACKER & UNIFIED CALENDAR MATRIX
+// HUDLE SOUTH MUMBAI COURT AVAILABILITY TRACKER
 
 // AUTHENTIC USER TOKEN (TANAY GANDHI)
 const DEFAULT_USER_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoiVjNWY3FEM1pOYkdweHhlU2VWRVl6MUZEQjlKcDBvazBKYUlsNWhCb2NZdm1FdVdBbXdVcGlJemwzSWJDIiwic3ViIjoyODAxMDgsImlzcyI6Imh0dHBzOi8vYXBpLmh1ZGxlLmluL2FwaS92MS9vdHAvdmVyaWZ5IiwiaWF0IjoxNzg2OTg1ODg1LCJleHAiOjE4MTgwODk4ODUsIm5iZiI6MTc4Njk4NTg4NSwianRpIjoiRENsbjE4Z1Y4a3hJNU9VOSJ9.iZ-Lmvj2NDv9MJTGqsU4PJk2v9-q7U8VQdpuZBQmx38";
@@ -607,75 +607,11 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("HUDLE_AUTH_TOKEN", DEFAULT_USER_TOKEN);
   }
   
-  initClock();
-  initBookingDate();
-  initNsciCountdown();
   renderDatePills();
   renderCalendarMatrix();
   syncAllVenuesLiveSlots();
   initModal();
 });
-
-// REAL-TIME CLOCK WITH MILLISECONDS
-function initClock() {
-  const clockEl = document.getElementById("clock");
-  function update() {
-    const now = new Date();
-    const hrs = String(now.getHours()).padStart(2, '0');
-    const mins = String(now.getMinutes()).padStart(2, '0');
-    const secs = String(now.getSeconds()).padStart(2, '0');
-    const ms = String(now.getMilliseconds()).padStart(3, '0');
-    clockEl.textContent = `${hrs}:${mins}:${secs}.${ms} IST`;
-    requestAnimationFrame(update);
-  }
-  requestAnimationFrame(update);
-}
-
-// NSCI 10 AM SHARP RELEASE COUNTDOWN TIMER
-function initNsciCountdown() {
-  const cdEl = document.getElementById("nsci-countdown");
-  
-  function updateCD() {
-    const now = new Date();
-    let target10am = new Date(now);
-    target10am.setHours(10, 0, 0, 0);
-
-    if (now > target10am) {
-      target10am.setDate(target10am.getDate() + 1);
-    }
-
-    const diffMs = target10am - now;
-    const hrs = Math.floor(diffMs / (1000 * 60 * 60));
-    const mins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-    const secs = Math.floor((diffMs % (1000 * 60)) / 1000);
-
-    cdEl.textContent = `${hrs}h ${mins}m ${secs}s`;
-  }
-  
-  updateCD();
-  setInterval(updateCD, 1000);
-}
-
-function armNsciSniper() {
-  const now = new Date();
-  let target10am = new Date(now);
-  target10am.setHours(10, 0, 0, 0);
-
-  if (now > target10am) {
-    target10am.setDate(target10am.getDate() + 1);
-  }
-
-  const advance7Days = new Date(target10am);
-  advance7Days.setDate(advance7Days.getDate() + 7);
-  const targetDateStr = advance7Days.toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric', year: 'numeric' });
-
-  alert(`⚡ NSCI 10:00:00 AM SHARP SNIPER ARMED!\n\nTarget Venue: NSCI Padel Club | Members Only\nRelease Time: Tomorrow 10:00:00.000 AM IST\nTarget Booking Date: ${targetDateStr}\nTarget Slot: 8:00 PM - 10:00 PM (2 Hours Prime)\n\nThe millisecond sniper will trigger automatically at exact release!`);
-}
-
-function initBookingDate() {
-  const dateInput = document.getElementById("booking-date-input");
-  if (dateInput) dateInput.value = selectedDate;
-}
 
 // FILTER OUT PAST TIMESLOTS IF SELECTED DATE IS TODAY
 function getVisibleTimeslots(dateStr) {
@@ -692,18 +628,16 @@ function getVisibleTimeslots(dateStr) {
     if (period === "PM" && h !== 12) h += 12;
     if (period === "AM" && h === 12) h = 0;
     
-    // Include slots for current and future hours today
     return h >= currentHour;
   });
 
-  // Fallback to evening slots if current hour is past operating hours tonight
   return filtered.length > 0 ? filtered : ALL_TIMESLOTS.slice(-4);
 }
 
-// RENDER TIMESLOT TABLE HEADERS BASED ON VISIBLE SLOTS
+// RENDER TIMESLOT TABLE HEADERS
 function renderCalendarHeaders(visibleSlots) {
   const headerRow = document.getElementById("calendar-header-row");
-  headerRow.innerHTML = `<th class="venue-col-header">South Mumbai Venue & Court</th>`;
+  headerRow.innerHTML = `<th class="venue-corner">South Mumbai Venue & Court</th>`;
   
   visibleSlots.forEach(timeStr => {
     const th = document.createElement("th");
@@ -726,7 +660,7 @@ function renderDatePills() {
     let label = i === 0 ? "Today" : i === 1 ? "Tomorrow" : d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
     
     const btn = document.createElement("button");
-    btn.className = `date-btn ${dateStr === selectedDate ? 'active' : ''}`;
+    btn.className = `date-pill ${dateStr === selectedDate ? 'active' : ''}`;
     btn.textContent = label;
     btn.onclick = () => {
       selectedDate = dateStr;
@@ -747,11 +681,11 @@ function setSportFilter(filterMode) {
   const btnPadel = document.getElementById("filter-btn-padel");
   const btnPickle = document.getElementById("filter-btn-pickle");
 
-  btnPadel.className = `sport-filter-btn ${filterMode === 'padel' ? 'active-padel' : ''}`;
-  btnPadel.innerHTML = `🎾 Padel (${padelCount} Venues)`;
+  btnPadel.className = `sport-tab ${filterMode === 'padel' ? 'active' : ''}`;
+  btnPadel.textContent = `🎾 Padel (${padelCount})`;
 
-  btnPickle.className = `sport-filter-btn ${filterMode === 'pickleball' ? 'active-pickle' : ''}`;
-  btnPickle.innerHTML = `🏓 Pickleball (${pickleCount} Venues)`;
+  btnPickle.className = `sport-tab ${filterMode === 'pickleball' ? 'active' : ''}`;
+  btnPickle.textContent = `🏓 Pickleball (${pickleCount})`;
   
   renderCalendarMatrix();
 }
@@ -761,7 +695,7 @@ async function syncAllVenuesLiveSlots() {
   const token = localStorage.getItem("HUDLE_AUTH_TOKEN") || DEFAULT_USER_TOKEN;
   const syncStatusText = document.getElementById("sync-status-text");
 
-  syncStatusText.textContent = "Syncing Hudle API...";
+  syncStatusText.textContent = "Syncing...";
 
   const fetchPromises = [];
 
@@ -791,7 +725,6 @@ async function syncAllVenuesLiveSlots() {
     fetchPromises.push(p);
   });
 
-  // Execute all requests concurrently in parallel!
   await Promise.all(fetchPromises);
 
   syncStatusText.textContent = "Live Synced ✅";
@@ -826,6 +759,11 @@ function formatTimeTo12Hr(time24) {
   return `${String(h).padStart(2, '0')}:00 ${ampm}`;
 }
 
+// OPEN HUDLE BOOKING PAGE
+function openHudleBooking(venueId) {
+  window.open(`https://hudle.in/venues/${venueId}`, '_blank');
+}
+
 // RENDER CALENDAR MATRIX GROUPED BY VENUE LOCATION WITH DIVIDERS & PAST-TIME FILTERING FOR TODAY
 function renderCalendarMatrix() {
   const tbody = document.getElementById("calendar-matrix-body");
@@ -846,6 +784,7 @@ function renderCalendarMatrix() {
   filteredCourts.forEach(c => {
     if (!groupedVenues[c.venueName]) {
       groupedVenues[c.venueName] = {
+        venueId: c.venueId,
         name: c.venueName,
         location: c.location,
         type: c.type,
@@ -859,16 +798,15 @@ function renderCalendarMatrix() {
   Object.values(groupedVenues).forEach(group => {
     // 1. Venue Section Header Divider Row
     const dividerTr = document.createElement("tr");
-    dividerTr.className = "venue-divider-row";
+    dividerTr.className = "venue-header-row";
     
     const dividerTd = document.createElement("td");
-    dividerTd.className = "venue-divider-cell";
     dividerTd.colSpan = visibleSlots.length + 1;
     dividerTd.innerHTML = `
-      <div class="divider-content">
-        <span class="divider-badge">${group.type === 'padel' ? '🎾 PADEL' : '🏓 PICKLEBALL'}</span>
-        <span class="divider-title">${group.name}</span>
-        <span class="divider-location">📍 ${group.location}</span>
+      <div class="venue-header-content">
+        <span class="venue-badge">${group.type === 'padel' ? 'PADEL' : 'PICKLEBALL'}</span>
+        <span class="venue-name">${group.name}</span>
+        <span class="venue-loc">📍 ${group.location}</span>
       </div>
     `;
     dividerTr.appendChild(dividerTd);
@@ -879,9 +817,9 @@ function renderCalendarMatrix() {
       const tr = document.createElement("tr");
       
       const labelTd = document.createElement("td");
-      labelTd.className = "venue-label-cell court-row-label";
+      labelTd.className = "court-label-cell";
       labelTd.innerHTML = `
-        <div class="court-title-text">↳ ${c.courtName}</div>
+        <div class="court-name">↳ ${c.courtName}</div>
       `;
       tr.appendChild(labelTd);
 
@@ -891,20 +829,19 @@ function renderCalendarMatrix() {
 
         if (slotData.status === "open") {
           td.innerHTML = `
-            <button class="matrix-slot-btn open" onclick="armNsciSniper()">
-              <span>⚡ ₹${slotData.price}</span>
-              <span style="font-size: 8px; opacity: 0.8;">SNIPE</span>
+            <button class="slot-btn available" onclick="openHudleBooking('${c.venueId}')">
+              <span>₹${slotData.price}</span>
             </button>
           `;
         } else if (slotData.status === "booked") {
           td.innerHTML = `
-            <button class="matrix-slot-btn booked" disabled>
-              <span>❌ Sold</span>
+            <button class="slot-btn booked" disabled>
+              <span>Booked</span>
             </button>
           `;
         } else {
           td.innerHTML = `
-            <button class="matrix-slot-btn empty" disabled>
+            <button class="slot-btn empty" disabled>
               <span>-</span>
             </button>
           `;
@@ -928,13 +865,9 @@ function initModal() {
   closeBtn.addEventListener("click", () => modal.classList.remove("open"));
 
   document.getElementById("hudle-token-input").value = localStorage.getItem("HUDLE_AUTH_TOKEN") || DEFAULT_USER_TOKEN;
-  document.getElementById("telegram-token-input").value = localStorage.getItem("TELEGRAM_BOT_TOKEN") || "";
-  document.getElementById("telegram-chat-input").value = localStorage.getItem("TELEGRAM_CHAT_ID") || "";
 
   saveBtn.addEventListener("click", () => {
     localStorage.setItem("HUDLE_AUTH_TOKEN", document.getElementById("hudle-token-input").value);
-    localStorage.setItem("TELEGRAM_BOT_TOKEN", document.getElementById("telegram-token-input").value);
-    localStorage.setItem("TELEGRAM_CHAT_ID", document.getElementById("telegram-chat-input").value);
     modal.classList.remove("open");
     syncAllVenuesLiveSlots();
   });
