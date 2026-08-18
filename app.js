@@ -3,7 +3,7 @@
 // AUTHENTIC USER TOKEN (TANAY GANDHI)
 const DEFAULT_USER_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoiVjNWY3FEM1pOYkdweHhlU2VWRVl6MUZEQjlKcDBvazBKYUlsNWhCb2NZdm1FdVdBbXdVcGlJemwzSWJDIiwic3ViIjoyODAxMDgsImlzcyI6Imh0dHBzOi8vYXBpLmh1ZGxlLmluL2FwaS92MS9vdHAvdmVyaWZ5IiwiaWF0IjoxNzg2OTg1ODg1LCJleHAiOjE4MTgwODk4ODUsIm5iZiI6MTc4Njk4NTg4NSwianRpIjoiRENsbjE4Z1Y4a3hJNU9VOSJ9.iZ-Lmvj2NDv9MJTGqsU4PJk2v9-q7U8VQdpuZBQmx38";
 
-// GRANULAR INDIVIDUAL COURTS MAP
+// ALL 10 SOUTH MUMBAI VENUES & INDIVIDUAL COURTS MAP
 const INDIVIDUAL_COURTS_DATA = [
   // --- COURTSIDE WORLI ---
   {
@@ -121,6 +121,35 @@ const INDIVIDUAL_COURTS_DATA = [
     matrix: {}
   },
 
+  // --- URBAN SPORTS ZONE MAHALAXMI ---
+  {
+    venueId: "a61ba760-78e1-40fc-a1d9-97523d80da55",
+    facId: "2acab5d8-66d6-4aa7-9478-cd0f2527c174",
+    venueName: "Urban Sports Zone",
+    courtName: "Padel Court 1",
+    location: "Mahalaxmi",
+    type: "padel",
+    matrix: {}
+  },
+  {
+    venueId: "a61ba760-78e1-40fc-a1d9-97523d80da55",
+    facId: "50ad9730-91e2-4ab1-a0b5-a4d755ca73c5",
+    venueName: "Urban Sports Zone",
+    courtName: "Padel Court 2",
+    location: "Mahalaxmi",
+    type: "padel",
+    matrix: {}
+  },
+  {
+    venueId: "a61ba760-78e1-40fc-a1d9-97523d80da55",
+    facId: "da2ac0bb-ff1c-4615-92bc-6478b956153a",
+    venueName: "Urban Sports Zone",
+    courtName: "Pickleball Court",
+    location: "Mahalaxmi",
+    type: "pickleball",
+    matrix: {}
+  },
+
   // --- SMASH DOCK COLABA ---
   {
     venueId: "f8172f52-47fc-4e19-ba87-f9ae625eccb8",
@@ -137,6 +166,44 @@ const INDIVIDUAL_COURTS_DATA = [
     venueName: "Smash Dock",
     courtName: "Court 2",
     location: "Colaba",
+    type: "pickleball",
+    matrix: {}
+  },
+
+  // --- GLOBAL SPORTS WTC CUFFE PARADE / COLABA ---
+  {
+    venueId: "b64026f2-7d04-4beb-bbd7-ed7166963787",
+    facId: "79574d7e-f38a-46a8-a700-19f0202b6e65",
+    venueName: "Global Sports | WTC",
+    courtName: "Court 1",
+    location: "Cuffe Parade / Colaba",
+    type: "pickleball",
+    matrix: {}
+  },
+  {
+    venueId: "b64026f2-7d04-4beb-bbd7-ed7166963787",
+    facId: "5585fb69-6ef7-471b-af0d-066e4c6171af",
+    venueName: "Global Sports | WTC",
+    courtName: "Court 2",
+    location: "Cuffe Parade / Colaba",
+    type: "pickleball",
+    matrix: {}
+  },
+  {
+    venueId: "b64026f2-7d04-4beb-bbd7-ed7166963787",
+    facId: "2a7c49d4-8264-41f6-a68a-177c9d67b6a8",
+    venueName: "Global Sports | WTC",
+    courtName: "Court 3",
+    location: "Cuffe Parade / Colaba",
+    type: "pickleball",
+    matrix: {}
+  },
+  {
+    venueId: "b64026f2-7d04-4beb-bbd7-ed7166963787",
+    facId: "f3983aa6-2920-4b91-9024-3cdbf456cc22",
+    venueName: "Global Sports | WTC",
+    courtName: "Court 4",
+    location: "Cuffe Parade / Colaba",
     type: "pickleball",
     matrix: {}
   },
@@ -166,6 +233,37 @@ const INDIVIDUAL_COURTS_DATA = [
     venueName: "Global Sports",
     courtName: "Court 3",
     location: "Lower Parel",
+    type: "pickleball",
+    matrix: {}
+  },
+
+  // --- URBAN SPORTS ZONE LOWER PAREL ---
+  {
+    venueId: "22ead04d-19cb-4b04-86a6-3e884ac0a7c2",
+    facId: "360faa01-0902-4135-97df-250eb75ccfbb",
+    venueName: "Urban Sports Zone",
+    courtName: "Court 1",
+    location: "Peninsula Lower Parel",
+    type: "pickleball",
+    matrix: {}
+  },
+  {
+    venueId: "22ead04d-19cb-4b04-86a6-3e884ac0a7c2",
+    facId: "89b0f2a6-1cfd-4bb5-9d09-cf7f3b9340d0",
+    venueName: "Urban Sports Zone",
+    courtName: "Court 2",
+    location: "Peninsula Lower Parel",
+    type: "pickleball",
+    matrix: {}
+  },
+
+  // --- SPORTZELLA PAREL ---
+  {
+    venueId: "47560b35-f9bc-4c10-b3ae-1f4728fb1c8b",
+    facId: "5b5df85c-8aee-40aa-b63c-142db78590b6",
+    venueName: "Sportzella Arena",
+    courtName: "Pickleball Court",
+    location: "Parel",
     type: "pickleball",
     matrix: {}
   }
@@ -320,8 +418,17 @@ function renderDatePills() {
 function setSportFilter(filterMode) {
   currentSportFilter = filterMode;
   
-  document.getElementById("filter-btn-padel").className = `sport-filter-btn ${filterMode === 'padel' ? 'active-padel' : ''}`;
-  document.getElementById("filter-btn-pickle").className = `sport-filter-btn ${filterMode === 'pickleball' ? 'active-pickle' : ''}`;
+  const padelCount = new Set(INDIVIDUAL_COURTS_DATA.filter(c => c.type === 'padel').map(c => c.venueName)).size;
+  const pickleCount = new Set(INDIVIDUAL_COURTS_DATA.filter(c => c.type === 'pickleball').map(c => c.venueName)).size;
+
+  const btnPadel = document.getElementById("filter-btn-padel");
+  const btnPickle = document.getElementById("filter-btn-pickle");
+
+  btnPadel.className = `sport-filter-btn ${filterMode === 'padel' ? 'active-padel' : ''}`;
+  btnPadel.innerHTML = `🎾 Padel (${padelCount} Venues)`;
+
+  btnPickle.className = `sport-filter-btn ${filterMode === 'pickleball' ? 'active-pickle' : ''}`;
+  btnPickle.innerHTML = `🏓 Pickleball (${pickleCount} Venues)`;
   
   renderCalendarMatrix();
 }
@@ -365,6 +472,7 @@ async function syncAllVenuesLiveSlots() {
   await Promise.all(fetchPromises);
 
   syncStatusText.textContent = "Live Synced ✅";
+  setSportFilter(currentSportFilter);
   renderCalendarMatrix();
 }
 
